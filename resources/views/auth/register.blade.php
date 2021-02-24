@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header text-center">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -39,11 +39,44 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="radio" class="form-check-input" name="optradio">Option 1
-                            </label>
-                          </div>
+                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select unit</label>
+                            <div class="col-md-6">
+                                <select name ="unit" placeholder="please select "class="form-control">  
+                                    @foreach($units as $unit)
+                                        <option value="{{$unit->id}}">{{$unit->unit}}</option>
+                                    @endforeach
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="unit" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
+                            <div class="col-md-6">
+                                <select name ="select" placeholder="please select "class="form-control">  
+                                    @foreach($designations as $designation)
+                                        <option value="{{$designation->id}}">{{$designation->designation}}</option>
+                                    @endforeach
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
+                            <div class="col-md-6">
+                                <select name ="select" placeholder="please select "class="form-control">  
+                                    @foreach($reporting_managers as $reporting_manager)
+                                        <option value="{{$reporting_manager->id}}">{{$reporting_manager->reporting_manager}}</option>
+                                    @endforeach
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
+                            <div class="col-md-6">
+                                <select name ="select" placeholder="please select "class="form-control">  
+                                    @foreach($locations as $location)
+                                        <option value="{{$location->id}}">{{$location->location}}</option>
+                                    @endforeach
+                                </select><br>
+                            </div>
                         </div>
                         
                           

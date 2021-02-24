@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\Unit;
+use App\Models\Location;
+use App\Models\Designation;
+use App\Models\ReportingManager;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +60,14 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
+    public function select(Request $request){
+        $units = Unit::get();
+        $locations = Location::get();
+        $designations = Designation::get();
+        $reporting_managers = ReportingManager::get();
+        return view('auth.register', compact('units', 'designations', 'locations', 'reporting_managers'));   
+    }
+ 
 
     /**
      * Create a new user instance after a valid registration.
@@ -68,6 +81,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'unit_id' => $data['unit'],
         ]);
     }
 }
