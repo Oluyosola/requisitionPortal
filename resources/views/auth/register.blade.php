@@ -41,7 +41,7 @@
                         <div class="form-group row">
                             <label for="unit" class="col-md-4 col-form-label text-md-right">Select unit</label>
                             <div class="col-md-6">
-                                <select name ="unit" placeholder="please select "class="form-control">  
+                                <select name ="unit" placeholder="please select "class="form-control" value="">  
                                     @foreach($units as $unit)
                                         <option value="{{$unit->id}}">{{$unit->unit}}</option>
                                     @endforeach
