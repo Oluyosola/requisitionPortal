@@ -1,5 +1,5 @@
   <div class="dashboard-header">
-    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <nav class="navbar navbar-expand-lg bg-white">
         <a class="navbar-brand" href="assets/img/synlab.png"><img src="assets/img/synlab.png" height="50px" alt=""></a>    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         {{-- Left Side Of Navbar  --}}
@@ -15,11 +15,11 @@
                                     </li>
                                 @endif
                                 
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register')) --}}
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
-                                @endif
+                                {{-- @endif --}}
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

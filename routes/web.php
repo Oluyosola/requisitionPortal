@@ -21,11 +21,9 @@ Route::get('/check', function () {
 });
 
 Auth::routes();
-Route::get('/requisition', [App\Http\Controllers\RequisitionController::class, 'select'])->name('requisition');
-//  function (){
-    // return view('requisition');
-// });
-// Route::get('/', );
+Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('requisition');
+Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);
+
 Route::get('/unit', [App\Http\Controllers\Auth\RegisterController::class, 'select']);
-// Route::post('/register',  [App\Http\Controllers\Auth\RegisterController::class, 'create']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

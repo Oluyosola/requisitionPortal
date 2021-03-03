@@ -1,44 +1,93 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="col-md-10 col-sm-9 col-xs-12">
-    <div class="side-body" style="padding-top:2%">
-       <div class="container-fluid">
-          <!-- PAGE DESCRIPTION HEADER -->
-          <div class="header">
-             <h3>Add New Requisition</h3>
-          </div>
-          <!-- END OF PAGE DESCRIPTION HEADER -->
-          <div class="content-box">
-             <div class="col-md-8 col-sm-12" style="padding:0px">
-                <!-- FORM -->
-                <form method="POST" action="">
-                  <div class="form-box">
-                     <label for="category">Category:</label>
-                     <select name ="category" placeholder="please select "class="form-control">  
-                        @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->category}}</option>
-                        @endforeach
-                    </select><br>
-                    
-                    
-                     <label for="exampleInputEmail1">Description:</label>
-                     <textarea name="description" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
-                     <label for="exampleInputEmail1">quantity</label>
-                     <input type="number" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(147, 147, 252)"><h4>{{ __('Requisition Form') }}</h4></div>
+                <div class="card-body">
+                    <form method="POST" action="route{{'requisition'}}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+                            <div class="col-md-6">        
+                                <select name="category" class="form-control">
+                                    <option value="">--- Select category ---</option>
+                                    @foreach ($categories as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
+                            <div class="col-md-6">
+                                <select name="item" class="form-control">
+                                    <option>--item--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                            <div class="col-md-6">
+                                <textarea name="description" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
+                            </div>
+                        </div>
+                        <div class="control form-inline">
+                            <div class="form-group">
+                                <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+                                <div class="col-md-6">
+                                    <input type="number" style="width: 150px" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
 
-                     
-                     <div class="clear" style="clear: both"></div>
-                     <div class="col-md-12">
-                        <p align="right">
-                           <button class="btnGreenForm" >Save</button>
-                           <a href="{{ route('home') }}" class="btnCancelForm">Cancel</a>
-                        </p>
-                     </div>
-                  </div>
-                </form>
-             </div>
-          </div>
-       </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="utilization" class="col-md-4 col-form-label text-md-right">{{ __('Utilization') }}</label>
+                                <div class="col-md-6">
+                                    <input type="number" style="width: 150px" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear" style="clear: both"></div>
+                        <div class="col-md-12">
+                            <p align="center" style="margin-top: 10px;">
+                                <button class="" style="background-color: rgb(147, 147, 252); border-radius:10px" >Save</button>
+                                <a href="{{ route('home') }}" class="btnCancelForm">Cancel</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
- </div>
- @endsection
+</div>
+    <script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+            jQuery('select[name="category"]').on('change',function(){
+               var categoryID = jQuery(this).val();
+               if(categoryID)
+               {
+                  jQuery.ajax({
+                     url : 'requisition/getitems/' +categoryID,
+                     type : "GET",
+                     dataType : "json",
+                     success:function(data)
+                     {
+                        console.log(data);
+                        jQuery('select[name="item"]').empty();
+                        jQuery.each(data, function(key,value){
+                           $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                     }
+                  });
+               }
+               else
+               {
+                  $('select[name="item"]').empty();
+               }
+            });
+    });
+    </script>
+  
+@endsection

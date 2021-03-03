@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Synlab Requisistion Portal</title>
+    <title>{{config('app.name', 'Synlab Requisition Portal')}}</title>
 
 
     <!-- Bootstrap CSS -->
@@ -24,8 +24,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 </head>
 <body>
     <div id="app">
@@ -33,6 +34,7 @@
             {{-- @include('inc.message') --}}
         <div>
             @yield('content')
+            @yield('scripts')
          </div> 
     </div>
 </body>

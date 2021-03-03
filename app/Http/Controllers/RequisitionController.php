@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
+
 class RequisitionController extends Controller
 {
     /**
@@ -34,12 +35,19 @@ class RequisitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function select(Request $request){
-        $categories = Category::get();
-        $items = Item::get();
-        return view('requisition', compact('categories', 'items'));   
+//     
+    public function getCategories(){
+        $categories = Category::get()
+        ->pluck("name", "id");
+        return view('requisition', compact('categories'));   
     }
+    public function getItems($id){
+        $items = Item::get()->where('category_id', $id)->pluck("name", "id");
+        
+        return json_encode($items);
+        
+}
+    
     public function store(Request $request)
     {
         //
