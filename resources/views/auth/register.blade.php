@@ -49,9 +49,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
+                            <label for="designation" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
+                                <select name ="designation" placeholder="please select "class="form-control" value ="">  
                                     @foreach($designations as $designation)
                                         <option value="{{$designation->id}}">{{$designation->designation}}</option>
                                     @endforeach
@@ -59,9 +59,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
+                            <label for="reporting" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
+                                <select name ="reporting" placeholder="please select "class="form-control">  
                                     @foreach($reporting_managers as $reporting_manager)
                                         <option value="{{$reporting_manager->id}}">{{$reporting_manager->reporting_manager}}</option>
                                     @endforeach
@@ -69,13 +69,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
+                            <label for="location" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
+                                <select name ="location" placeholder="please select "class="form-control">  
                                     @foreach($locations as $location)
                                         <option value="{{$location->id}}">{{$location->location}}</option>
                                     @endforeach
                                 </select><br>
+                                
                             </div>
                         </div>
                         

@@ -1,121 +1,24 @@
-<!doctype html>
-<html lang="en">
- 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/libs/css/style.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Synlab Requisistion Portal</title>
-</head>
-
-<body>
-    <!-- ============================================================== -->
-    <!-- main wrapper -->
-    <!-- ============================================================== -->
-    <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- navbar -->
-        <!-- ============================================================== -->
-       
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="assets/img/synlab.png"><img src="assets/img/synlab.png" height="50px" alt=""></a>
-                
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            {{-- @include('layouts.app') --}}
-            
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <!-- Left Side Of Navbar -->
-                                <ul class="navbar-nav mr-auto">
-            
-                                </ul>
-            
-                                <!-- Right Side Of Navbar -->
-                                <ul class="navbar-nav ml-auto">
-                                    <!-- Authentication Links -->
-                                    @guest
-                                        @if (Route::has('login'))
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                            </li>
-                                        @endif
-                                        
-                                        @if (Route::has('register'))
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            </li>
-                                        @endif
-                                    @else
-                                        <li class="nav-item dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                {{ Auth::user()->name }}
-                                            </a>
-            
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a>
-            
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                    @csrf
-                                                </form>
-                                            </div>
-                                        </li>
-                                    @endguest
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-        <div class="nav-left-sidebar sidebar-light" style="background-color: #08457e
-        ">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+@extends('layouts.new_app')
+@section('content')
+    <div class="nav-left-sidebar sidebar-light" style="background-color: #08457e">
+        <div class="menu-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">
-                                <h3 style="color: wheat">Menu</h3>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
-                                
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                                                  </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                    </button> --}}
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            <h3 style="color: wheat">Menu</h3>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
         </div>
         <!-- ============================================================== -->
         <!-- end left sidebar -->
@@ -157,7 +60,7 @@
                                         <h4 style="color: blue">Create New Requisition</h4>
                                         
                                         <div class="metric-value d-inline-block">
-                                            <a class="mb-1" href=""><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
+                                            <a class="mb-1" href="{{route('requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
                                             {{-- <h1 class="mb-1">$12099</h1> --}}
                                         </div>
                                        
@@ -316,6 +219,4 @@
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
-</body>
- 
-</html>
+@endsection

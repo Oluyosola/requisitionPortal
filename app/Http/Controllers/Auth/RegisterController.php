@@ -82,6 +82,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'unit_id' => $data['unit'],
+            'location_id' => $data['location'],
+            'reporting_id' => $data['reporting'],
+            'designation_id' => $data['designation']
+            
         ]);
+        return redirect('/unit')->with('status', 'Profile created!');
+
     }
+
 }

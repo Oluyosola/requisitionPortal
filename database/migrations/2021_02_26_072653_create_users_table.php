@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['user','admin'])->default('user');
-            $table->integer('unit_id')->default();
-            $table->integer('location_id')->default();
-            $table->integer('reporting_id')->default();
-            $table->integer('designation')->default();
+            $table->integer('unit_id');
+            $table->integer('location_id');
+            $table->integer('reporting_id');
+            $table->integer('designation_id');
 
             $table->rememberToken();
             $table->timestamps();
