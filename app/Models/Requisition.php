@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     use HasFactory;
-    protected $fillable = ['item_id', 'category_id', 'description', 'quantity'];
+    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id'];
+   
 }

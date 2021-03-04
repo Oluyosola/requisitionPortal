@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Requisition;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -15,19 +16,24 @@ class RequisitionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+        {
+        $category = Category::all();
+        $item = Item::all();
+        $requisition = Requisition::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
+        return view('home', compact('requisition', 'category', 'item'));
+        // ->with('category', 'item')->get()
     }
+    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+        
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +45,7 @@ class RequisitionController extends Controller
     public function getCategories(){
         $categories = Category::get()
         ->pluck("name", "id");
-        return view('requisition', compact('categories'));   
+        return view('add_new_requisition', compact('categories'));   
     }
     public function getItems($id){
         $items = Item::get()->where('category_id', $id)->pluck("name", "id");
@@ -50,7 +56,19 @@ class RequisitionController extends Controller
     
     public function store(Request $request)
     {
-        //
+        $requisition = new Requisition;
+        $requisition->category_id = $request->input('category');
+        $requisition->item_id = $request->input('item');
+        $requisition->description = $request->input('description');
+        // dd($request->description);
+        $requisition->quantity = $request->input('quantity');
+        $requisition->user_id = auth()->user()->id;
+        $requisition->save();
+        session()->flash('message', 'you have made a new requisition');
+        return redirect('/home')->with('requisition', $requisition);
+        //  ('status', 'Profile created!'));
+
+        
     }
 
     /**
@@ -97,4 +115,19 @@ class RequisitionController extends Controller
     {
         //
     }
+//     public function create(array $data)
+//     {
+//         return Requisition::create([
+           
+//             'item_id' => $data['item'],
+//             'description' => $data['description'],
+           
+            
+//             'quantity' => $data['quantity'],
+//             'category_id' => $data['category']
+            
+//         ]);
+//         return redirect('/home')->with('status', 'Profile created!');
+
+//     }
 }

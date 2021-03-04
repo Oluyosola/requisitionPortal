@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('test');
-});
-Route::get('/check', function () {
-    return view('check');
+    return view('index');
 });
 
 Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('requisition');
 Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);
+Route::post('/create',  [App\Http\Controllers\RequisitionController::class, 'store'])->name('new_requiisition');
+Route::get('/home',  [App\Http\Controllers\RequisitionController::class, 'index']);
 
 Route::get('/unit', [App\Http\Controllers\Auth\RegisterController::class, 'select']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

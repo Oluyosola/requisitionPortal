@@ -6,12 +6,12 @@
             <div class="card">
                 <div class="card-header text-center" style="background-color: rgb(147, 147, 252)"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
-                    <form method="POST" action="route{{'requisition'}}">
+                    <form method="POST" action="{{route('new_requiisition') }} ">
                         @csrf
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
                             <div class="col-md-6">        
-                                <select name="category" class="form-control">
+                                <select name="category" class="form-control" id="input">
                                     <option value="">--- Select category ---</option>
                                     @foreach ($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
@@ -20,9 +20,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
+                            <label for="item" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
                             <div class="col-md-6">
-                                <select name="item" class="form-control">
+                                <select name="item" class="form-control" id="input">
                                     <option>--item--</option>
                                 </select>
                             </div>
@@ -37,21 +37,24 @@
                             <div class="form-group">
                                 <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
                                 <div class="col-md-6">
-                                    <input type="number" style="width: 150px" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
+                                    <input type="number" name="quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="utilization" class="col-md-4 col-form-label text-md-right">{{ __('Utilization') }}</label>
                                 <div class="col-md-6">
                                     <input type="number" style="width: 150px" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="clear" style="clear: both"></div>
                         <div class="col-md-12">
                             <p align="center" style="margin-top: 10px;">
-                                <button class="" style="background-color: rgb(147, 147, 252); border-radius:10px" >Save</button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Create') }}
+                                </button>
+                                {{-- <button class="btnGreenForm" style="background-color: rgb(147, 147, 252); border-radius:10px" >Save</button> --}}
                                 <a href="{{ route('home') }}" class="btnCancelForm">Cancel</a>
                             </p>
                         </div>
@@ -61,33 +64,31 @@
         </div>
     </div>
 </div>
-    <script type="text/javascript">
+<script type="text/javascript">
     jQuery(document).ready(function ()
     {
-            jQuery('select[name="category"]').on('change',function(){
-               var categoryID = jQuery(this).val();
+        jQuery('select[name="category"]').on('change',function(){
+            var categoryID = jQuery(this).val();
                if(categoryID)
                {
-                  jQuery.ajax({
-                     url : 'requisition/getitems/' +categoryID,
-                     type : "GET",
-                     dataType : "json",
-                     success:function(data)
-                     {
-                        console.log(data);
-                        jQuery('select[name="item"]').empty();
-                        jQuery.each(data, function(key,value){
-                           $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    jQuery.ajax({
+                        url : 'requisition/getitems/' +categoryID,
+                        type : "GET",
+                        dataType : "json",
+                        success:function(data)
+                       {
+                            console.log(data);
+                            jQuery('select[name="item"]').empty();
+                            jQuery.each(data, function(key,value){
+                            $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
-                     }
+                    }
                   });
-               }
-               else
-               {
-                  $('select[name="item"]').empty();
-               }
+                }else{
+                    $('select[name="item"]').empty();
+                }
             });
     });
-    </script>
+</script>
   
 @endsection
