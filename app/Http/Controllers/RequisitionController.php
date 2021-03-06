@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 
@@ -14,14 +15,31 @@ class RequisitionController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    // public function __construct(Requisition $requisition)
+	// {
+		
+    //     // $this->requisition = $requisition;
+        
+
+	// }
     public function index()
         {
+            // where(['user_id' => auth()->user()->id
+           
         $category = Category::all();
         $item = Item::all();
-        $requisition = Requisition::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('home', compact('requisition', 'category', 'item'));
-        // ->with('category', 'item')->get()
+        $status = Status::all();
+        // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
+        $results = Requisition::with('status','category', 'item')->get();
+        // dd($result)
+        return view('home', compact('results', 'status', 'category', 'item'));
     }
     
 
@@ -30,10 +48,10 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
+    public function create()
+    {
         
-    // }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -56,6 +74,10 @@ class RequisitionController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'description' => 'require',
+
+        ]);
         $requisition = new Requisition;
         $requisition->category_id = $request->input('category');
         $requisition->item_id = $request->input('item');
@@ -90,7 +112,7 @@ class RequisitionController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -102,7 +124,7 @@ class RequisitionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -113,8 +135,14 @@ class RequisitionController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $requisition = Requisition::find($id);
+    //     $data = newRequisition($id);
+        $requisition ->delete(); 
+    // 	if ($data) {
+    		return back()->with('success', 'Record deleted successfully');
+    	}
+    // 
+    // }
 //     public function create(array $data)
 //     {
 //         return Requisition::create([

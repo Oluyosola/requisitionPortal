@@ -75,6 +75,29 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+    // protected function create(Request $request)
+    // {
+        // $user =new User;
+        //     $user->name = $request->input('name');
+        //     $user->email = $request->input('email');
+        //     $user->password = Hash::make($request->input('password'));
+        //     // 'password' => Hash::make($data['password']),
+        //     $user->unit_id = $request->input('unit');
+        //     $user->designation_id = $request->input('designation');
+        //     $user->location_id = $request->input('location');
+        //     $user->reporting_id = $request->input('reporting');
+        //     'unit_id' => $data['unit'],
+        //     'location_id' => $data['location'],
+        //     'reporting_id' => $data['reporting'],
+        //     'designation_id' => $data['designation']
+            
+        // ]);
+        // $user->save();
+        // return redirect('/home')->with('status', 'Profile created!');
+
+
+    // }
+
     protected function create(array $data)
     {
         return User::create([
@@ -86,9 +109,7 @@ class RegisterController extends Controller
             'reporting_id' => $data['reporting'],
             'designation_id' => $data['designation']
             
+        
         ]);
-        return redirect('/unit')->with('status', 'Profile created!');
-
     }
-
 }
