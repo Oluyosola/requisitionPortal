@@ -22,13 +22,7 @@ class RequisitionController extends Controller
     {
         $this->middleware('auth');
     }
-    // public function __construct(Requisition $requisition)
-	// {
-		
-    //     // $this->requisition = $requisition;
-        
 
-	// }
     public function index()
         {
             // where(['user_id' => auth()->user()->id
@@ -39,7 +33,7 @@ class RequisitionController extends Controller
         // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
         $results = Requisition::with('status','category', 'item')->get();
         // dd($result)
-        return view('home', compact('results', 'status', 'category', 'item'));
+        return view('dashboards.general', compact('results', 'status', 'category', 'item'));
     }
     
 
@@ -74,10 +68,7 @@ class RequisitionController extends Controller
     
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'description' => 'require',
-
-        ]);
+        
         $requisition = new Requisition;
         $requisition->category_id = $request->input('category');
         $requisition->item_id = $request->input('item');
@@ -136,26 +127,7 @@ class RequisitionController extends Controller
     public function destroy($id)
     {
         $requisition = Requisition::find($id);
-    //     $data = newRequisition($id);
         $requisition ->delete(); 
-    // 	if ($data) {
-    		return back()->with('success', 'Record deleted successfully');
-    	}
-    // 
-    // }
-//     public function create(array $data)
-//     {
-//         return Requisition::create([
-           
-//             'item_id' => $data['item'],
-//             'description' => $data['description'],
-           
-            
-//             'quantity' => $data['quantity'],
-//             'category_id' => $data['category']
-            
-//         ]);
-//         return redirect('/home')->with('status', 'Profile created!');
-
-//     }
+    	return back()->with('success', 'Record deleted successfully');
+    }
 }

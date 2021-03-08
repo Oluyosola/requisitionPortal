@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    public function select(Request $request){
+    public function getUserDetails(Request $request){
         $units = Unit::get();
         $locations = Location::get();
         $designations = Designation::get();

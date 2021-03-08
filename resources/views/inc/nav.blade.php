@@ -1,5 +1,5 @@
-  <div class="dashboard-header">
-    <nav class="navbar navbar-expand-lg bg-white">
+  <div class="dashboard-header fixed-top">
+    <nav class="navbar navbar-expand-lg bg-white" style="position: sticky">
         <a class="navbar-brand" href="assets/img/synlab.png"><img src="assets/img/synlab.png" height="50px" alt=""></a>    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         {{-- Left Side Of Navbar  --}}
@@ -11,13 +11,13 @@
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link" href="/">{{ __('Login') }}</a>
                                     </li>
                                 @endif
                                 
                                 {{-- @if (Route::has('register')) --}}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/register">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="/create_user">{{ __('Register') }}</a>
                                     </li>
                                 {{-- @endif --}}
                             @else

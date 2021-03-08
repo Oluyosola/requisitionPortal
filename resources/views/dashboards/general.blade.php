@@ -4,9 +4,9 @@
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button> --}}
+                    </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-divider">
@@ -19,7 +19,7 @@
                 </div>
             </nav>
         </div>
-        </div>
+    </div>
         <!-- ============================================================== -->
         <!-- end left sidebar -->
         <!-- ============================================================== -->
@@ -36,7 +36,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <h2 class="pageheader-title">Synlab Requisition Portal </h2>
-                                
+
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -58,12 +58,12 @@
                                 <div class="card">
                                     <div class="card-body" style="background-color:powderblue">
                                         <h4 style="color: blue">Create New Requisition</h4>
-                                        
+
                                         <div class="metric-value d-inline-block">
-                                            <a class="mb-1" href="{{route('requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
+                                            <a class="mb-1" href="{{route('new_requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
                                             {{-- <h1 class="mb-1">$12099</h1> --}}
                                         </div>
-                                       
+
                                     </div>
                                     <div id="sparkline-revenue"></div>
                                 </div>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="row">
                             <!-- ============================================================== -->
-                      
+
                             <!-- ============================================================== -->
 
                                           <!-- recent orders  -->
@@ -132,7 +132,7 @@
                                                         <th class="border-0">Quantity</th>
                                                         <th class="border-0">Description</th>
                                                         <th class="border-0">Status</th>
-                                                        
+
                                                         <th class="border-0">Delete</th>
                                                     </tr>
                                                 </thead>
@@ -146,14 +146,14 @@
                                                                 <td>{{$result->quantity}}</td>
                                                                 <td>{{$result->description}}</td>
                                                                 <td>{{$result->status->name}}</td>
-                                                                
+
                                                                  <td>
                                                                     <center>
-                                                                       <a data-toggle="modal" href='#modal-delete{{$result->id}}' ><img src="{{ asset('/assets/img/delete.svg') }}" width="15px" > </a>      
+                                                                       <a data-toggle="modal" href='#modal-delete{{$result->id}}' ><img src="{{ asset('/assets/img/delete.svg') }}" width="15px" > </a>
                                                                     </center>
                                                                  </td>
                                                               </tr>
-                                                  
+
                                                               <div class="modal fade" id="modal-delete{{$result->id}}">
                                                                     <div class="modal-dialog">
                                                                        <div class="modal-content">
@@ -167,11 +167,11 @@
                                                                        </div>
                                                                     </div>
                                                               </div>
-                                                              
+
                                                         @endforeach
                                                    @endif
-                                                        
-                                                        
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -181,8 +181,8 @@
                             <!-- ============================================================== -->
                             <!-- end recent orders  -->
 
-    
-                           
+
+
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -192,7 +192,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                              Copyright © Synlab. All rights reserved.
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

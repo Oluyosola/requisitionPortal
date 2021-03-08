@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header text-center" style="background-color: rgb(147, 147, 252)"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('new_requiisition') }} ">
+                    <form method="POST" action="{{route('store_new_requisition') }} ">
                         @csrf
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
