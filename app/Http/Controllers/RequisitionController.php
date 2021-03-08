@@ -31,7 +31,7 @@ class RequisitionController extends Controller
         $item = Item::all();
         $status = Status::all();
         // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
-        $results = Requisition::with('status','category', 'item')->get();
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->get();
         // dd($result)
         return view('dashboards.general', compact('results', 'status', 'category', 'item'));
     }
