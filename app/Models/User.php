@@ -46,7 +46,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function Requisitions (){
+    public function requisitions (){
         return $this->hasMany(Requisition::class);
+    }
+    public function unit(){
+        return $this->belongsTo(Unit::class);
+
+    }
+    public function Designation(){
+        return $this->belongsTO(Designation::class);
+
+    }
+    public function location(){
+        return $this->belongsTo(Location::class);
+
+    }
+    public function Reporting(){
+        return $this->belongsTo(ReportingManager::class);
+
     }
 }

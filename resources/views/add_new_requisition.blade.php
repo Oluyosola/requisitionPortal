@@ -1,6 +1,7 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="container">
+{{-- <div class="dashboard-header"> --}}
+<div class="container" style="margin-top: 100px">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -33,13 +34,14 @@
                                 <textarea name="description" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
                             </div>
                         </div>
-                        <div class="control form-inline">
-                            <div class="form-group">
+                        
+                            <div class="form-group row">
+                                {{-- <div class="control form-inline"> --}}
                                 <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
                                 <div class="col-md-6">
                                     <input type="number" name="quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
 
-                                </div>
+                                {{-- </div> --}}
                             </div>
                             {{-- <div class="form-group">
                                 <label for="utilization" class="col-md-4 col-form-label text-md-right">{{ __('Utilization') }}</label>

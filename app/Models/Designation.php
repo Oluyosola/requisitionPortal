@@ -9,4 +9,8 @@ class Designation extends Model
 {
     use HasFactory;
     protected $fillable = ['designation'];
+
+    public function Users(){
+        return $this->hasMany(User::class);
+    }
 }

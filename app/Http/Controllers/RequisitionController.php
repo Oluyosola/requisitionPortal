@@ -7,6 +7,7 @@ use App\Models\Requisition;
 use App\Models\Item;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class RequisitionController extends Controller
@@ -31,7 +32,8 @@ class RequisitionController extends Controller
         $item = Item::all();
         $status = Status::all();
         // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->get();
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->paginate(2);
+        // $results= $results->paginate(10);
         // dd($result)
         return view('dashboards.general', compact('results', 'status', 'category', 'item'));
     }
@@ -124,10 +126,17 @@ class RequisitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     $requisition = Requisition::find($id);
+    //     $requisition->delete();
+    //     // return view('dashboards.general');
+    // 	return back()->with(['message'=> 'Successfully deleted!!']);
+        
+    // }
+    public function destroy(Requisition $requisition)
     {
-        $requisition = Requisition::find($id);
-        $requisition ->delete(); 
-    	return back()->with('success', 'Record deleted successfully');
+       $requisition->delete();
+        return back();
     }
 }

@@ -26,151 +26,154 @@
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
-            <div class="dashboard-ecommerce">
-                <div class="container-fluid dashboard-content ">
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
                     <!-- ============================================================== -->
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="page-header">
-                                <h2 class="pageheader-title">Synlab Requisition Portal </h2>
-
-                                <div class="page-breadcrumb">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Requisition Dashboard </li>
-                                        </ol>
-                                    </nav>
-                                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Synlab Requisition Portal </h2>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Requisition Dashboard </li>
+                                    </ol>
+                                </nav>
                             </div>
                         </div>
                     </div>
+                </div>
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="ecommerce-widget">
-
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body" style="background-color:powderblue">
-                                        <h4 style="color: blue">Create New Requisition</h4>
-
-                                        <div class="metric-value d-inline-block">
-                                            <a class="mb-1" href="{{route('new_requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
-                                            {{-- <h1 class="mb-1">$12099</h1> --}}
-                                        </div>
-
+                <div class="ecommerce-widget">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style="background-color:powderblue">
+                                    <h5 class="" style="color: blue">Create New Requisition</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <a class="mb-1" href="{{route('new_requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
                                     </div>
-                                    <div id="sparkline-revenue"></div>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Affiliate Revenue</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$12099</h1>
-                                        </div>
-                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                                            <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue2"></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Refunds</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">0.00</h1>
-                                        </div>
-                                        <div class="metric-label d-inline-block float-right text-primary font-weight-bold">
-                                            <span>N/A</span>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue3"></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Avg. Revenue Per User</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$28000</h1>
-                                        </div>
-                                        <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
-                                            <span>-2.00%</span>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue4"></div>
-                                </div>
+                                <div id="sparkline-revenue"></div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" >
+                                    <h5 class="text-muted">Total Number of Requisitions Made</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">{{$results->total()}}</h1>
+                                                {{-- @foreach ($results as $r) --}}
+                                                
+                                                {{-- @endforeach --}}
+                                    </div>
+                                    {{-- <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                                            {{-- <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span> --}}
+                                        {{-- </div> --}} 
+                                </div>
+                                <div id="sparkline-revenue2"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body" style= "background-color:#08457e; color:white">
+                                    <h5 class=>Total Number of Requisitions approved</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">0</h1>
+                                    </div>
+                                    {{-- <div class="metric-label d-inline-block float-right text-primary font-weight-bold"> --}}
+                                            {{-- <span>N/A</span> --}}
+                                        {{-- </div> --}}
+                                </div>
+                                <div id="sparkline-revenue3"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="text-muted">Favourite category</h5>
+                                    <div class="metric-value d-inline-block">
+                                        <h1 class="mb-1">{{$results->max('category_id')}}</h1>
+                                    </div>
+                                    {{-- <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
+                                            {{-- <span>-2.00%</span> --}}
+                                        {{-- </div> --}} 
+                                </div>
+                                <div id="sparkline-revenue4"></div>
+                            </div>
+                        </div>
+                    </div>
+                        {{-- <div class="row"> --}}
                             <!-- ============================================================== -->
 
                             <!-- ============================================================== -->
 
                                           <!-- recent orders  -->
                             <!-- ============================================================== -->
-                            <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <h5 class="card-header text-center">Requisition Board</h5>
-                                    <div class="card-body p-0">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="bg-light">
-                                                    <tr class="border-0">
-                                                        {{-- <th class="border-0">#</th> --}}
-                                                        <th class="border-0">Category</th>
-                                                        <th class="border-0">Item</th>
-                                                        <th class="border-0">Quantity</th>
-                                                        <th class="border-0">Description</th>
-                                                        <th class="border-0">Status</th>
-
-                                                        <th class="border-0">Delete</th>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header text-center">Requisition Board</h5>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                {{-- <th class="border-0">Id</th> --}}
+                                                <th class="border-0">Category</th>
+                                                <th class="border-0">Item</th>
+                                                <th class="border-0">Quantity</th>
+                                                <th class="border-0">Description</th>
+                                                <th class="border-o">Created On</th>
+                                                <th class="border-0">Approval Status</th>
+                                                <th class="border-0">Edit</th>
+                                                <th class="border-0">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (count($results) >0)
+                                                @foreach($results as $result)
+                                                    <tr>
+                                                        {{-- <td>{{$result->id }}</td>                                                        --}}
+                                                        <td>{{$result->category->name }}</td>
+                                                        <td>{{$result->item->name}}</td>
+                                                        <td>{{$result->quantity}}</td>
+                                                        <td>{{$result->description}}</td>
+                                                        <td>{{$result->created_at}}</td>
+                                                        <td>{{$result->status->name}}</td>
+                                                        <td>
+                                                            <center>
+                                                                <a data-toggle="modal" href='#modal-edit{{$result->id}}'><img src="{{ asset('/assets/img/edit.svg') }}" width="15px" > </a>
+                                                            </center>
+                                                        </td>
+                                                        <td>
+                                                            <center>
+                                                                <a data-toggle="modal" href='#modal-delete{{$result->id}}'><img src="{{ asset('/assets/img/delete.svg') }}" width="15px" > </a>
+                                                            </center>
+                                                        </td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @if (count($results) >0)
-                                                        @foreach($results as $result)
-                                                            <tr>
-                                                                {{-- <td>{{$i = 0; $i++}}                                                                }}</td> --}}
-                                                                <td>{{$result->category->name }}</td>
-                                                                <td>{{$result->item->name}}</td>
-                                                                <td>{{$result->quantity}}</td>
-                                                                <td>{{$result->description}}</td>
-                                                                <td>{{$result->status->name}}</td>
-
-                                                                 <td>
-                                                                    <center>
-                                                                       <a data-toggle="modal" href='#modal-delete{{$result->id}}' ><img src="{{ asset('/assets/img/delete.svg') }}" width="15px" > </a>
-                                                                    </center>
-                                                                 </td>
-                                                              </tr>
-
-                                                              <div class="modal fade" id="modal-delete{{$result->id}}">
-                                                                    <div class="modal-dialog">
-                                                                       <div class="modal-content">
-                                                                          {{-- <div class="row"> --}}
-                                                                             <h4 class="text-center">Are you sure you want to delete this company ?</h4>
-                                                                          {{-- </div> --}}
-                                                                          <div class="modal-footer">
-                                                                             <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a>
-                                                                             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                                                                          </div>
-                                                                       </div>
-                                                                    </div>
+                                                    <div class="modal fade" id="modal-delete{{$result->id}}">
+                                                        <div class="modal-dialog">
+                                                           <div class="modal-content">
+                                                              {{-- <div class="row"> --}}
+                                                                 <h4 class="text-center">Are you sure you want to delete this Requisition ?</h4>
+                                                              {{-- </div> --}}
+                                                              <div class="modal-footer">
+                                                                 <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a>
+                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                                                               </div>
+                                                           </div>
+                                                        </div>
+                                                  </div>
 
                                                         @endforeach
                                                    @endif
-
+ 
 
                                                 </tbody>
                                             </table>
@@ -178,7 +181,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- ============================================================== -->
+                            <div class="center">
+                            {{ $results->links() }}
+                        </div>
+                        <!-- ============================================================== -->
                             <!-- end recent orders  -->
 
 

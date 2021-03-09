@@ -23,14 +23,20 @@ Auth::routes();
 Route::get('/create_user', [App\Http\Controllers\Auth\RegisterController::class, 'getUserDetails']);
 
 // requisition controller
+Route::get('requisition/{requisition}', [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
 Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('new_requisition');
 Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);
 Route::post('/create_new_requisition',  [App\Http\Controllers\RequisitionController::class, 'store'])->name('store_new_requisition');
-Route::get('/home',  [App\Http\Controllers\RequisitionController::class, 'index'])->name('home');
-Route::get('delete/{id}',  [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
+Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index'])->name('home');
+
 
 
 
 Route::get('/sh', function(){
-    return view('sh_th_dashboard');
+    return view('dashboards.sh_th_dashboard');
 });
+
+// Admin
+
+Route::get('users', [App\Http\Controllers\AdminController::class, 'index']);
+Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_user');
