@@ -1,35 +1,46 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
+use App\Models\Requisition;
+use App\Models\Item;
+use App\Models\Status;
 use App\Models\User;
-use App\Models\Designation;
-use App\Models\Location;
-use App\Models\ReportingManager;
-use App\Models\Unit;
-
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class ApprovalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
-        $designation = Designation::all();
-        $unit = Unit::all();
-        $reporting = ReportingManager::all();
-        $location = Location::all();
-        $data = User::get();
+        //
+        $category = Category::all();
+        $item = Item::all();
+        $status = Status::all();
+        $user = User::where(['location_id' => 16])->get();
         // dd($user);
-        return view('dashboards.admin', compact('data', 'designation', 'reporting', 'location', 'unit'));
-        
+        // dd($user);
+
+        ;
+//         $users = User::orderBy(Company::select('name')
+//     ->whereColumn('companies.id', 'users.company_id')
+// )->get();
+        // dd ($user);
+        // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
+        $results = Requisition::get();
+
+        // $results= $results->paginate(10);
+        // dd($result)
+        return view('dashboards.sh_th_dashboard', compact('results', 'status', 'category', 'item', 'user'));
+    
     }
 
     /**
@@ -93,10 +104,8 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(User $user)
+    public function destroy($id)
     {
-        
-        $user->delete();
-        return back()->with('sucess');
+        //
     }
 }

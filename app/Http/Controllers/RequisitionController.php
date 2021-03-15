@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
 use App\Models\Status;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 // use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use GrahamCampbell\ResultType\Success;
@@ -34,11 +35,12 @@ class RequisitionController extends Controller
         $category = Category::all();
         $item = Item::all();
         $status = Status::all();
+        $user = User::all();
         // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->paginate(10);
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user')->paginate(10);
         // $results= $results->paginate(10);
         // dd($result)
-        return view('dashboards.general', compact('results', 'status', 'category', 'item'));
+        return view('dashboards.general', compact('results', 'status', 'category', 'item', 'user'));
     }
     
 

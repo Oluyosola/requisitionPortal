@@ -153,7 +153,9 @@
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
                                                         <td>{{$result->created_at}}</td>
-                                                        <td>{{$result->status->name}}</td>
+                                                       
+                                                        {{-- <td>{{$category->id}}</td> --}}
+                                                        
                                                         <td>
                                                             <center>
                                                                 <a data-toggle="modal" href='#modal-edit{{$result->id}}'><img src="{{ asset('/assets/img/edit.svg') }}" width="15px" > </a>

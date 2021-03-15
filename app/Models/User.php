@@ -48,10 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function requisitions (){
+    public function requisitions(){
         return $this->hasMany(Requisition::class);
     }
-    public function unit(){
+    public function Unit(){
         return $this->belongsTo(Unit::class);
 
     }
@@ -59,7 +59,7 @@ class User extends Authenticatable
         return $this->belongsTO(Designation::class);
 
     }
-    public function location(){
+    public function Location(){
         return $this->belongsTo(Location::class);
 
     }
@@ -71,7 +71,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(ReportingDesignation::class);
     }
-    public function RepoetingLine()
+    public function ReportingLine()
     {
         return $this->belongsTo(ReportingLine::class);
     }

@@ -137,10 +137,9 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End .content-->
+            </div> <!-- End .content-->
           </div>
         </div>
-
       </div>
     </section><!-- End Why Us Section -->
 

@@ -36,10 +36,10 @@ Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index']
 
 
 
-Route::get('/sh', function(){
-    return view('dashboards.sh_th_dashboard');
-});
+Route::get('/sh', [App\Http\Controllers\ApprovalController::class, 'index']);
 
+
+    
 // Admin
 
 Route::get('users', [App\Http\Controllers\AdminController::class, 'index']);

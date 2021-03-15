@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     use HasFactory;
-    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id'];
+    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id', 'approval'];
   
     public function Category (){
         return $this->belongsTo('App\Models\Category', 'category_id');
@@ -20,6 +20,6 @@ class Requisition extends Model
         return $this->belongsTo('App\Models\Item', 'item_id');
     }
     public function User (){
-        return $this->belongsTo('App\Models\Item', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

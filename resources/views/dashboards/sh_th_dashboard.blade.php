@@ -61,7 +61,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center">Requisition Approval Board</h5>
                                 <div class="card-body p-0">
@@ -70,17 +70,45 @@
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
+                                                    <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
                                                     <th class="border-0">Description</th>
                                                     <th class="border-0">Status</th>
-                                                    <th class="border-0">Approval/Rejection</th>
+                                                    <th class="border-0" colspan="2">Approval/Rejection</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                {{-- {{dd($results->user->email)}} --}}
+                                                @if (count($results)>0)
+                                                    @foreach ($results as $result)
+                                                       @if($result->user->location_id == Auth::user()->location_id)
+                                                        
+                                                                                                    
+                                                    <tr>
+                                                        <td>{{$result->user->name}}</td>
+                                                        <td>{{$result->category->name }}</td>
+                                                        <td>{{$result->item->name}}</td>
+                                                        <td>{{$result->quantity}}</td>
+                                                        <td>{{$result->description}}</td>
+                                                       
+                                                        {{-- <td>{{$result->created_at}}</td> --}}
+                                                        <td>{{ $result->status->name }}</td>
+                                                        <td><button style="background-color: green">Accept</button></td>
+                                                        <td><button style="background-color: red" type="submit">Reject</button></td>
+                                                        {{-- {{$result->}} --}}
+                                                        {{-- {{$result->user_id}} --}}
+                                                        {{-- {{Auth::user()->id}} --}}
+                      
+                                                </tr>
+                                                {{-- {{Auth::user()->id}} --}}
+                      
+                                                @endif
+                                                    @endforeach
+                                                    
+                                                @endif
 
                                             </tbody>
                                         </table>
@@ -88,6 +116,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- ============================================================== -->
                         <!-- end recent orders  -->
 
