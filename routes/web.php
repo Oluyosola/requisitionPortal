@@ -20,9 +20,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/create_user', [App\Http\Controllers\Auth\RegisterController::class, 'getUserDetails']);
+Route::get('create_user', [App\Http\Controllers\Auth\RegisterController::class, 'getUserDetails']);
+// Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('new_requisition');
+Route::get('create_user/getreportinglines/{id}', [App\Http\Controllers\Auth\RegisterController::class, 'getReportingLines']);
+
 
 // requisition controller
+Route::get('/op', [App\Http\Controllers\RequisitionController::class, 'createPdf']);
 Route::get('requisition/{requisition}', [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
 Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('new_requisition');
 Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);

@@ -6,10 +6,13 @@ use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
 use App\Models\Status;
+use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
+// use PDF;
 class RequisitionController extends Controller
 {
     /**
@@ -32,7 +35,7 @@ class RequisitionController extends Controller
         $item = Item::all();
         $status = Status::all();
         // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->paginate(2);
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item')->paginate(10);
         // $results= $results->paginate(10);
         // dd($result)
         return view('dashboards.general', compact('results', 'status', 'category', 'item'));
@@ -44,10 +47,21 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function createPDF() {
+        // retreive all records from db
         
-    }
+        $category = Category::all();
+        $item = Item::all();
+        $status = Status::all();
+        $results = Requisition::where('user_id', auth()->user()->id)->with('category', 'item', 'status')->get();
+  
+        // share data to view
+        // view()->share('requisition',$data);
+        $pdf = PDF::loadView('pdf', $results);
+  
+        // download PDF file with download method
+        return redirect()->$pdf->download('pdf_file.pdf')->with('category', $category)->with( 'item', $item)->with('status', $status)-with( 'results', $results);
+      }
 
     /**
      * Store a newly created resource in storage.
@@ -79,12 +93,19 @@ class RequisitionController extends Controller
         $requisition->quantity = $request->input('quantity');
         $requisition->user_id = auth()->user()->id;
         $requisition->save();
-        session()->flash('message', 'you have made a new requisition');
-        return redirect('/home')->with('requisition', $requisition);
+        // session()->flash('success', 'you have made a new requisition');
+        // $request->session()->flash('status', 'Task was successful!');
+
+        return redirect('/home')->with(['requisition', $requisition, 'success', 'you have made a new requisition']);
         //  ('status', 'Profile created!'));
 
         
     }
+    public function check(Request $request)
+{
+    return redirect('/op')
+            ->with('warning',"Don't Open this link");
+}
 
     /**
      * Display the specified resource.

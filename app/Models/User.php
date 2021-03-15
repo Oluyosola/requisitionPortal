@@ -26,6 +26,8 @@ class User extends Authenticatable
         'location_id',
         'designation_id',
         'reporting_id',
+        'reporting_designation_id',
+        'reporting_line1_id',
     ];
 
     /**
@@ -64,5 +66,13 @@ class User extends Authenticatable
     public function Reporting(){
         return $this->belongsTo(ReportingManager::class);
 
+    }
+    public function ReportingDesignation()
+    {
+        return $this->belongsTo(ReportingDesignation::class);
+    }
+    public function RepoetingLine()
+    {
+        return $this->belongsTo(ReportingLine::class);
     }
 }

@@ -10,6 +10,8 @@ use App\Models\Unit;
 use App\Models\Location;
 use App\Models\Designation;
 use App\Models\ReportingManager;
+use App\Models\ReportingDesignation;
+use App\Models\ReportingLine;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -43,7 +45,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -60,15 +62,29 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    public function getUserDetails(Request $request){
+    public function getUserDetails(){
         $units = Unit::get();
         $locations = Location::get();
         $designations = Designation::get();
         $reporting_managers = ReportingManager::get();
-        return view('auth.register', compact('units', 'designations', 'locations', 'reporting_managers'));   
+        $reporting_designation = ReportingDesignation::get()->pluck("name", "id");
+        // $reporting_line = ReportingLine::all();
+        return view('auth.register', compact('units', 'designations', 'locations', 'reporting_managers', 'reporting_designation'));   
     }
  
 
+    // public function getReportingdesignation(){
+        
+    //     return view('auth.register', compact('reporting_designation'));
+    // }
+    public function getReportingLines($id){
+        $reporting_line = ReportingLine::get()->where('reporting_designation_id', $id)->pluck("name", "id");
+        
+        return json_encode($reporting_line);
+    }
+
+    
+    
     /**
      * Create a new user instance after a valid registration.
      *
@@ -107,9 +123,12 @@ class RegisterController extends Controller
             'unit_id' => $data['unit'],
             'location_id' => $data['location'],
             'reporting_id' => $data['reporting'],
-            'designation_id' => $data['designation']
-            
+            'designation_id' => $data['designation'],
+            'reporting_designation_id' => $data['reporting_designation'],
+            'reporting_line1_id' => $data['reporting_line'],
+            // 'reporting_line2_id' => $data['reporting_line2'],
         
         ]);
+        return back()->with('success','Product successfully added.');
     }
 }

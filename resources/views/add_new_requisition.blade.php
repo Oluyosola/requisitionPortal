@@ -87,7 +87,7 @@
                     }
                   });
                 }else{
-                    $('select[name="item"]').empty();
+                    jQuery('select[name="item"]').empty();
                 }
             });
     });

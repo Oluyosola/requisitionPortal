@@ -59,6 +59,25 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="reportingdesignation" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
+                            <div class="col-md-6">        
+                                <select name="reporting_designation" class="form-control" id="input">
+                                    <option value="">--- Select Reporting Designation ---</option>
+                                    @foreach ($reporting_designation as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Line') }}</label>
+                            <div class="col-md-6">
+                                <select name="reporting_line" class="form-control" id="input">
+                                    <option>--Reporting Line--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="reporting" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
                             <div class="col-md-6">
                                 <select name ="reporting" placeholder="please select "class="form-control">  
@@ -115,4 +134,31 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+        jQuery('select[name="reporting_designation"]').on('change',function(){
+            var reportingDesignationID = jQuery(this).val();
+               if(reportingDesignationID)
+               {
+                    jQuery.ajax({
+                        url : 'create_user/getreportinglines/' +reportingDesignationID,
+                        type : "GET",
+                        dataType : "json",
+                        success:function(data)
+                       {
+                            console.log(data);
+                            jQuery('select[name="reporting_line"]').empty();
+                            jQuery.each(data, function(key,value){
+                            $('select[name="reporting_line"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                  });
+                }else{
+                    $('select[name="reporting_line"]').empty();
+                }
+            });
+    });
+</script>
+
 @endsection

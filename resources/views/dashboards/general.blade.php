@@ -1,5 +1,9 @@
 @extends('layouts.new_app')
 @section('content')
+@section('style')
+      @include('layouts.datatables')
+    @endsection
+
     <div class="nav-left-sidebar sidebar-light" style="background-color: #08457e">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -99,7 +103,7 @@
                                 <div class="card-body">
                                     <h5 class="text-muted">Favourite category</h5>
                                     <div class="metric-value d-inline-block">
-                                        <h1 class="mb-1">{{$results->max('category_id')}}</h1>
+                                        <h1 class="mb-1">Asset</h1>
                                     </div>
                                     {{-- <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
                                             {{-- <span>-2.00%</span> --}}
@@ -116,6 +120,10 @@
 
                                           <!-- recent orders  -->
                             <!-- ============================================================== -->
+                            <div class="d-flex justify-content-end mb-4">
+                                <a class="btn btn-primary" href="{{ URL::to('/op') }}">Export to PDF</a>
+                            </div>
+                    
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <h5 class="card-header text-center">Requisition Board</h5>
@@ -170,6 +178,61 @@
                                                            </div>
                                                         </div>
                                                   </div>
+                                                  <div class="modal fade" id="modal-edit{{$result->id}}">
+                                                    <form action="" method="POST">
+                                                       <div class="modal-dialog">
+                                                          <div class="modal-content">
+                                                             <input type="hidden" name="company" value="{{$result->id}}">
+                                                             <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Edit Requiistion</h4>
+                                                             </div>
+                                                             <div class="modal-body">
+                                                                <div class="form-group row">
+                                                                    <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
+                                                                    <div class="col-md-6">        
+                                                                        <select name="category" class="form-control" id="input">
+                                                                            <option value="">--- Select category ---</option>
+                                                                            @foreach ($result->category as $key => $value)
+                                                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                                             @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="item" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
+                                                                    <div class="col-md-6">
+                                                                        <select name="item" class="form-control" id="input">
+                                                                            <option>--item--</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                                                                    <div class="col-md-6">
+                                                                        <textarea name="description" rows="4" cols="50" maxlength="50" id="input" cols="30" rows="10" class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                    <div class="form-group row">
+                                                                        {{-- <div class="control form-inline"> --}}
+                                                                        <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+                                                                        <div class="col-md-6">
+                                                                            <input type="number" value="{{$result->quantity}}" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
+                                        
+                                                                        {{-- </div> --}}
+                                                                    </div>
+                                                                  
+                                                             </div>
+                                                             <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <input type="submit" name="" value="Save changes" class="btn btn-primary">
+                                                             </div>
+                                                          </div>
+                                                       </div>
+                                                    </form>
+                                                 </div>
+                                     
 
                                                         @endforeach
                                                    @endif
@@ -184,10 +247,20 @@
                             <div class="center">
                             {{ $results->links() }}
                         </div>
+                        <div class="row no-print">
+                            <div class="col-12">
+                                <a href="{{ url('/home') }}" target="_blank" class= "btn btn-default"><i class="fa fa-print" aria-hidden = "true"></i>Print</a>
+                            </div>
+                        </div>
                         <!-- ============================================================== -->
                             <!-- end recent orders  -->
 
 
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                $('.btnprn').printPage();
+                                });
+                                </script>
 
             <!-- ============================================================== -->
             <!-- footer -->
@@ -214,3 +287,30 @@
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
 @endsection
+  @section('datatable_scripts')
+    <script type="text/javascript">
+      // $(document).ready(function() {
+          $('#example').DataTable({
+              dom: 'Bfrtip',
+              buttons: [
+                  {
+                       extend: 'pdf',
+                       footer: true,
+                       exportOptions: {
+                            columns: [0,1,2,3,4]
+                        }
+                   },
+                   {
+                       extend: 'csv',
+                       footer: false,
+                    
+                   },
+                   {
+                       extend: 'excel',
+                       footer: false
+                   }
+              ],
+          });
+      // } );
+    </script>
+  @endsection
