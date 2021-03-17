@@ -52,10 +52,18 @@
                             <label for="designation" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
                             <div class="col-md-6">
                                 <select name ="designation" placeholder="please select "class="form-control" value ="">  
-                                    @foreach($designations as $designation)
-                                        <option value="{{$designation->id}}">{{$designation->designation}}</option>
+                                    @foreach ($reporting_designation as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select><br>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Line') }}</label>
+                            <div class="col-md-6">
+                                <select name="designation_type" class="form-control" id="input">
+                                    <option>--Designation Type--</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -156,6 +164,32 @@
                   });
                 }else{
                     $('select[name="reporting_line"]').empty();
+                }
+            });
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+        jQuery('select[name="designation"]').on('change',function(){
+            var DesignationID = jQuery(this).val();
+               if(DesignationID)
+               {
+                    jQuery.ajax({
+                        url : 'create_user/getreportinglines/' +DesignationID,
+                        type : "GET",
+                        dataType : "json",
+                        success:function(data)
+                       {
+                            console.log(data);
+                            jQuery('select[name="designation_type"]').empty();
+                            jQuery.each(data, function(key,value){
+                            $('select[name="designation_type"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                  });
+                }else{
+                    $('select[name="designation_type"]').empty();
                 }
             });
     });

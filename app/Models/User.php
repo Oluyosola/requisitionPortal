@@ -28,6 +28,7 @@ class User extends Authenticatable
         'reporting_id',
         'reporting_designation_id',
         'reporting_line1_id',
+        'designation_type_id',
     ];
 
     /**

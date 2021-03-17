@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="nav-left-sidebar sidebar-light" style="background-color: #0a2cf0">
+<div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
     <div class="menu-list">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
@@ -96,7 +96,7 @@
                                                        
                                                         {{-- <td>{{$result->created_at}}</td> --}}
                                                         <td>{{ $result->status->name }}</td>
-                                                        <td><button style="background-color: green">Accept</button></td>
+                                                        <td><button style="background-color: #0077ad">Accept</button></td>
                                                         <td><button style="background-color: red" type="submit">Reject</button></td>
                                                         {{-- {{$result->}} --}}
                                                         {{-- {{$result->user_id}} --}}

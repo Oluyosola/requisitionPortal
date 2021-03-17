@@ -124,6 +124,7 @@ class RegisterController extends Controller
             'location_id' => $data['location'],
             'reporting_id' => $data['reporting'],
             'designation_id' => $data['designation'],
+            'designation_type_id' => $data['designation_type'],
             'reporting_designation_id' => $data['reporting_designation'],
             'reporting_line1_id' => $data['reporting_line'],
             // 'reporting_line2_id' => $data['reporting_line2'],
