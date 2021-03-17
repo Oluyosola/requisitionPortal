@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use App\Models\Location;
-use App\Models\Designation;
+// use App\Models\Designation;
 use App\Models\ReportingManager;
 use App\Models\ReportingDesignation;
 use App\Models\ReportingLine;
@@ -65,11 +65,10 @@ class RegisterController extends Controller
     public function getUserDetails(){
         $units = Unit::get();
         $locations = Location::get();
-        $designations = Designation::get();
         $reporting_managers = ReportingManager::get();
         $reporting_designation = ReportingDesignation::get()->pluck("name", "id");
         // $reporting_line = ReportingLine::all();
-        return view('auth.register', compact('units', 'designations', 'locations', 'reporting_managers', 'reporting_designation'));   
+        return view('auth.register', compact('units', 'locations', 'reporting_managers', 'reporting_designation'));   
     }
  
 

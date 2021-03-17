@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisition extends Model
 {
     use HasFactory;
-    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id', 'approval'];
+    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id', 'is_shth_approved', 'is_clevel-approved', 'is_manager_pproved'];
   
     public function Category (){
         return $this->belongsTo('App\Models\Category', 'category_id');

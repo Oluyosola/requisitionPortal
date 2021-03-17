@@ -26,21 +26,35 @@ class ApprovalController extends Controller
         $item = Item::all();
         $status = Status::all();
         $user = User::where(['location_id' => 16])->get();
-        // dd($user);
-        // dd($user);
-
-        ;
-//         $users = User::orderBy(Company::select('name')
-//     ->whereColumn('companies.id', 'users.company_id')
-// )->get();
-        // dd ($user);
-        // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
         $results = Requisition::get();
-
-        // $results= $results->paginate(10);
-        // dd($result)
         return view('dashboards.sh_th_dashboard', compact('results', 'status', 'category', 'item', 'user'));
     
+    }
+
+    public function approval(Requisition $requisition){
+        if($requisition->is_shth_approved = 0){
+        $requisition->is_shth_approved = 1;
+        }elseif($requisition->is_shth_approved = 1){
+            $requisition->is_manager_approved = 1;
+        }else{
+        $requisition->save();
+        return redirect('sh');
+        }
+    }
+
+    public function reject(Requisition $requisition){
+        $requisition->is_shth_approved = 0;
+        $requisition->save();
+        return redirect('sh');
+
+    }
+
+    public function manager_approval(Requisition $requisition){
+        if($requisition->sh_th_approved = 1){
+        $requisition->is_manager_approved = 1;
+        $requisition->save();
+        return redirect('sh');
+        }
     }
 
     /**

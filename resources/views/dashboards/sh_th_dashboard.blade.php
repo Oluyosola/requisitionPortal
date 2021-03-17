@@ -84,7 +84,7 @@
                                                 {{-- {{dd($results->user->email)}} --}}
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                       @if($result->user->location_id == Auth::user()->location_id)
+                                                       @if($result->user->reporting_line1_id == Auth::user()->designation_type_id)
                                                         
                                                                                                     
                                                     <tr>
@@ -96,8 +96,8 @@
                                                        
                                                         {{-- <td>{{$result->created_at}}</td> --}}
                                                         <td>{{ $result->status->name }}</td>
-                                                        <td><button style="background-color: #0077ad">Accept</button></td>
-                                                        <td><button style="background-color: red" type="submit">Reject</button></td>
+                                                        <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
+                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td>
                                                         {{-- {{$result->}} --}}
                                                         {{-- {{$result->user_id}} --}}
                                                         {{-- {{Auth::user()->id}} --}}

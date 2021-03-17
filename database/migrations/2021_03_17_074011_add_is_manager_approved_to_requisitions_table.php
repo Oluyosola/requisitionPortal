@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddApprovalToRequisitionsTable extends Migration
+class AddIsManagerApprovedToRequisitionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddApprovalToRequisitionsTable extends Migration
     public function up()
     {
         Schema::table('requisitions', function (Blueprint $table) {
-            $table->boolean('approval')->nullable;
+            //
+            $table->boolean('is_manager_approved')->nullable;
+
         });
     }
 

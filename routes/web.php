@@ -44,3 +44,8 @@ Route::get('/sh', [App\Http\Controllers\ApprovalController::class, 'index']);
 
 Route::get('users', [App\Http\Controllers\AdminController::class, 'index']);
 Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_user');
+
+
+//Approval
+Route::patch('requisition/{requisition}', [App\Http\Controllers\ApprovalController::class, 'approval'])->name('approve_requisition');
+Route::get('requisition/{requisition}', [App\Http\Controllers\ApprovalController::class, 'reject'])->name('reject_requisition');
