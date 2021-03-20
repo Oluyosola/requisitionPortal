@@ -36,7 +36,8 @@ Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index']
 
 
 
-Route::get('/sh', [App\Http\Controllers\ApprovalController::class, 'index']);
+
+
 
 
     
@@ -47,5 +48,10 @@ Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'
 
 
 //Approval
-Route::patch('requisition/{requisition}', [App\Http\Controllers\ApprovalController::class, 'approval'])->name('approve_requisition');
-Route::get('requisition/{requisition}', [App\Http\Controllers\ApprovalController::class, 'reject'])->name('reject_requisition');
+Route::get('/sh', [App\Http\Controllers\ShTlController::class, 'index']);
+Route::get('requisition/{requisition}/approve_requisition', [App\Http\Controllers\ShTlController::class, 'approval'])->name('approve_requisition');
+Route::get('requisition/{requisition}/reject_requisition', [App\Http\Controllers\ShTlController::class, 'reject'])->name('reject_requisition');
+
+Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index']);
+Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
+Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);

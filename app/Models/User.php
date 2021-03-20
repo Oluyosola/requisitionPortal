@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
@@ -56,10 +57,10 @@ class User extends Authenticatable
         return $this->belongsTo(Unit::class);
 
     }
-    public function Designation(){
-        return $this->belongsTO(Designation::class);
+    // public function Designation(){
+    //     return $this->belongsTO(Designation::class);
 
-    }
+    // }
     public function Location(){
         return $this->belongsTo(Location::class);
 
@@ -68,12 +69,15 @@ class User extends Authenticatable
         return $this->belongsTo(ReportingManager::class);
 
     }
-    public function ReportingDesignation()
+    public function Designation()
     {
-        return $this->belongsTo(ReportingDesignation::class);
+        return $this->belongsTo(Designation::class);
     }
-    public function ReportingLine()
+    public function Designationtype()
     {
-        return $this->belongsTo(ReportingLine::class);
+        return $this->belongsTo(DesignationType::class);
+    }
+    public function Approval(){
+        return $this->hasMany(Approval::class);
     }
 }

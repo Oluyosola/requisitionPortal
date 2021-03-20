@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropApprovalFromRequisitionsTable extends Migration
+class ChangeDesignationTypesTableColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class DropApprovalFromRequisitionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            //
-            
-                $table->dropColumn('approval');
+        Schema::table('designation_types', function (Blueprint $table){
+            $table->renameColumn('reporting_designation_id', 'designation_id');
         });
     }
 
@@ -27,8 +25,6 @@ class DropApprovalFromRequisitionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            // $table->dropColumn('approval');
-        });
+        //
     }
 }

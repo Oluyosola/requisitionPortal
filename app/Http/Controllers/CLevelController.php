@@ -7,8 +7,11 @@ use App\Models\Item;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\RequisitionRejected;
+// use Auth;
 
-class ApprovalController extends Controller
+class ClevelController extends Controller
 {
     public function __construct()
     {
@@ -21,42 +24,27 @@ class ApprovalController extends Controller
      */
     public function index()
     {
+        
         //
+        // @if(Auth::user()->designation_id = 3 && $result->is_shth_approved = 1)
+
         $category = Category::all();
         $item = Item::all();
         $status = Status::all();
-        $user = User::where(['location_id' => 16])->get();
-        $results = Requisition::get();
-        return view('dashboards.sh_th_dashboard', compact('results', 'status', 'category', 'item', 'user'));
-    
+        $user = User::all();
+        $results = Requisition::with('user')->get();
+        // $check1 = $results->$user->reporting_line1_id == Auth::$user()->designation_type_id;
+        // $check2 = Auth::$user()->designation_id == 3 && $results->is_shth_approved == 1;
+        // $check3 = Auth::$user()->designation_id == 4 && $results->is_manger_approved == 1;
+        // if($check1 || $check2 || $check3){
+          
+            // dd($user_id);
+        return view('dashboards.c_level', compact('results', 'status', 'category', 'item', 'user'));
+        // dd( $results->user->location_id);
+        // }
     }
 
-    public function approval(Requisition $requisition){
-        if($requisition->is_shth_approved = 0){
-        $requisition->is_shth_approved = 1;
-        }elseif($requisition->is_shth_approved = 1){
-            $requisition->is_manager_approved = 1;
-        }else{
-        $requisition->save();
-        return redirect('sh');
-        }
-    }
-
-    public function reject(Requisition $requisition){
-        $requisition->is_shth_approved = 0;
-        $requisition->save();
-        return redirect('sh');
-
-    }
-
-    public function manager_approval(Requisition $requisition){
-        if($requisition->sh_th_approved = 1){
-        $requisition->is_manager_approved = 1;
-        $requisition->save();
-        return redirect('sh');
-        }
-    }
-
+ 
     /**
      * Show the form for creating a new resource.
      *

@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Line') }}</label>
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
                             <div class="col-md-6">
                                 <select name="designation_type" class="form-control" id="input">
                                     <option>--Designation Type--</option>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Line') }}</label>
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation type') }}</label>
                             <div class="col-md-6">
                                 <select name="reporting_line" class="form-control" id="input">
                                     <option>--Reporting Line--</option>

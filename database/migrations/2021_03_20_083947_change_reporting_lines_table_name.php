@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsClevelApprovedToRequisitionsTable extends Migration
+class ChangeReportingLinesTableName extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddIsClevelApprovedToRequisitionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            //
-            $table->boolean('is_clevel_approved')->nullable;
-        });
+        //
+        Schema::rename('reporting_lines', 'designation_types');
     }
 
     /**
@@ -26,8 +24,6 @@ class AddIsClevelApprovedToRequisitionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

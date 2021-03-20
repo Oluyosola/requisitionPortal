@@ -10,8 +10,8 @@ use App\Models\Unit;
 use App\Models\Location;
 // use App\Models\Designation;
 use App\Models\ReportingManager;
-use App\Models\ReportingDesignation;
-use App\Models\ReportingLine;
+use App\Models\Designation;
+use App\Models\DesignationType;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,7 +66,7 @@ class RegisterController extends Controller
         $units = Unit::get();
         $locations = Location::get();
         $reporting_managers = ReportingManager::get();
-        $reporting_designation = ReportingDesignation::get()->pluck("name", "id");
+        $reporting_designation = Designation::get()->pluck("name", "id");
         // $reporting_line = ReportingLine::all();
         return view('auth.register', compact('units', 'locations', 'reporting_managers', 'reporting_designation'));   
     }
@@ -77,7 +77,7 @@ class RegisterController extends Controller
     //     return view('auth.register', compact('reporting_designation'));
     // }
     public function getReportingLines($id){
-        $reporting_line = ReportingLine::get()->where('reporting_designation_id', $id)->pluck("name", "id");
+        $reporting_line = DesignationType::get()->where('designation_id', $id)->pluck("name", "id");
         
         return json_encode($reporting_line);
     }

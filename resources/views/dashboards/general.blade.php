@@ -37,7 +37,7 @@
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Synlab Requisition Portal </h2>
                             <div class="page-breadcrumb">
@@ -152,7 +152,8 @@
                                                         <td>{{$result->item->name}}</td>
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
-                                                        <td>{{$result->created_at}}</td>
+            
+                                                        <td>{{date_format($result->created_at, 'jS M Y')}}</td>
                                                        
                                                         {{-- <td>{{$category->id}}</td> --}}
                                                         
@@ -174,7 +175,7 @@
                                                                  <h4 class="text-center">Are you sure you want to delete this Requisition ?</h4>
                                                               {{-- </div> --}}
                                                               <div class="modal-footer">
-                                                                 <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a>
+                                                                 {{-- <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a> --}}
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                                                               </div>
                                                            </div>

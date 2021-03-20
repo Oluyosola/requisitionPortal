@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Designation extends Model
 {
     use HasFactory;
-    protected $fillable = ['designation'];
+    protected $fillable = ['name'];
 
-    public function Users(){
+    // public function Users(){
+    //     return $this->hasMany(User::class);
+    // }
+    public function Users()
+    {
         return $this->hasMany(User::class);
     }
 }
