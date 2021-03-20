@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Requisition;
-use App\Models\Item;
-use App\Models\Status;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Constant;
+use App\Constant\designations;
 use App\Notifications\RequisitionRejected;
+use Illuminate\Support\Facades\DB;
 // use Auth;
 
 class ManagerController extends Controller
@@ -25,29 +21,16 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        
-        //
-        // @if(Auth::user()->designation_id = 3 && $result->is_shth_approved = 1)
-
-        $category = Category::all();
-        $item = Item::all();
-        $status = Status::all();
-        $user = User::all();
-        // ((Auth::user()->designation_id == 3) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id) || $result->user_id == $result->sl_th_id && $result->is_sh_tl_approved == 1) 
-
-
-
-        $results = Requisition::where(Auth::user()->designation_id == 3  )->get();
-        // $check1 = $results->$user->reporting_line1_id == Auth::$user()->designation_type_id;
-        // $check2 = Auth::$user()->designation_id == 3 && $results->is_shth_approved == 1;
-        // $check3 = Auth::$user()->designation_id == 4 && $results->is_manger_approved == 1;
-        // if($check1 || $check2 || $check3){
-          
-            // dd($user_id);
-        return view('dashboards.manager', compact('results', 'status', 'category', 'item', 'user'));
-        // dd( $results->user->location_id);
-        // }
-    }
+        $manager = Auth::user()->designation_type_id;
+        $sql_query = "SELECT requisitions.id as id, requisitions.quantity as quantity, 
+        requisitions.description as description, users.name as user_name, categories.name as category_name, 
+        items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
+        LEFT JOIN items ON requisitions.item_id = items.id
+        LEFT JOIN users ON requisitions.sl_th_id = users.id WHERE requisitions.is_sh_tl_approved = 1
+         AND users.reporting_line1_id = $manager";
+        $results=  DB::select($sql_query);
+        return view('dashboards.manager', compact('results'));
+   }
 
  
     /**

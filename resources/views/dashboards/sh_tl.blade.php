@@ -84,8 +84,9 @@
                                                 {{-- {{dd($results->user->email)}} --}}
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                    @if((Auth::user()->designation_id == 1||2) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id))
-                                                       {{-- @if(($result->user->reporting_line1_id == Auth::user()->designation_type_id) ||
+                                                    {{-- @if((Auth::user()->designation_id == 1||2) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id))
+                                                        --}}
+                                                    {{-- @if(($result->user->reporting_line1_id == Auth::user()->designation_type_id) ||
                                                         (Auth::user()->designation_id == 3 && $result->is_shth_approved == 1) || --}}
                                                          
                                                          {{-- $result->user->reporting_line1_id == Auth::user()->designation_type_i --}}

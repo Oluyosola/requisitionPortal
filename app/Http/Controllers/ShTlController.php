@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RequisitionController;
 use App\Notifications\RequisitionRejected;
 // use Auth;
 
@@ -25,15 +26,18 @@ class ShTlController extends Controller
      */
     public function index()
     {
-        
+        // @if((Auth::user()->designation_id == 1||2) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id))
+                                                     
         //
         // @if(Auth::user()->designation_id = 3 && $result->is_shth_approved = 1)
+        dd(Auth::user()->designation_type_id);
+        // dd(RequisitionController);
 
         $category = Category::all();
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
-        $results = Requisition::get();
+        $results = Requisition::with('user')->where('reqsults.user->reporting_line1_id', Auth::user()->designation_type_id)->get();
         // 
         // $check1 = $results->$user->reporting_line1_id == Auth::$user()->designation_type_id;
         // $check2 = Auth::$user()->designation_id == 3 && $results->is_shth_approved == 1;

@@ -75,7 +75,7 @@
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
                                                     <th class="border-0">Description</th>
-                                                    <th class="border-0">Status</th>
+                                                    {{-- <th class="border-0">Status</th> --}}
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
@@ -84,32 +84,20 @@
                                             
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                    @if((Auth::user()->designation_id == 3) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id) || $result->user->id == $result->sl_th_id && $result->is_sh_tl_approved == 1) 
-
+                                                   
                                             
                                                                                                   
                                                     <tr>
-                                                        <td>{{$result->user->name}}</td>
-                                                        <td>{{$result->category->name }}</td>
-                                                        <td>{{$result->item->name}}</td>
+                                                        <td>{{$result->user_name}}</td>
+                                                        <td>{{$result->category_name }}</td>
+                                                        <td>{{$result->item_name}}</td>
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
-                                                       
-                                                        {{-- <td>{{$result->created_at}}</td> --}}
-                                                        <td>{{ $result->status->name }}</td>
                                                         <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td>
-                                                        
-                                                            {{-- {{$result->}} --}}
-                                                        {{-- {{$result->user_id}} --}}
-                                                        {{-- {{Auth::user()->id}} --}}
-                                                        {{$result->user->name}}
-                                                        
+                                                    </tr>
                       
-                                                </tr>
-                                                {{-- {{Auth::user()->id}} --}}
-                      
-                                                @endif
+                                               
                                                     @endforeach
                                                     
                                                 @endif
