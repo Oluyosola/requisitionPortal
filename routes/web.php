@@ -47,11 +47,14 @@ Route::get('users', [App\Http\Controllers\AdminController::class, 'index']);
 Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete_user');
 
 
-//Approval
+//Site Head and team Lead dashboard
 Route::get('/sh', [App\Http\Controllers\ShTlController::class, 'index']);
-Route::get('requisition/{requisition}/approve_requisition', [App\Http\Controllers\ShTlController::class, 'approval'])->name('approve_requisition');
-Route::get('requisition/{requisition}/reject_requisition', [App\Http\Controllers\ShTlController::class, 'reject'])->name('reject_requisition');
+Route::get('requisition/{requisition}/sh_tl_approve_requisition', [App\Http\Controllers\ShTlController::class, 'shTlApproval'])->name('sh_tl_approve_requisition');
+Route::get('requisition/{requisition}/sh_tl_reject_requisition', [App\Http\Controllers\ShTlController::class, 'shTlRejection'])->name('sh_tl_reject_requisition');
 
 Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index']);
+// Route::get('requisition/{requisition}/manager_approve_requisition', [App\Http\Controllers\ManagerController::class, 'managerApproval'])->name('manager_approve_requisition');
+// Route::get('requisition/{requisition}/manager_reject_requisition', [App\Http\Controllers\ManagerController::class, 'managerRejection'])->name('manager_reject_requisition');
+
 Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
 Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);

@@ -36,9 +36,11 @@ class ShTlController extends Controller
     
     }
 
-    public function approval(Request $request, int $id){
-        $approval = new Approval;
-        $approval->requisition_id = $id;
+    public function shTlApproval(Request $request, Requisition $requisition){
+        $requisition->sh_tl_approval_comment = $request->input('sh_tl_approval_comment');
+        $requisition->is_sh_tl_approved = true;
+        $requisition->sh_tl_id = Auth::user()->id;
+       
 
         // dd($id);
         // if(Auth::user()->designation_id == 1||2){
@@ -53,12 +55,23 @@ class ShTlController extends Controller
         //     $requisition->is_clevel_approved = 1;
         // ($requisition->is_sh_tl_approved == 0) &&
         // }
-            $approval->save();
+            $requisition->save();
 
-        return redirect('sh');
+        return redirect('/sh');
 
         // }
     }
+
+    public function shTlRejection(Request $request, Requisition $requisition){
+        // if ($requisition->is_sh_tl_approved == null){
+        $requisition->sh_tl_rejection_comment = $request->input('sh_tl_rejection_comment');
+        $requisition->is_sh_tl_approved = false;
+        $requisition->sh_tl_id = Auth::user()->id;
+        $requisition->save();
+
+        return redirect('/sh');
+        // }
+    }  
 
     // public function approval2(Requisition $requisition){
     //     if($requisition->shth_approved = 1)

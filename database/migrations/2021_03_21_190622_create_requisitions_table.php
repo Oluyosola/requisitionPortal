@@ -25,10 +25,13 @@ class CreateRequisitionsTable extends Migration
             $table->boolean('is_sh_tl_approved')->nullable();
             $table->boolean('is_manager_approved')->nullable();
             $table->boolean('is_clevel_approved')->nullable();
-            $table->text('sh_tl_comment')->nullable();
-            $table->text('manager_comment')->nullable();
-            $table->text('clevel_comment')->nullable();
-            $table->integer('sl_th_id')->nullable();
+            $table->text('sh_tl_approval_comment')->nullable();
+            $table->text('manager_approval_comment')->nullable();
+            $table->text('clevel_approval_comment')->nullable();
+            $table->text('sh_tl_rejection_comment')->nullable();
+            $table->text('manager_rejection_comment')->nullable();
+            $table->text('clevel_rejection_comment')->nullable();
+            $table->integer('sh_tl_id')->nullable();
             $table->integer('manager_id')->nullable();
             $table->integer('clevel_id')->nullable();
             

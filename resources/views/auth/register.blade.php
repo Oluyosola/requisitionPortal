@@ -70,7 +70,7 @@
                             <label for="reportingdesignation" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
                             <div class="col-md-6">        
                                 <select name="reporting_designation" class="form-control" id="input">
-                                    <option value="">--- Select Reporting Designation ---</option>
+                                    <option value="">  </option>
                                     @foreach ($reporting_designation as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                      @endforeach
@@ -81,11 +81,11 @@
                             <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation type') }}</label>
                             <div class="col-md-6">
                                 <select name="reporting_line" class="form-control" id="input">
-                                    <option>--Reporting Line--</option>
+                                    <option> </option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="reporting" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
                             <div class="col-md-6">
                                 <select name ="reporting" placeholder="please select "class="form-control">  
@@ -94,7 +94,7 @@
                                     @endforeach
                                 </select><br>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
                             <label for="location" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
                             <div class="col-md-6">

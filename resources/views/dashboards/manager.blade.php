@@ -93,10 +93,75 @@
                                                         <td>{{$result->item_name}}</td>
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
-                                                        <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td>
-                                                    </tr>
-                      
+                                                        {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
+                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
+                                                            <td>
+ 
+                                                                {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
+                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                               <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
+ 
+                                                             
+                                                         </td>
+                                                     </tr>
+                                                      
+ 
+                                                   
+                                                   <div class="modal fade" id="modal-approval{{$result->id}}">
+                                                     <form action="{{route('manager_approve_requisition', $result->id)}}" method="GET">
+                                                        <div class="modal-dialog">
+                                                           <div class="modal-content">
+                                                              <input type="hidden" name="approve" value="{{$result->id}}">
+                                                              <div class="modal-header">
+                                                                 <h4 class="modal-title">Approve Requistion</h4>
+                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                 
+                                                              </div>
+                                                              <div class="modal-body">
+                                                                 <div class="form-group row" style="padding-top: 20px">
+                                                                     <label for="manager_approval_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                     <div class="col-md-6">
+                                                                         <textarea name="manager_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                              <div class="modal-footer">
+                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                 <input type="submit" name="submit" value="Approve" class="btn btn-success">
+                                                                
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                     </form>
+                                                  </div>
+                                                  <div class="modal fade" id="modal-reject{{$result->id}}">
+                                                    <form action="{{route('manager_reject_requisition', $result->id)}}" method="GET">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <input type="hidden" name="reject" value="{{$result->id}}">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Reject Requistion</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                           
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group row" style="padding-top: 20px">
+                                                                        <label for="manager_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                        <div class="col-md-6">
+                                                                            <textarea name="manager_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    <input type="submit" name="submit" value="reject" class="btn btn-danger">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                 
                                                
                                                     @endforeach
                                                     

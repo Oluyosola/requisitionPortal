@@ -45,7 +45,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -65,10 +65,9 @@ class RegisterController extends Controller
     public function getUserDetails(){
         $units = Unit::get();
         $locations = Location::get();
-        $reporting_managers = ReportingManager::get();
         $reporting_designation = Designation::get()->pluck("name", "id");
         // $reporting_line = ReportingLine::all();
-        return view('auth.register', compact('units', 'locations', 'reporting_managers', 'reporting_designation'));   
+        return view('auth.register', compact('units', 'locations', 'reporting_designation'));   
     }
  
 
@@ -121,11 +120,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'unit_id' => $data['unit'],
             'location_id' => $data['location'],
-            'reporting_id' => $data['reporting'],
+            // 'reporting_id' => $data['reporting'],
             'designation_id' => $data['designation'],
             'designation_type_id' => $data['designation_type'],
             'reporting_designation_id' => $data['reporting_designation'],
-            'reporting_line1_id' => $data['reporting_line'],
+            'reporting_designation_type_id' => $data['reporting_line'],
             // 'reporting_line2_id' => $data['reporting_line2'],
         
         ]);

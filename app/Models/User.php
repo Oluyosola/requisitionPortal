@@ -26,10 +26,11 @@ class User extends Authenticatable
         'unit_id',
         'location_id',
         'designation_id',
-        'reporting_id',
-        'reporting_designation_id',
-        'reporting_line1_id',
         'designation_type_id',
+        // 'reporting_id',
+        'reporting_designation_id',
+        'reporting_designation_type_id',
+        
     ];
 
     /**

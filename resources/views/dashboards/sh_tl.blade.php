@@ -77,7 +77,8 @@
                                                     <th class="border-0">Quantity</th>
                                                     <th class="border-0">Description</th>
                                                     <th class="border-0">Status</th>
-                                                    <th class="border-0" colspan="2">Approval</th>
+                                                    <th class="border-0">Approval</th>
+                                                    <th class="border-0">Reject</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
@@ -85,8 +86,8 @@
                                                 {{-- {{dd($results->user->email)}} --}}
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                    {{-- @if((Auth::user()->designation_id == 1||2) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id))
-                                                        --}}
+                                                    @if((Auth::user()->designation_id == 2||3) && ($result->user->reporting_designation_type_id == Auth::user()->designation_type_id))
+                                                       
                                                     {{-- @if(($result->user->reporting_line1_id == Auth::user()->designation_type_id) ||
                                                         (Auth::user()->designation_id == 3 && $result->is_shth_approved == 1) || --}}
                                                          
@@ -104,71 +105,81 @@
                                                        
                                                         {{-- <td>{{$result->created_at}}</td> --}}
                                                         <td>{{ $result->status->name }}</td>
-                                                        <td>
+                                                        {{-- <td> --}}
                                                             {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
-                                                        
+                                                        <td>
  
-                                                               <button style="background-color: #022e42;"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button> 
+                                                               {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
+                                                               <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                              <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
+
                                                             
                                                         </td>
                                                     </tr>
-                                                    {{-- <div class="modal fade" id="modal-approve{{$result->id}}">
-                                                        <div class="modal-dialog">
-                                                           <div class="modal-content">
-                                                              <div class="row">
-                                                                 <h4 class="text-center">Approval/Rejection</h4>
-                                                                 
-                                                              </div>
-                                                              <div class="modal-footer">
-                                                                 <a href="{{route('approve_requisition', $result->id)}}" class="btn btn-success">Approve</a>
-                                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
-                                                              </div>
-                                                           </div>
-                                                        </div>
-                                                  </div> --}}
-                                                  <div class="modal fade" id="modal-approve{{$result->id}}">
-                                                    <form action="{{route('approve_requisition', $result->id)}}" method="POST">
+                                                    <div class="modal fade" id="modal-reject{{$result->id}}">
+                                                        <form action="{{route('sh_tl_reject_requisition', $result->id)}}" method="GET">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <input type="hidden" name="reject" value="{{$result->id}}">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Reject Requistion</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                               
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group row" style="padding-top: 20px">
+                                                                            <label for="sh_tl_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                            <div class="col-md-6">
+                                                                                <textarea name="sh_tl_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <input type="submit" name="submit" value="reject" class="btn btn-danger">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+    
+                                                      
+
+                                                  
+                                                  <div class="modal fade" id="modal-approval{{$result->id}}">
+                                                    <form action="{{route('sh_tl_approve_requisition', $result->id)}}" method="GET">
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
-                                                             <input type="hidden" name="company" value="{{$result->id}}">
+                                                             <input type="hidden" name="approve" value="{{$result->id}}">
                                                              <div class="modal-header">
+                                                                <h4 class="modal-title">Approve Requistion</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                <h4 class="modal-title">Approval/ Requistion</h4>
+                                                                
                                                              </div>
                                                              <div class="modal-body">
                                                                 <div class="form-group row" style="padding-top: 20px">
-                                                                    <label for="comment_sh" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                    <label for="sh_tl_approval_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <textarea name="comment_sh" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="name" class="form-control" required="required"></textarea><br>
+                                                                        <textarea name="sh_tl_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                     </div>
                                                                 </div>
+                                                            </div>
                                                              <div class="modal-footer">
-                                                                <input type="submit" name="submit" value="Approve" class="btn btn-primary">
-        
-                                                                <a href="{{route('reject_requisition', $result->id)}}" class="btn btn-danger">Reject</a>
-                                                                
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <input type="submit" name="submit" value="Approve" class="btn btn-success">
+                                                               
                                                              </div>
                                                           </div>
                                                        </div>
                                                     </form>
                                                  </div>
-                                      -
-
-                                                  
-                                                        {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
-                                                        {{-- {{$result->}} --}}
-                                                        {{-- {{$result->user_id}} --}}
-                                                        {{-- {{Auth::user()->id}} --}}
-                      
+                                                 
                                                 </tr>
-                                                {{-- {{Auth::user()->id}} --}}
-                      
-                                                {{-- @endif --}}
-                                                    @endforeach
-                                                    
+                                                
                                                 @endif
+                                                    @endforeach
+                                                    @endif
 
                                             </tbody>
                                         </table>
@@ -202,6 +213,5 @@
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->
-</div>
-
+</div>   
 @endsection

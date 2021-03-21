@@ -9,8 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class Requisition extends Model
 {
     use HasFactory, Notifiable;
-    protected $fillable = ['item_id', 'category_id', 'description', 'quantity', 'user_id', 'status_id','is_shth_approved', 'is_clevel_approved',
-      'sh_tl_comment', 'manager_comment', 'clevel_comment', 'manager_id', 'sh_tl_id', 'clevel_id', 'is_manager_approved' ];
+    protected $fillable = ['item_id', 'category_id', 
+    'description', 'quantity', 'user_id', 'status_id',
+    'is_sh_tl_approved', 'is_clevel_approved',
+      'sh_tl_approval_comment', 'manager_approval_comment', 'clevel_approval_comment', 'manager_id', 'sh_tl_id', 'clevel_id', 'is_manager_approved', 'sh_tl_rejection_comment', 'manager_rejection_comment', 'clevel_rejection_comment', ];
   
     public function Category (){
         return $this->belongsTo('App\Models\Category', 'category_id');

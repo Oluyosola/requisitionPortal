@@ -22,8 +22,11 @@ class CreateUsersTable extends Migration
             $table->enum('role', ['user','admin'])->default('user');
             $table->integer('unit_id');
             $table->integer('location_id');
-            $table->integer('reporting_id');
             $table->integer('designation_id');
+            $table->integer('designation_type_id')->nullable();
+            $table->integer('reporting_designation_id')->nullable();
+            $table->integer('reporting_designation_type_id')->nullable();
+
 
             $table->rememberToken();
             $table->timestamps();
