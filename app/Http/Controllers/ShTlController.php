@@ -26,37 +26,27 @@ class ShTlController extends Controller
      */
     public function index()
     {
-        // @if((Auth::user()->designation_id == 1||2) && ($result->user->reporting_line1_id == Auth::user()->designation_type_id))
-                                                     
-        //
-        // @if(Auth::user()->designation_id = 3 && $result->is_shth_approved = 1)
-        dd(Auth::user()->designation_type_id);
-        // dd(RequisitionController);
 
         $category = Category::all();
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
-        $results = Requisition::with('user')->where('reqsults.user->reporting_line1_id', Auth::user()->designation_type_id)->get();
-        // 
-        // $check1 = $results->$user->reporting_line1_id == Auth::$user()->designation_type_id;
-        // $check2 = Auth::$user()->designation_id == 3 && $results->is_shth_approved == 1;
-        // $check3 = Auth::$user()->designation_id == 4 && $results->is_manger_approved == 1;
-        // if($check1 || $check2 || $check3){
-          
-            // dd($user_id);
+        $results = Requisition::get();
         return view('dashboards.sh_tl', compact('results', 'status', 'category', 'item', 'user'));
-        // dd( $results->user->location_id);
-        // }
+    
     }
 
-    public function approval(Request $request, Approval $approval){
-        if(Auth::user()->designation_id == 1||2){
-            $approval->is_sh_tl_approved = 1;
-            // $a->sh_tl_comment = $request->input('comment_sh');
-            // dd($requisition->sh_tl_comment);
-            $approval->sh_tl_id = auth()->user()->id;
-            $approval->requisition_id =1;
+    public function approval(Request $request, int $id){
+        $approval = new Approval;
+        $approval->requisition_id = $id;
+
+        // dd($id);
+        // if(Auth::user()->designation_id == 1||2){
+        //     $approval->is_sh_tl_approved = 1;
+        //     // $a->sh_tl_comment = $request->input('comment_sh');
+        //     // dd($requisition->sh_tl_comment);
+        //     $approval->sh_tl_id = auth()->user()->id;
+        //     $approval->requisition_id =1;
         // }elseif($requisition->is_sh_tl_approved == 1 && (Auth::user()->designation_id == 3)){
         //     $requisition->is_manager_approved = 1;
         // }else{
@@ -67,7 +57,7 @@ class ShTlController extends Controller
 
         return redirect('sh');
 
-        }
+        // }
     }
 
     // public function approval2(Requisition $requisition){

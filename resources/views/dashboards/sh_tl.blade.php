@@ -70,6 +70,7 @@
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
+                                                    <th class="border-0">#</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
@@ -93,6 +94,7 @@
                                                          {{-- && $result->user->reporting_line1_id == Auth::user()->designation_type_id --}}
                                                                                                     
                                                     <tr>
+                                                        <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->user->name}}</td>
                                                         <td>{{$result->category->name }}</td>
                                                         <td>{{$result->item->name}}</td>
@@ -103,11 +105,11 @@
                                                         {{-- <td>{{$result->created_at}}</td> --}}
                                                         <td>{{ $result->status->name }}</td>
                                                         <td>
-                                                            <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td>
+                                                            {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
+                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
                                                         
  
-                                                               {{-- <button style="background-color: #022e42;"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
+                                                               <button style="background-color: #022e42;"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button> 
                                                             
                                                         </td>
                                                     </tr>
@@ -125,8 +127,8 @@
                                                            </div>
                                                         </div>
                                                   </div> --}}
-                                                  {{-- <div class="modal fade" id="modal-approve{{$result->id}}">
-                                                    <form action="{{route('approve_requisition')}}" method="POST">
+                                                  <div class="modal fade" id="modal-approve{{$result->id}}">
+                                                    <form action="{{route('approve_requisition', $result->id)}}" method="POST">
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
                                                              <input type="hidden" name="company" value="{{$result->id}}">
@@ -143,16 +145,14 @@
                                                                 </div>
                                                              <div class="modal-footer">
                                                                 <input type="submit" name="submit" value="Approve" class="btn btn-primary">
-                                                                {{-- <a href="{{route('approve_requisition', $result->id)}}" class="btn btn-success">Approve</a> --}}
-                                                                {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button> --}}
-                                                            
-                                                                {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-                                                                 
-                                                             {{-- </div>
+        
+                                                                <a href="{{route('reject_requisition', $result->id)}}" class="btn btn-danger">Reject</a>
+                                                                
+                                                             </div>
                                                           </div>
                                                        </div>
                                                     </form>
-                                                 </div> --}}
+                                                 </div>
                                       -
 
                                                   
@@ -165,7 +165,7 @@
                                                 </tr>
                                                 {{-- {{Auth::user()->id}} --}}
                       
-                                                @endif
+                                                {{-- @endif --}}
                                                     @endforeach
                                                     
                                                 @endif
