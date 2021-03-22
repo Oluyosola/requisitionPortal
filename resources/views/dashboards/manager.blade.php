@@ -70,11 +70,13 @@
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
+                                                    <th class="border-0">#</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
                                                     <th class="border-0">Description</th>
+                                                    {{-- <th class="border-0">Manger's comment</th> --}}
                                                     {{-- <th class="border-0">Status</th> --}}
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
@@ -88,11 +90,13 @@
                                             
                                                                                                   
                                                     <tr>
+                                                        <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->item_name}}</td>
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
+                                                        {{-- <td>{{$result->manger_app}}</td> --}}
                                                         {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
                                                             <td>

@@ -168,6 +168,7 @@
                                                             </center>
                                                         </td>
                                                     </tr>
+                                                    
                                                     <div class="modal fade" id="modal-delete{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
