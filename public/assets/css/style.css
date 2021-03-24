@@ -156,190 +156,23 @@ body {
     }
   }
   
-  /*--------------------------------------------------------------
-  # Navigation Menu
-  --------------------------------------------------------------*/
-  /* Desktop Navigation */
-  .nav-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .nav-menu > ul {
-    display: flex;
-  }
-  
-  .nav-menu > ul > li {
-    position: relative;
-    white-space: nowrap;
-    padding: 8px 0 8px 20px;
-  }
-  
-  .nav-menu a {
-    display: block;
-    position: relative;
-    color: #2c4964;
-    transition: 0.3s;
-    font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-    padding: 5px 2px;
-    border-bottom: 2px solid #fff;
-  }
-  
-  .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-    color: #1977cc;
-    border-color: #1977cc;
-  }
-  
-  
-  
-  /* Get Startet Button */
-  .appointment-btn {
-    margin-left: 25px;
-    background: #1977cc;
-    color: #fff;
-    border-radius: 50px;
-    padding: 8px 25px;
-    white-space: nowrap;
-    transition: 0.3s;
-    font-size: 14px;
-    display: inline-block;
-  }
-  
-  .appointment-btn:hover {
-    background: #166ab5;
-    color: #fff;
-  }
-  
-  @media (max-width: 768px) {
-    .appointment-btn {
-      margin: 0 48px 0 0;
-      padding: 6px 18px;
-    }
-  }
-  
-  /* Mobile Navigation */
-  .mobile-nav-toggle {
-    position: fixed;
-    right: 15px;
-    top: 15px;
-    z-index: 9998;
-    border: 0;
-    background: none;
-    font-size: 24px;
-    transition: all 0.4s;
-    outline: none !important;
-    line-height: 1;
-    cursor: pointer;
-    text-align: right;
-  }
-  
-  .mobile-nav-toggle i {
-    color: #1977cc;
-  }
-  
-  .mobile-nav {
-    position: fixed;
-    top: 55px;
-    right: 15px;
-    bottom: 15px;
-    left: 15px;
-    z-index: 9999;
-    overflow-y: auto;
-    background: #fff;
-    transition: ease-in-out 0.2s;
-    opacity: 0;
-    visibility: hidden;
-    border-radius: 10px;
-    padding: 10px 0;
-  }
-  
-  .mobile-nav * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .mobile-nav a {
-    display: block;
-    position: relative;
-    color: #2c4964;
-    padding: 10px 20px;
-    font-weight: 500;
-    outline: none;
-  }
-  
-  .mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
-    color: #1977cc;
-    text-decoration: none;
-  }
-  
-  .mobile-nav .drop-down > a:after {
-    content: "\ea99";
-    font-family: IcoFont;
-    padding-left: 10px;
-    position: absolute;
-    right: 15px;
-  }
-  
-  .mobile-nav .active.drop-down > a:after {
-    content: "\eaa1";
-  }
-  
-  .mobile-nav .drop-down > a {
-    padding-right: 35px;
-  }
-  
-  .mobile-nav .drop-down ul {
-    display: none;
-    overflow: hidden;
-  }
-  
-  .mobile-nav .drop-down li {
-    padding-left: 20px;
-  }
-  
-  .mobile-nav-overly {
-    width: 100%;
-    height: 100%;
-    z-index: 9997;
-    top: 0;
-    left: 0;
-    position: fixed;
-    background: rgba(28, 47, 65, 0.6);
-    overflow: hidden;
-    display: none;
-    transition: ease-in-out 0.2s;
-  }
-  
-  .mobile-nav-active {
-    overflow: hidden;
-  }
-  
-  .mobile-nav-active .mobile-nav {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .mobile-nav-active .mobile-nav-toggle i {
-    color: #fff;
-  }
-  
+
   /*--------------------------------------------------------------
   # Hero Section
   --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 90vh;
+    height: 100%;
     background: url("../img/hero-bg.jpg") top center;
     background-size: cover;
     position: relative;
-    margin-bottom: -200px;
+    /* margin-bottom: -200px; */
+    padding-top: 20%;
   }
   
   #hero .container {
     position: relative;
+    /* min-height: 100vh; */
   }
   
   #hero h1 {
@@ -352,30 +185,15 @@ body {
   }
   
   #hero h2 {
+    position: absolute;
     color: #2c4964;
     margin: 10px 0 0 0;
     font-size: 24px;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
   }
-  
-  #hero .btn-get-started {
-    font-family: "Raleway", sans-serif;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 12px 35px;
-    margin-top: 30px;
-    border-radius: 50px;
-    transition: 0.5s;
-    color: #fff;
-    background: #1977cc;
-  }
-  
-  #hero .btn-get-started:hover {
-    background: #3291e6;
-  }
-  
+   
   @media (min-width: 1024px) {
     #hero {
       background-attachment: fixed;
@@ -523,10 +341,12 @@ body {
   # Why Us
   --------------------------------------------------------------*/
   .why-us .content {
+    margin-top: 50px;
     padding: 30px;
-    background: #1977cc;
+    background: #003765;
     border-radius: 4px;
     color: #fff;
+    /* margin-bottom: 100px; */
   }
   
   .why-us .content h3 {
@@ -586,77 +406,6 @@ body {
   /*--------------------------------------------------------------
   # About
   --------------------------------------------------------------*/
-  .about .icon-boxes h4 {
-    font-size: 18px;
-    color: #4b7dab;
-    margin-bottom: 15px;
-  }
-  
-  .about .icon-boxes h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #2c4964;
-    margin-bottom: 15px;
-  }
-  
-  .about .icon-box {
-    margin-top: 40px;
-  }
-  
-  .about .icon-box .icon {
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    border: 2px solid #8dc2f1;
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-  
-  .about .icon-box .icon i {
-    color: #1977cc;
-    font-size: 32px;
-  }
-  
-  .about .icon-box:hover .icon {
-    background: #1977cc;
-    border-color: #1977cc;
-  }
-  
-  .about .icon-box:hover .icon i {
-    color: #fff;
-  }
-  
-  .about .icon-box .title {
-    margin-left: 85px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  
-  .about .icon-box .title a {
-    color: #343a40;
-    transition: 0.3s;
-  }
-  
-  .about .icon-box .title a:hover {
-    color: #1977cc;
-  }
-  
-  .about .icon-box .description {
-    margin-left: 85px;
-    line-height: 24px;
-    font-size: 14px;
-  }
-  
-  .about .video-box {
-    background: url("../img/about.jpg") center center no-repeat;
-    background-size: cover;
-    min-height: 500px;
-  }
-  
   
   @keyframes pulsate-btn {
     0% {
@@ -700,6 +449,10 @@ body {
   # Footer
   --------------------------------------------------------------*/
   #footer {
+    position: relative;
+    bottom: 0;
+    /* margin-bottom: 0%; */
+    
     color: #444444;
     font-size: 14px;
     background: #f1f7fd;
