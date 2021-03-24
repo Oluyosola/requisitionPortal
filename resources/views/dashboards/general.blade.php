@@ -133,6 +133,7 @@
                                         <thead class="bg-light">
                                             <tr class="border-0">
                                                 {{-- <th class="border-0">Id</th> --}}
+                                                <th>Requisition ID</th>
                                                 <th class="border-0">Category</th>
                                                 <th class="border-0">Item</th>
                                                 <th class="border-0">Quantity</th>
@@ -147,7 +148,9 @@
                                             @if (count($results) >0)
                                                 @foreach($results as $result)
                                                     <tr>
-                                                        {{-- <td>{{$result->id }}</td>                                                        --}}
+                                                        {{-- <td>{{$result->id }}</td>  
+                                                        td                                                      --}}
+                                                        <td>{{$result->req_id}}</td>
                                                         <td>{{$result->category->name }}</td>
                                                         <td>{{$result->item->name}}</td>
                                                         <td>{{$result->quantity}}</td>

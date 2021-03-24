@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class CreateRequisitionsTable extends Migration
 {
@@ -14,6 +15,8 @@ class CreateRequisitionsTable extends Migration
     public function up()
     {
         Schema::create('requisitions', function (Blueprint $table) {
+
+            
             $table->id();
             $table->timestamps();
             $table->integer('quantity');
@@ -34,6 +37,7 @@ class CreateRequisitionsTable extends Migration
             $table->integer('sh_tl_id')->nullable();
             $table->integer('manager_id')->nullable();
             $table->integer('clevel_id')->nullable();
+            $table->string('req_id');
             
         });
     }
