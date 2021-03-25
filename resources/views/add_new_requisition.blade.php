@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center" style="background-color: rgb(147, 147, 252)"><h4>{{ __('Requisition Form') }}</h4></div>
+                <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
                     <form method="POST" action="{{route('store_new_requisition') }} ">
                         @csrf
@@ -53,11 +53,11 @@
                         <div class="clear" style="clear: both"></div>
                         <div class="col-md-12">
                             <p align="center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" style="background-color: #0077ad">
                                     {{ __('Create') }}
                                 </button>
                                 {{-- <button class="btnGreenForm" style="background-color: rgb(147, 147, 252); border-radius:10px" >Save</button> --}}
-                                <a href="{{ route('home') }}" class="btnCancelForm">Cancel</a>
+                                <a href="{{ route('home') }}" class="btn btn-primary btnCancelForm" style="background-color: #0077ad">Cancel</a>
                             </p>
                         </div>
                     </form>

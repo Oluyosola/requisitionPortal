@@ -27,11 +27,13 @@ Route::get('create_user/getreportinglines/{id}', [App\Http\Controllers\Auth\Regi
 
 // requisition controller
 Route::get('/op', [App\Http\Controllers\RequisitionController::class, 'createPdf']);
-Route::get('requisition/{requisition}', [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
+Route::get('requisition/{requisition}/delete_requisition', [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
 Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('new_requisition');
 Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);
 Route::post('/create_new_requisition',  [App\Http\Controllers\RequisitionController::class, 'store'])->name('store_new_requisition');
 Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index'])->name('home');
+Route::get('requisition/edit_categories', [App\Http\Controllers\RequisitionController::class, 'editCategories'])->name('edit');
+Route::get('requisition/edititems/{id}', [App\Http\Controllers\RequisitionController::class, 'editItems']);
 
 
 

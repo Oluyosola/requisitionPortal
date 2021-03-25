@@ -58,8 +58,8 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="card">
-                                <div class="card-body" style="background-color:powderblue">
-                                    <h5 class="" style="color: blue">Create New Requisition</h5>
+                                <div class="card-body" style="background-color:#0077ad">
+                                    <h5 class="" style="color:#003765">Create New Requisition</h5>
                                     <div class="metric-value d-inline-block">
                                         <a class="mb-1" href="{{route('new_requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
                                     </div>
@@ -120,11 +120,15 @@
 
                                           <!-- recent orders  -->
                             <!-- ============================================================== -->
-                            <div class="d-flex justify-content-end mb-4">
+                            {{-- <div class="d-flex justify-content-start mb-4">
                                 <a class="btn btn-primary" href="{{ URL::to('/op') }}">Export to PDF</a>
-                            </div>
+                            </div> --}}
                     
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-9 col-9-12 col-md-12 col-sm-12 col-12">
+                        <div class="d-flex justify-content-end mb-4">
+                            <a class="btn btn-primary" style="background-color: #003765" href="{{ URL::to('/op') }}">Export to PDF</a>
+                        </div>
+
                         <div class="card">
                             <h5 class="card-header text-center">Requisition Board</h5>
                             <div class="card-body p-0">
@@ -136,12 +140,13 @@
                                                 <th>Requisition ID</th>
                                                 <th class="border-0">Category</th>
                                                 <th class="border-0">Item</th>
-                                                <th class="border-0">Quantity</th>
-                                                <th class="border-0">Description</th>
+                                                {{-- <th class="border-0">Quantity</th> --}}
+                                                {{-- <th class="border-0">Description</th> --}}
                                                 <th class="border-o">Created On</th>
                                                 <th class="border-0">Approval Status</th>
                                                 <th class="border-0">Edit</th>
                                                 <th class="border-0">Delete</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -150,15 +155,16 @@
                                                     <tr>
                                                         {{-- <td>{{$result->id }}</td>  
                                                         td                                                      --}}
-                                                        <td>{{$result->req_id}}</td>
+                                                        <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
+                                                            
                                                         <td>{{$result->category->name }}</td>
                                                         <td>{{$result->item->name}}</td>
-                                                        <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td>
+                                                        {{-- <td>{{$result->quantity}}</td> --}}
+                                                        {{-- <td>{{$result->description}}</td> --}}
             
                                                         <td>{{date_format($result->created_at, 'jS M Y')}}</td>
                                                        
-                                                        {{-- <td>{{$category->id}}</td> --}}
+                                                        <td>{{$result->status->name}}</td>
                                                         
                                                         <td>
                                                             <center>
@@ -171,6 +177,29 @@
                                                             </center>
                                                         </td>
                                                     </tr>
+                                                    <div class="modal fade" id="modal-view{{$result->id}}">
+                                                        <div class="modal-dialog">
+                                                           <div class="modal-content">
+                                                              {{-- <div class="row"> --}}
+                                                                  <div class="modal-header">
+                                                                 <h4 class="text-center">Requisition Details</h4>
+                                                                </div>
+                                                                 <div class="modal-body">
+                                                                     <h5>REQ Number: {{$result->req_id}}</h5>
+                                                                     <h5>REQ category: {{$result->category->name}}</h5>
+                                                                     <h5>REQ Item: {{$result->item_name}}</h5>
+                                                                     <h5>REQ Quantity: {{$result->quantity}}</h5>
+                                                                     <h5>REQ Description: {{$result->description}}</h5>
+                                                                     <h5>REQ Status: {{$result->status->name}}</h5>
+                                                                 </div>
+                                                              {{-- </div> --}}
+                                                              <div class="modal-footer">
+                                                                 {{-- <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a> --}}
+                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                  </div>
                                                     
                                                     <div class="modal fade" id="modal-delete{{$result->id}}">
                                                         <div class="modal-dialog">
@@ -179,7 +208,7 @@
                                                                  <h4 class="text-center">Are you sure you want to delete this Requisition ?</h4>
                                                               {{-- </div> --}}
                                                               <div class="modal-footer">
-                                                                 {{-- <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a> --}}
+                                                                 <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a>
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                                                               </div>
                                                            </div>
@@ -200,9 +229,9 @@
                                                                     <div class="col-md-6">        
                                                                         <select name="category" class="form-control" id="input">
                                                                             <option value="">--- Select category ---</option>
-                                                                            @foreach ($result->category as $key => $value)
-                                                                                <option value="{{ $key }}">{{ $value }}</option>
-                                                                             @endforeach
+                                                                            @foreach ($categories as $key => $value)
+                                                                            <option value="{{ $key }}">{{ $value }}</option>
+                                                                         @endforeach 
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -217,7 +246,7 @@
                                                                 <div class="form-group row">
                                                                     <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <textarea name="description" rows="4" cols="50" maxlength="50" id="input" cols="30" rows="10" class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
+                                                                        <textarea name="description" rows="4" cols="50" maxlength="50" id="input"class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
                                                                     </div>
                                                                 </div>
                                                                 
@@ -293,31 +322,32 @@
     <!-- ============================================================== -->
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
-@endsection
-  @section('datatable_scripts')
+
     <script type="text/javascript">
-      // $(document).ready(function() {
-          $('#example').DataTable({
-              dom: 'Bfrtip',
-              buttons: [
-                  {
-                       extend: 'pdf',
-                       footer: true,
-                       exportOptions: {
-                            columns: [0,1,2,3,4]
+        jQuery(document).ready(function ()
+        {
+            jQuery('select[name="category"]').on('change',function(){
+                var categoryID = jQuery(this).val();
+                   if(categoryID)
+                   {
+                        jQuery.ajax({
+                            url : 'requisition/edititems/' +categoryID,
+                            type : "GET",
+                            dataType : "json",
+                            success:function(data)
+                           {
+                                console.log(data);
+                                jQuery('select[name="item"]').empty();
+                                jQuery.each(data, function(key,value){
+                                $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
                         }
-                   },
-                   {
-                       extend: 'csv',
-                       footer: false,
-                    
-                   },
-                   {
-                       extend: 'excel',
-                       footer: false
-                   }
-              ],
-          });
-      // } );
+                      });
+                    }else{
+                        jQuery('select[name="item"]').empty();
+                    }
+                });
+        });
     </script>
+     
   @endsection

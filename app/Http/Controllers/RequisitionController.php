@@ -32,7 +32,7 @@ class RequisitionController extends Controller
         {
             // where(['user_id' => auth()->user()->id
            
-        $category = Category::all();
+        $categories = Category::get()->pluck("name", "id");
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
@@ -40,7 +40,7 @@ class RequisitionController extends Controller
         $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user')->paginate(10);
         // $results= $results->paginate(10);
         // dd($result)
-        return view('dashboards.general', compact('results', 'status', 'category', 'item', 'user'));
+        return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user'));
     }
     
 
@@ -107,6 +107,17 @@ class RequisitionController extends Controller
 {
     return redirect('/op')
             ->with('warning',"Don't Open this link");
+}
+public function editCategories(){
+    $categories = Category::get()
+    ->pluck("name", "id");
+    return redirect('/home')->with('categories', $categories);   
+}
+public function editItems($id){
+    $items = Item::get()->where('category_id', $id)->pluck("name", "id");
+    
+    return json_encode($items);
+    
 }
 
     /**
