@@ -13,12 +13,16 @@
                         <h3 style="color: wheat">Menu</h3>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a>
+                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
-                    
+                    <li class="nav-item ">
+                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected Requisition</a>
+                    </li>                    
                 </ul>
             </div>
         </nav>
@@ -61,7 +65,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center">Requisition Approval Board</h5>
                                 <div class="card-body p-0">
@@ -71,11 +75,12 @@
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
+                                                    <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
-                                                    <th class="border-0">Item</th>
-                                                    <th class="border-0">Quantity</th>
-                                                    <th class="border-0">Description</th>
+                                                    {{-- <th class="border-0">Item</th> --}}
+                                                    {{-- <th class="border-0">Quantity</th>
+                                                    <th class="border-0">Description</th> --}}
                                                     {{-- <th class="border-0">Manger's comment</th> --}}
                                                     {{-- <th class="border-0">Status</th> --}}
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
@@ -91,18 +96,19 @@
                                                                                                   
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
+                                                        <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
-                                                        <td>{{$result->item_name}}</td>
-                                                        <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td>
+                                                        {{-- <td>{{$result->item_name}}</td> --}}
+                                                        {{-- <td>{{$result->quantity}}</td>
+                                                        <td>{{$result->description}}</td> --}}
                                                         {{-- <td>{{$result->manger_app}}</td> --}}
                                                         {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
                                                             <td>
  
                                                                 {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
-                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
  
                                                              

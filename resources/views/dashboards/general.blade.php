@@ -124,9 +124,9 @@
                                 <a class="btn btn-primary" href="{{ URL::to('/op') }}">Export to PDF</a>
                             </div> --}}
                     
-                    <div class="col-xl-9 col-9-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-12 col-12 col-md-12 col-sm-12 col-12">
                         <div class="d-flex justify-content-end mb-4">
-                            <a class="btn btn-primary" style="background-color: #003765" href="{{ URL::to('/op') }}">Export to PDF</a>
+                            <a class="btn btn-primary" style="background-color: #003765" href="{{ route('requisition_pdf') }}">Export to PDF</a>
                         </div>
 
                         <div class="card">

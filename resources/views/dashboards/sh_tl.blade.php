@@ -18,7 +18,10 @@
                     <li class="nav-item ">
                         <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a>
                     </li>
-                    
+                    <li class="nav-item ">
+                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        <a class="" href="{{route('sh_tl_actions')}}" >Approved/Rejected</a>
+                    </li>
                 </ul>
             </div>
         </nav>

@@ -8,12 +8,12 @@ use App\Models\Item;
 use App\Models\Status;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
-// use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Barryvdh\DomPDF\PDF as DomPDF;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 // use PDF;
+
 class RequisitionController extends Controller
 {
     /**
@@ -49,20 +49,17 @@ class RequisitionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createPDF() {
+    public function requisitionPdf() {
         // retreive all records from db
         
         $category = Category::all();
         $item = Item::all();
         $status = Status::all();
         $results = Requisition::where('user_id', auth()->user()->id)->with('category', 'item', 'status')->get();
-  
-        // share data to view
-        // view()->share('requisition',$data);
-        $pdf = PDF::loadView('pdf', $results);
-  
-        // download PDF file with download method
-        return redirect()->$pdf->download('pdf_file.pdf')->with('category', $category)->with( 'item', $item)->with('status', $status)-with( 'results', $results);
+        $pdf = PDF::loadView('dashboards.general', $results);
+        $pdf->save(storage_path().'_requisition.pdf');
+        return $pdf->download('requsistion.pdf', compact('category', 'item', 'status', 'results'));
+        
       }
 
     /**
@@ -119,6 +116,7 @@ public function editItems($id){
     return json_encode($items);
     
 }
+
 
     /**
      * Display the specified resource.

@@ -49,6 +49,7 @@ class ManagerController extends Controller
     }
 
     public function managerApproval(Request $request, Requisition $requisition){
+        if($requisition->is_manager_approved == null){
         $requisition->manager_approval_comment = $request->input('manager_approval_comment');
         $requisition->is_manager_approved = true;
         $requisition->manager_id = Auth::user()->id;
@@ -56,6 +57,7 @@ class ManagerController extends Controller
             $requisition->save();
 
         return redirect('/manager');
+        }
 
         // }
     }
@@ -70,6 +72,17 @@ class ManagerController extends Controller
         return redirect('/manager');
         // }
     }  
+    public function ManagerApprovalAction (Requisition $requisition)   {
+        $results = Requisition::where(['is_manager_approved' => 1||0, 'manager_id' => Auth::user()->id])->get();
+        // dd($results);
+        // $requisition->get();
+        // if ($requisition->is_manager_approved == 1||0 && ($requisition->manager_id == Auth::user()->id)){
+
+            return view('approval_actions.manager', compact('results'));
+// 
+        // }
+
+    }
 
 
     /**

@@ -31,7 +31,7 @@ class ShTlController extends Controller
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
-        $results = Requisition::get();
+        $results = Requisition::where(['is_sh_tl_approved' => null])->get();
         return view('dashboards.sh_tl', compact('results', 'status', 'category', 'item', 'user'));
     
     }
@@ -72,6 +72,17 @@ class ShTlController extends Controller
         return redirect('/sh');
         // }
     }  
+    public function shTlApprovalAction (Requisition $requisition)   {
+        $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        // dd($results);
+        // $requisition->get();
+        // if ($requisition->is_manager_approved == 1||0 && ($requisition->manager_id == Auth::user()->id)){
+
+            return view('approval_actions.sh_tl', compact('results'));
+// 
+        // }
+
+    }
 
     // public function approval2(Requisition $requisition){
     //     if($requisition->shth_approved = 1)

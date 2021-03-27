@@ -57,7 +57,7 @@
                                     {{ __('Create') }}
                                 </button>
                                 {{-- <button class="btnGreenForm" style="background-color: rgb(147, 147, 252); border-radius:10px" >Save</button> --}}
-                                <a href="{{ route('home') }}" class="btn btn-primary btnCancelForm" style="background-color: #0077ad">Cancel</a>
+                                <a href="{{ route('home') }}" class="btn btn-primary btnCancelForm" style="background-color: #003765">Cancel</a>
                             </p>
                         </div>
                     </form>

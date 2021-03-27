@@ -34,6 +34,7 @@ Route::post('/create_new_requisition',  [App\Http\Controllers\RequisitionControl
 Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index'])->name('home');
 Route::get('requisition/edit_categories', [App\Http\Controllers\RequisitionController::class, 'editCategories'])->name('edit');
 Route::get('requisition/edititems/{id}', [App\Http\Controllers\RequisitionController::class, 'editItems']);
+Route::get('requisition/pdf', [App\Http\Controllers\RequisitionController::class, 'requisitionPdf'])->name('requisition_pdf');
 
 
 
@@ -53,13 +54,15 @@ Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'
 Route::get('/sh', [App\Http\Controllers\ShTlController::class, 'index']);
 Route::get('requisition/{requisition}/sh_tl_approve_requisition', [App\Http\Controllers\ShTlController::class, 'shTlApproval'])->name('sh_tl_approve_requisition');
 Route::get('requisition/{requisition}/sh_tl_reject_requisition', [App\Http\Controllers\ShTlController::class, 'shTlRejection'])->name('sh_tl_reject_requisition');
+Route::get('/sh_tl_action', [App\Http\Controllers\ShTlController::class, 'shTlApprovalAction'])->name('sh_tl_actions');
 
 Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index']);
 Route::get('requisition/{requisition}/manager_approve_requisition', [App\Http\Controllers\ManagerController::class, 'managerApproval'])->name('manager_approve_requisition');
 Route::get('requisition/{requisition}/manager_reject_requisition', [App\Http\Controllers\ManagerController::class, 'managerRejection'])->name('manager_reject_requisition');
+Route::get('/manager_action', [App\Http\Controllers\ManagerController::class, 'ManagerApprovalAction'])->name('manager_actions');
 
-Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
-Route::get('requisition/{requisition}/clevel_approve_requisition', [App\Http\Controllers\ClevelController::class, 'clevelApproval'])->name('clevel_approve_requisition');
-Route::get('requisition/{requisition}/clevel_reject_requisition', [App\Http\Controllers\ClevelController::class, 'clevelRejection'])->name('clevel_reject_requisition');
+// Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
+// Route::get('requisition/{requisition}/clevel_approve_requisition', [App\Http\Controllers\ClevelController::class, 'clevelApproval'])->name('clevel_approve_requisition');
+// Route::get('requisition/{requisition}/clevel_reject_requisition', [App\Http\Controllers\ClevelController::class, 'clevelRejection'])->name('clevel_reject_requisition');
 
 Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);

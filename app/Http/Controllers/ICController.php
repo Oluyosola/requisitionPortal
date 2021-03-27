@@ -13,7 +13,7 @@ class ICController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

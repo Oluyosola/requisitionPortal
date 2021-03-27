@@ -590,13 +590,15 @@ Left Navigation Sidebar
     font-size: 14px;
     padding: 6px 12px;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 .nav-left-sidebar .navbar-nav .nav-link:focus,
 .nav-left-sidebar .navbar-nav .nav-link.active {
     background-color: #e2e2eb;
     color: #3d405c;
-    border-radius: 2px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .nav-left-sidebar .navbar-nav .nav-link:focus,
