@@ -13,12 +13,13 @@ class Requisition extends Model
     protected $fillable = ['item_id', 'category_id', 
     'description', 'quantity', 'user_id', 'status_id',
     'is_sh_tl_approved', 'is_clevel_approved',
-      'sh_tl_approval_comment', 'manager_approval_comment', 'clevel_approval_comment', 'manager_id', 'sh_tl_id', 'clevel_id', 'is_manager_approved', 'sh_tl_rejection_comment', 'manager_rejection_comment', 'clevel_rejection_comment', 'req_id' ];
+    'sh_tl_approval_comment', 'manager_approval_comment', 
+    'clevel_approval_comment', 'manager_id', 'sh_tl_id',
+    'clevel_id', 'is_manager_approved', 
+    'sh_tl_rejection_comment', 'manager_rejection_comment', 
+    'clevel_rejection_comment', 'req_id' ];
   
 
-
-
-      
     public function Category (){
         return $this->belongsTo('App\Models\Category', 'category_id');
     }

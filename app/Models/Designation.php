@@ -10,9 +10,7 @@ class Designation extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
-    // public function Users(){
-    //     return $this->hasMany(User::class);
-    // }
+    
     public function Users()
     {
         return $this->hasMany(User::class);
