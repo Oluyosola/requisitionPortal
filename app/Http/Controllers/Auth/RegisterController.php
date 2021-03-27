@@ -70,11 +70,6 @@ class RegisterController extends Controller
         return view('auth.register', compact('units', 'locations', 'reporting_designation'));   
     }
  
-
-    // public function getReportingdesignation(){
-        
-    //     return view('auth.register', compact('reporting_designation'));
-    // }
     public function getReportingLines($id){
         $reporting_line = DesignationType::get()->where('designation_id', $id)->pluck("name", "id");
         
@@ -89,29 +84,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    // protected function create(Request $request)
-    // {
-        // $user =new User;
-        //     $user->name = $request->input('name');
-        //     $user->email = $request->input('email');
-        //     $user->password = Hash::make($request->input('password'));
-        //     // 'password' => Hash::make($data['password']),
-        //     $user->unit_id = $request->input('unit');
-        //     $user->designation_id = $request->input('designation');
-        //     $user->location_id = $request->input('location');
-        //     $user->reporting_id = $request->input('reporting');
-        //     'unit_id' => $data['unit'],
-        //     'location_id' => $data['location'],
-        //     'reporting_id' => $data['reporting'],
-        //     'designation_id' => $data['designation']
-            
-        // ]);
-        // $user->save();
-        // return redirect('/home')->with('status', 'Profile created!');
-
-
-    // }
-
+    
     protected function create(array $data)
     {
         return User::create([
@@ -120,12 +93,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'unit_id' => $data['unit'],
             'location_id' => $data['location'],
-            // 'reporting_id' => $data['reporting'],
             'designation_id' => $data['designation'],
             'designation_type_id' => $data['designation_type'],
             'reporting_designation_id' => $data['reporting_designation'],
             'reporting_designation_type_id' => $data['reporting_line'],
-            // 'reporting_line2_id' => $data['reporting_line2'],
         
         ]);
         return back()->with('success','Product successfully added.');

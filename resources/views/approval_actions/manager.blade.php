@@ -50,19 +50,59 @@
                     </div>
                 </div>
             </div>
-<div>
+            <div class="card">
+                <h5 class="card-header text-center">Requisition Board</h5>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="bg-light">
+                                <tr class="border-0">
+                                    {{-- <th class="border-0">Id</th> --}}
+                                    <th>Requisition ID</th>
+                                    <th class="border-0">Category</th>
+                                    <th class="border-0">Item</th>
+                                    {{-- <th class="border-0">Quantity</th> --}}
+                                    {{-- <th class="border-0">Description</th> --}}
+                                    <th class="border-o">Created On</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (count($results) >0)
+                                    @foreach($results as $result)
+                                        <tr>
+                                            {{-- <td>{{$result->id }}</td>  
+                                            td                                                      --}}
+                                            <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
+                                                
+                                            <td>{{$result->category->name }}</td>
+                                            <td>{{$result->item->name}}</td>
+                                            {{-- <td>{{$result->quantity}}</td> --}}
+                                            {{-- <td>{{$result->description}}</td> --}}
 
-    @if (count($results) > 0)
-    @foreach ($results as $result)
-    <h1>{{$result->req_id}}</h1>
+                                            <td>{{date_format($result->created_at, 'jS M Y')}}</td>
+                                           
+                                            
+                                           
+                                        </tr>
+                                        
+                                        
+                                            @endforeach
+                                       @endif
 
-    <h1>HEllo</h1>
-    <h1>{{$result->req_id}}</h1>
-    @endforeach
-        
-    @endif
-</div>
-        <div class="footer">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                {{-- {{ $results->links() }} --}}
+                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/manager')}}">Go Back</a> </button>
+            </div>
+            
+                   <div class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">

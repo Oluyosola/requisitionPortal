@@ -8,11 +8,7 @@ use App\Models\Item;
 use App\Models\Status;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
-use Barryvdh\DomPDF\PDF as DomPDF;
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-// use PDF;
 
 class RequisitionController extends Controller
 {
@@ -29,17 +25,13 @@ class RequisitionController extends Controller
     }
 
     public function index()
-        {
-            // where(['user_id' => auth()->user()->id
+    {
            
         $categories = Category::get()->pluck("name", "id");
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
-        // here(['user_id' => auth()->user()->id, 'name' => $request->name_of_plan])->first();
         $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user')->paginate(10);
-        // $results= $results->paginate(10);
-        // dd($result)
         return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user'));
     }
     
@@ -88,16 +80,10 @@ class RequisitionController extends Controller
         $requisition->category_id = $request->input('category');
         $requisition->item_id = $request->input('item');
         $requisition->description = $request->input('description');
-        // dd($request->description);
         $requisition->quantity = $request->input('quantity');
         $requisition->user_id = auth()->user()->id;
         $requisition->save();
-        // session()->flash('success', 'you have made a new requisition');
-        // $request->session()->flash('status', 'Task was successful!');
-
         return redirect('/home')->with(['requisition', $requisition, 'success', 'you have made a new requisition']);
-        //  ('status', 'Profile created!'));
-
         
     }
     public function check(Request $request)

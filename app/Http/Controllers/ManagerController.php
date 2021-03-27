@@ -29,11 +29,7 @@ class ManagerController extends Controller
     public function index()
     {
         $manager = Auth::user()->designation_type_id;
-        // dd($manager);
         $results = $this->manager_repo->getManagerApproval($manager);
-
-        
-        // dd($results);
         return view('dashboards.manager', compact('results'));
    }
 
@@ -53,35 +49,22 @@ class ManagerController extends Controller
         $requisition->manager_approval_comment = $request->input('manager_approval_comment');
         $requisition->is_manager_approved = true;
         $requisition->manager_id = Auth::user()->id;
-    
-            $requisition->save();
-
+        $requisition->save();
         return redirect('/manager');
         }
 
-        // }
     }
 
     public function managerRejection(Request $request, Requisition $requisition){
-        // if ($requisition->is_sh_tl_approved == null){
         $requisition->manager_rejection_comment = $request->input('manager_rejection_comment');
         $requisition->is_manager_approved = false;
         $requisition->manager_id = Auth::user()->id;
         $requisition->save();
-
         return redirect('/manager');
-        // }
     }  
     public function ManagerApprovalAction (Requisition $requisition)   {
         $results = Requisition::where(['is_manager_approved' => 1||0, 'manager_id' => Auth::user()->id])->get();
-        // dd($results);
-        // $requisition->get();
-        // if ($requisition->is_manager_approved == 1||0 && ($requisition->manager_id == Auth::user()->id)){
-
-            return view('approval_actions.manager', compact('results'));
-// 
-        // }
-
+        return view('approval_actions.manager', compact('results'));
     }
 
 

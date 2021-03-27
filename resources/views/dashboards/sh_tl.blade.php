@@ -13,13 +13,13 @@
                         <h3 style="color: wheat">Menu</h3>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+                        <a class="" href="{{url('/sh')}}" >Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a>
+                        <a href="{{route('home')}}" >General Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        
                         <a class="" href="{{route('sh_tl_actions')}}" >Approved/Rejected</a>
                     </li>
                 </ul>
@@ -74,15 +74,15 @@
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
+                                                    <th class="border-0">Requisistion ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
                                                     <th class="border-0">Description</th>
-                                                    <th class="border-0">Status</th>
-                                                    <th class="border-0">Approval</th>
-                                                    <th class="border-0">Reject</th>
-                                                    {{-- <th class="border-0">Delete</th> --}}
+                                                    {{-- <th class="border-0">Status</th> --}}
+                                                    <th class="border-0" colspan="2">Approval/Rejection</th>
+                                            
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -99,6 +99,7 @@
                                                                                                     
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
+                                                        <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user->name}}</td>
                                                         <td>{{$result->category->name }}</td>
                                                         <td>{{$result->item->name}}</td>
@@ -107,7 +108,7 @@
                                                         
                                                        
                                                         {{-- <td>{{$result->created_at}}</td> --}}
-                                                        <td>{{ $result->status->name }}</td>
+                                                        {{-- <td>{{ $result->status->name }}</td> --}}
                                                         {{-- <td> --}}
                                                             {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
@@ -115,6 +116,7 @@
  
                                                                {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                               
                                                               <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
 
                                                             

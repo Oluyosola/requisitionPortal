@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item ">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected Requisition</a>
+                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected</a>
                     </li>                    
                 </ul>
             </div>
@@ -65,7 +65,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
-                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center">Requisition Approval Board</h5>
                                 <div class="card-body p-0">

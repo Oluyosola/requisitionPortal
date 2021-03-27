@@ -83,8 +83,8 @@
                                             </thead>
                                             <tbody>
                                                 {{-- {{dd($results->user->email)}} --}}
-                                                @if (count($results)>0)
-                                                    @foreach ($results as $result)
+                                                {{-- @if (count($results)>0)
+                                                    @foreach ($results as $result) --}}
                                                     {{-- @if((Auth::user()->designation_id == 4) && ($result->is_manager_approved == 1)) --}}
                                                        {{-- @if(($result->user->reporting_line1_id == Auth::user()->designation_type_id) ||
                                                         (Auth::user()->designation_id == 3 && $result->is_shth_approved == 1) || --}}
@@ -92,13 +92,13 @@
                                                          {{-- $result->user->reporting_line1_id == Auth::user()->designation_type_i --}}
                                                          {{-- && $result->user->reporting_line1_id == Auth::user()->designation_type_id --}}
                                                                                                     
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->item_name}}</td>
                                                         <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td>
+                                                        <td>{{$result->description}}</td> --}}
                                                        
                                                         {{-- <td>{{$result->created_at}}</td> --}}
                                                         {{-- <td>{{ $result->status->name }}</td> --}}
@@ -108,10 +108,10 @@
                                                         {{-- {{$result->user_id}} --}}
                                                         {{-- {{Auth::user()->id}} --}}
                       
-                                                        <td>
+                                                        {{-- <td> --}}
  
                                                             {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
-                                                            <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                            {{-- <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
                                                            <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
 
                                                          
@@ -186,7 +186,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+                         --}}
                         <!-- ============================================================== -->
                         <!-- end recent orders  -->
 

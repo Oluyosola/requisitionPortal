@@ -718,7 +718,17 @@ Leftsidebar - dark
 	right: 40px;
 	display: none;
 }
+.nav-item{
+    margin-top: 10px;
+    color: white;
+    /* text-decoration: none; */
+}
 
+.nav-item a:active{
+    border: 2px white;
+    border-radius: 30px;
+
+}
 /*-----navigation dark ---*/
 
 

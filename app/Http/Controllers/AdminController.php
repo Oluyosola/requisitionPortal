@@ -27,7 +27,6 @@ class AdminController extends Controller
         $reporting = ReportingManager::all();
         $location = Location::all();
         $data = User::get();
-        // dd($user);
         return view('dashboards.admin', compact('data', 'designation', 'reporting', 'location', 'unit'));
         
     }
