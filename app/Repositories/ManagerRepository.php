@@ -7,7 +7,7 @@ class ManagerRepository implements ManagerRepositoryInterface
 {
     public function getManagerApproval($manager)
     {
-        $sql_query = "SELECT requisitions.id as id, requisitions.quantity as quantity, 
+        $sql_query =  "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
         items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id

@@ -9,47 +9,63 @@
                 <div class="card-body">
                     <form method="POST" action="{{route('store_new_requisition') }} ">
                         @csrf
-                        <div class="form-group row">
+                        <table class="table table-bordered" id="dynamicAddRemove">
+                            <tr>
+                                <th>Category</th>
+                                <th>Item</th>
+                                <th>description</th>
+                                <th>Quantity</th>
+                            </tr>
+                        {{-- <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
-                            <div class="col-md-6">        
-                                <select name="category" class="form-control" id="input">
+                            <div class="col-md-6">         --}}
+                                <tr>
+                                <td>
+                                <select name="moreFields[0][category]" class="form-control" id="input">
                                     <option value="">--- Select category ---</option>
                                     @foreach ($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                      @endforeach
                                 </select>
-                            </div>
+                            </td>
+                            {{-- </div>
                         </div>
                         <div class="form-group row">
                             <label for="item" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
-                            <div class="col-md-6">
-                                <select name="item" class="form-control" id="input">
+                            <div class="col-md-6"> --}}
+                                <td>
+                                <select name="moreFields[0][item]" class="form-control" id="input">
                                     <option>--item--</option>
                                 </select>
-                            </div>
+                            </td>
+                            {{-- </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
-                            <div class="col-md-6">
-                                <textarea name="description" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
-                            </div>
+                            <div class="col-md-6"> --}}
+                                <td><textarea name="moreFiedls[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td>
+                            {{-- </div>
                         </div>
                         
                             <div class="form-group row">
-                                {{-- <div class="control form-inline"> --}}
-                                <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
-                                <div class="col-md-6">
-                                    <input type="number" name="quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
-
+                                <div class="control form-inline"> --}}
+                                {{-- <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+                                <div class="col-md-6"> --}}
+                                    <td> <input type="number" name="quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td>
                                 {{-- </div> --}}
-                            </div>
+                            {{-- </div> --}}
                             {{-- <div class="form-group">
                                 <label for="utilization" class="col-md-4 col-form-label text-md-right">{{ __('Utilization') }}</label>
                                 <div class="col-md-6">
                                     <input type="number" style="width: 150px" placeholder = "" "id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br>
                                 </div>
                             </div> --}}
-                        </div>
+                        {{-- </div> --}}
+                        <td>
+                            <button type="button" class="btn btn-primary" name="add" id="add-btn">Add More</button>
+                        </td>
+                        </tr>
+                    </table>
                         <div class="clear" style="clear: both"></div>
                         <div class="col-md-12">
                             <p align="center" style="margin-top: 10px;">
@@ -69,7 +85,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function ()
     {
-        jQuery('select[name="category"]').on('change',function(){
+        jQuery('select[name="moreFields[0][category]"]').on('change',function(){
             var categoryID = jQuery(this).val();
                if(categoryID)
                {
@@ -80,17 +96,33 @@
                         success:function(data)
                        {
                             console.log(data);
-                            jQuery('select[name="item"]').empty();
+                            jQuery('select[name="moreFields[0][item]"]').empty();
                             jQuery.each(data, function(key,value){
-                            $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            $('select[name="moreFields[0][item]"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                     }
                   });
                 }else{
-                    jQuery('select[name="item"]').empty();
+                    jQuery('select[name="moreFields[0][item]"]').empty();
                 }
             });
     });
 </script>
-  
+<script type="text/javascript">
+    // $(document).ready(function){
+    var i = 0;
+$("#add-btn").click(function(){
+    ++i;
+     // <td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td>
+    $("#dynamicAddRemove").append('<tr><td><select name="moreFields[0][item]" class="form-control" id="input"><option>--item--</option></select></td><td><textarea name="moreFiedls[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td> <input type="number" name="moreFields[0][quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+});
+$(document).on('click', '.remove-tr', function(){  
+$(this).parents('tr').remove();
+});  
+ </script> 
+ {{-- <td><select name="moreFields['+i+'][category]" class="form-control" id="input"><option value="">--- Select category ---</option>@foreach ($categories as $key => $value) <option value="{{ $key }}">{{ $value }}</option>@endforeach</select></td> --}}
+
+
+{{-- </script> --}}
+   
 @endsection

@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RequisitionController extends Controller
 {
@@ -75,15 +76,90 @@ class RequisitionController extends Controller
     
     public function store(Request $request)
     {
-        
-        $requisition = new Requisition;
-        $requisition->category_id = $request->input('category');
-        $requisition->item_id = $request->input('item');
-        $requisition->description = $request->input('description');
-        $requisition->quantity = $request->input('quantity');
-        $requisition->user_id = auth()->user()->id;
-        $requisition->save();
-        return redirect('/home')->with(['requisition', $requisition, 'success', 'you have made a new requisition']);
+//  $category_id = $request->input('moreFields[0][category]');
+// $item_id = $request->input('moreFields[0][item]');
+// $description = $request->input('moreFields[0][description]');
+// $quantity = $request->input('moreFields[0][quantity]');
+// $req_id = "gfggg";
+// $user_id = Auth::user()->id;
+// // dd($user_id);
+// for ($count = 0; $count < count($category_id); $count++){
+//     $data = array(
+//     'category_id' => $category_id[$count],
+//     'item_id' => $item_id[$count],
+//     'description' => $description[$count],
+//     'quantity' => $quantity[$count],
+//     'user_id' => $user_id[$count],
+//     'req_id' => $req_id[$count],
+//     );
+//     $insert_data[] = $data;
+
+// $rules = [];
+// $request->validate([
+
+//     'addmore.*.name' => 'required',
+
+//     'addmore.*.qty' => 'required',
+
+//     'addmore.*.price' => 'required',
+
+// ]);
+
+
+
+// foreach ($request->addmore as $key => $value) {
+
+//     ProductStock::create($value);
+
+// }
+
+
+
+// return back()->with('success', 'Record Created Successfully.');
+
+// }
+
+$request->validate([
+    // 'moreFields.*.category' => 'required',
+    'moreFields.*.item' => 'required',
+    'moreFields.*.description' => 'required',
+    'moreFields.*.quantity' => 'required'
+]);
+//     // }
+
+
+
+
+
+    
+
+foreach ($request->moreFields as $key => $value) {
+Requisition::create($value);
+
+}
+
+// return redirect('/home');
+// $request->validate([
+//     'moreFields[0][category]' => 'required',
+//     'moreFields[0][item]' => 'required',
+//     'moreFields[0][description]' => 'required',
+//     'moreFields[0][quantity]' => 'required'
+//  ]);
+ 
+//  $count = count($request->moreFields[0][category]);
+
+//  for ($i=0; $i < $count; $i++) { 
+//    $task = new Requisition();
+//    $task->category = $request->moreFields[0][category][$i];
+//    $task->item = $request->moreFields[0][item][$i];
+//    $task->category = $request->moreFields[0][description][$i];
+//    $task->item = $request->moreFields[0][quantity][$i];
+//    $task->save();
+//  }
+dd(1);
+ return redirect()->back();
+// });
+
         
     }
     public function check(Request $request)
@@ -157,4 +233,18 @@ public function editItems($id){
        $requisition->delete();
         return back();
     }
+
+// public function store(Request $request)
+//     {
+
+
+// $requisition = new Requisition;
+//         $requisition->category_id = $request->input('category');
+//         $requisition->item_id = $request->input('item');
+//         $requisition->description = $request->input('description');
+//         $requisition->quantity = $request->input('quantity');
+//         $requisition->user_id = auth()->user()->id;
+//         $requisition->save();
+//         return redirect('/home')->with(['requisition', $requisition, 'success', 'you have made a new requisition']);
+//     }
 }
