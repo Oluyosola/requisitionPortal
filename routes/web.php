@@ -61,6 +61,9 @@ Route::get('/manager_action', [App\Http\Controllers\ManagerController::class, 'M
 Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);
 
 
+Route::get('/store', [App\Http\Controllers\StoreController::class, 'index']);
+
+
 // C Level
 // Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
 // Route::get('requisition/{requisition}/clevel_approve_requisition', [App\Http\Controllers\ClevelController::class, 'clevelApproval'])->name('clevel_approve_requisition');
