@@ -16,12 +16,13 @@
                         <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
                         <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected</a>
+                        <a class="" href="{{route('store_action')}}" >Dispatched</a>
+                    </li>
+                    <li class="nav-item ">
+                        {{-- <a class="" href="{{route('items')}}" >Items</a> --}}
                     </li>                    
                 </ul>
             </div>
@@ -50,6 +51,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Approval Dashboard </li>
+                                        
                                     </ol>
                                 </nav>
                             </div>
@@ -83,7 +85,8 @@
                                                     <th class="border-0">Description</th> --}}
                                                     {{-- <th class="border-0">Manger's comment</th> --}}
                                                     {{-- <th class="border-0">Status</th> --}}
-                                                    <th class="border-0" colspan="2">Approval/Rejection</th>
+                                                    {{-- <th>Dispatched</th> --}}
+                                                    <th class="border-0" colspan="">Dispatched</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
@@ -96,9 +99,9 @@
                                                                                                   
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
-                                                        {{-- <td>{{$result->req_id}}</td> --}}
+                                                        <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
-                                                        <td>{{$result->category_name }}</td>
+                                                        <td>{{$result->category_name}}</td>
                                                         {{-- <td>{{$result->item_name}}</td> --}}
                                                         {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td> --}}
@@ -108,8 +111,8 @@
                                                             <td>
  
                                                                 {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
-                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
-                                                               <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
+                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Dispatched</a>
+                                                               {{-- <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a> --}}
  
                                                              
                                                          </td>

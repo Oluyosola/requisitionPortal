@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Requisition;
 
 
 class StoreController extends Controller
@@ -18,7 +19,7 @@ class StoreController extends Controller
     {
         $ic = Auth::user()->designation_type_id;
         // dd($clevel);
-            $sql_query = "SELECT requisitions.id as id, requisitions.quantity as quantity, 
+            $sql_query = "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity,requisitions.req_id as req_id, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, 
         items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id
@@ -37,6 +38,11 @@ class StoreController extends Controller
     public function create()
     {
         //
+    }
+
+    public function StoreApprovalAction (Requisition $requisition)   {
+        $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
+        return view('approval_actions.store', compact('results'));
     }
 
     /**

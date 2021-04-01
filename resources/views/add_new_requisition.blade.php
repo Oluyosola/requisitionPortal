@@ -21,7 +21,7 @@
                             <div class="col-md-6">         --}}
                                 <tr>
                                 <td>
-                                <select name="moreFields[0][category]" class="form-control" id="input">
+                                <select name="moreFields[category][]" class="form-control category-select" id="input" >
                                     <option value="">--- Select category ---</option>
                                     @foreach ($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
@@ -34,7 +34,7 @@
                             <label for="item" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
                             <div class="col-md-6"> --}}
                                 <td>
-                                <select name="moreFields[0][item]" class="form-control" id="input">
+                                <select name="moreFields[item][]" class="form-control item-select" id="input">
                                     <option>--item--</option>
                                 </select>
                             </td>
@@ -43,7 +43,7 @@
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
                             <div class="col-md-6"> --}}
-                                <td><textarea name="moreFiedls[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td>
+                                <td><textarea name="moreFields[description][]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" class="form-control description-textarea" value="" required="required" title=""></textarea><br></td>
                             {{-- </div>
                         </div>
                         
@@ -51,7 +51,7 @@
                                 <div class="control form-inline"> --}}
                                 {{-- <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
                                 <div class="col-md-6"> --}}
-                                    <td> <input type="number" name="quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td>
+                                    <td> <input type="number" name="moreFields[quantity][]" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control quantity-input" value="" required="required" title=""></textarea><br></td>
                                 {{-- </div> --}}
                             {{-- </div> --}}
                             {{-- <div class="form-group">
@@ -85,7 +85,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function ()
     {
-        jQuery('select[name="moreFields[0][category]"]').on('change',function(){
+        jQuery('.category-select').on('change',function(){
             var categoryID = jQuery(this).val();
                if(categoryID)
                {
@@ -96,14 +96,14 @@
                         success:function(data)
                        {
                             console.log(data);
-                            jQuery('select[name="moreFields[0][item]"]').empty();
+                            jQuery('.item-select').empty();
                             jQuery.each(data, function(key,value){
-                            $('select[name="moreFields[0][item]"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            $('.item-select').append('<option value="'+ key +'">'+ value +'</option>');
                         });
                     }
                   });
                 }else{
-                    jQuery('select[name="moreFields[0][item]"]').empty();
+                    jQuery('.item-select').empty();
                 }
             });
     });
@@ -114,7 +114,7 @@
 $("#add-btn").click(function(){
     ++i;
      // <td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td>
-    $("#dynamicAddRemove").append('<tr><td><select name="moreFields[0][item]" class="form-control" id="input"><option>--item--</option></select></td><td><textarea name="moreFiedls[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td> <input type="number" name="moreFields[0][quantity" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+    $("#dynamicAddRemove").append('<tr><td><select name="moreFields[' + i + '][item]" class="form-control " id="input"><option>--item--</option></select></td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
 });
 $(document).on('click', '.remove-tr', function(){  
 $(this).parents('tr').remove();

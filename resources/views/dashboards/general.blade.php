@@ -1,8 +1,8 @@
 @extends('layouts.new_app')
 @section('content')
-@section('style')
-      @include('layouts.datatables')
-    @endsection
+{{--@section('style')--}}
+{{--      @include('layouts.datatables')--}}
+{{--    @endsection--}}
 
     <div class="nav-left-sidebar sidebar-light" style="background-color: #08457e">
         <div class="menu-list">
@@ -74,12 +74,12 @@
                                     <div class="metric-value d-inline-block">
                                         <h1 class="mb-1">{{$results->total()}}</h1>
                                                 {{-- @foreach ($results as $r) --}}
-                                                
+
                                                 {{-- @endforeach --}}
                                     </div>
                                     {{-- <div class="metric-label d-inline-block float-right text-success font-weight-bold">
                                             {{-- <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span> --}}
-                                        {{-- </div> --}} 
+                                        {{-- </div> --}}
                                 </div>
                                 <div id="sparkline-revenue2"></div>
                             </div>
@@ -107,7 +107,7 @@
                                     </div>
                                     {{-- <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
                                             {{-- <span>-2.00%</span> --}}
-                                        {{-- </div> --}} 
+                                        {{-- </div> --}}
                                 </div>
                                 <div id="sparkline-revenue4"></div>
                             </div>
@@ -123,7 +123,7 @@
                             {{-- <div class="d-flex justify-content-start mb-4">
                                 <a class="btn btn-primary" href="{{ URL::to('/op') }}">Export to PDF</a>
                             </div> --}}
-                    
+
                     <div class="col-xl-12 col-12 col-md-12 col-sm-12 col-12">
                         <div class="d-flex justify-content-end mb-4">
                             <a class="btn btn-primary" style="background-color: #003765" href="{{ route('requisition_pdf') }}">Export to PDF</a>
@@ -146,30 +146,30 @@
                                                 <th class="border-0">Approval Status</th>
                                                 <th class="border-0">Edit</th>
                                                 <th class="border-0">Delete</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if (count($results) >0)
                                                 @foreach($results as $result)
                                                     <tr>
-                                                        {{-- <td>{{$result->id }}</td>  
-                                                        td                                                      --}}
-                                                        <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
-                                                            
+                                                        {{-- <td>{{$result->id }}</td>
+                                                        td                                                 --}}
+                                                        <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</a></td>
+
                                                         <td>{{$result->category->name }}</td>
                                                         <td>{{$result->item->name}}</td>
                                                         {{-- <td>{{$result->quantity}}</td> --}}
                                                         {{-- <td>{{$result->description}}</td> --}}
-            
+
                                                         <td>{{date_format($result->created_at, 'jS M Y')}}</td>
-                                                       
+
                                                         <td>{{$result->status->name}}</td>
-                                                        
+
                                                         <td>
-                                                            <center>
+                                                            
                                                                 <a data-toggle="modal" href='#modal-edit{{$result->id}}'><img src="{{ asset('/assets/img/edit.svg') }}" width="15px" > </a>
-                                                            </center>
+                                                            
                                                         </td>
                                                         <td>
                                                             <center>
@@ -200,7 +200,7 @@
                                                            </div>
                                                         </div>
                                                   </div>
-                                                    
+
                                                     <div class="modal fade" id="modal-delete{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
@@ -226,12 +226,12 @@
                                                              <div class="modal-body">
                                                                 <div class="form-group row">
                                                                     <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
-                                                                    <div class="col-md-6">        
+                                                                    <div class="col-md-6">
                                                                         <select name="category" class="form-control" id="input">
                                                                             <option value="">--- Select category ---</option>
                                                                             @foreach ($categories as $key => $value)
                                                                             <option value="{{ $key }}">{{ $value }}</option>
-                                                                         @endforeach 
+                                                                         @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -249,16 +249,16 @@
                                                                         <textarea name="description" rows="4" cols="50" maxlength="50" id="input"class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                                     <div class="form-group row">
                                                                         {{-- <div class="control form-inline"> --}}
                                                                         <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
                                                                         <div class="col-md-6">
                                                                             <input type="number" value="{{$result->quantity}}" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
-                                        
+
                                                                         {{-- </div> --}}
                                                                     </div>
-                                                                  
+
                                                              </div>
                                                              <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -266,13 +266,15 @@
                                                              </div>
                                                           </div>
                                                        </div>
+                                                       </div>
                                                     </form>
+
                                                  </div>
-                                     
+
 
                                                         @endforeach
                                                    @endif
- 
+
 
                                                 </tbody>
                                             </table>
@@ -349,5 +351,5 @@
                 });
         });
     </script>
-     
+
   @endsection
