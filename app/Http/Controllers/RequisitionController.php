@@ -74,29 +74,38 @@ class RequisitionController extends Controller
         
 }
     
-    public function store(Request $request)
+    public function store(Request $request, Requisition $requisition)
+    
     {
-dd($request->all());
+        dd($request->all());
+        // 'moreFields.*.user_id' => Auth::user()->id ;
 $request->validate([
-    // 'moreFields.*.category' => 'required',
-    'moreFields.*.item' => 'required',
+    'moreFields.*.category_id' => 'required',
+    'moreFields.*.item_id' => 'required',
     'moreFields.*.description' => 'required',
-    'moreFields.*.quantity' => 'required'
+    'moreFields.*.quantity' => 'required',
+    // 'moreFields.*.user_id' => 'required',
+       
 ]);
-//     // }
-
-foreach ($request->moreFields as $key => $value) {
-Requisition::create($value);
-
+// $requisition = new Requisition;
+// $user_id = [];
+// $user_id = Auth::user()->id;
+// $requisition->user_id = $user_id;
+foreach($request->moreFields as $key => $value ) {   
+    $value['user_id'] = Auth::user()->id;
+    // dd($value['user_id']);
+dd($value);
+    // $requisition($value);
+    dd($value);
+    Requisition::create($value);
+        // $requisition->save([$value, $user_id]);
 }
-
-
-// dd(1);
- return redirect()->back();
+ return back();
 // });
 
         
     }
+
     public function check(Request $request)
 {
     return redirect('/op')

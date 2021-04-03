@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToRequisitionsTable extends Migration
+class RemoveColoumnsFromRequisitionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class AddFieldsToRequisitionsTable extends Migration
     {
         Schema::table('requisitions', function (Blueprint $table) {
             //
-            $table->boolean('is_store_approved')->nullable();
-            $table->integer('store_id')->nullable();
+            $table->dropColumn('is_store_approved');
+            $table->dropColumn('store_id');
         });
     }
 
