@@ -10,6 +10,7 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class RequisitionController extends Controller
 {
@@ -77,16 +78,21 @@ class RequisitionController extends Controller
     public function store(Request $request, Requisition $requisition)
     
     {
-        dd($request->all());
+        // dd($request->all());
         // 'moreFields.*.user_id' => Auth::user()->id ;
-$request->validate([
+$validator = Validator::make($request->all(), [
     'moreFields.*.category_id' => 'required',
     'moreFields.*.item_id' => 'required',
     'moreFields.*.description' => 'required',
-    'moreFields.*.quantity' => 'required',
+    'moreFields.*.quantity' => 'required'
+    // 'moreFields.*.' => 'required'
     // 'moreFields.*.user_id' => 'required',
        
 ]);
+if($validator->fails()){
+    echo "oopps validation failed";
+}
+
 // $requisition = new Requisition;
 // $user_id = [];
 // $user_id = Auth::user()->id;
@@ -94,7 +100,7 @@ $request->validate([
 foreach($request->moreFields as $key => $value ) {   
     $value['user_id'] = Auth::user()->id;
     // dd($value['user_id']);
-dd($value);
+// dd($value);
     // $requisition($value);
     dd($value);
     Requisition::create($value);

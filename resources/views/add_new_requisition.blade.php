@@ -18,7 +18,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="input" >
+                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)" >
                                         <option value="">--- Select category ---</option>
                                          @foreach ($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
@@ -26,7 +26,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="moreFields[0][item_id]" class="form-control item-select" id="input">
+                                    <select name="moreFields[0][item_id]" class="form-control item-select" id="item-select0">
                                         <option>--item--</option>
                                     </select>
                                 </td>
@@ -58,10 +58,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-        jQuery('.category-select').on('change',function(){
-            var categoryID = jQuery(this).val();
+jQuery(document).ready(function () {
+    alert('hey');
+function onCategorySelectChange(id){
+            var categoryID = jQuery('.category-select' + id).val();
+            console.log(id);
                if(categoryID)
                {
                     jQuery.ajax({
@@ -71,17 +72,18 @@
                         success:function(data)
                        {
                             console.log(data);
-                            jQuery('.item-select').empty();
+                            jQuery('.item-select' + id).empty();
                             jQuery.each(data, function(key,value){
-                            $('.item-select').append('<option value="'+ key +'">'+ value +'</option>');
+                            $('.item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
                         });
                     }
                   });
                 }else{
-                    jQuery('.item-select').empty();
+                    jQuery('.item-select' + id).empty();
                 }
             });
-    });
+});
+
 </script>
 <script type="text/javascript">
     var i = 0;
