@@ -41,7 +41,7 @@
                         <div class="form-group row">
                             <label for="unit" class="col-md-4 col-form-label text-md-right">Select unit</label>
                             <div class="col-md-6">
-                                <select name ="unit" placeholder="please select "class="form-control">  
+                                <select name ="unit" placeholder="please select "class="form-control" value="">  
                                     @foreach($units as $unit)
                                         <option value="{{$unit->id}}">{{$unit->unit}}</option>
                                     @endforeach
@@ -49,35 +49,64 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
+                            <label for="designation" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
-                                    @foreach($designations as $designation)
-                                        <option value="{{$designation->id}}">{{$designation->designation}}</option>
+                                <select name ="designation" placeholder="please select "class="form-control" value ="">  
+                                    @foreach ($reporting_designation as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select><br>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
+                                <select name="designation_type" class="form-control" id="input">
+                                    <option>--Designation Type--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="reportingdesignation" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
+                            <div class="col-md-6">        
+                                <select name="reporting_designation" class="form-control" id="input">
+                                    <option value="">  </option>
+                                    @foreach ($reporting_designation as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation type') }}</label>
+                            <div class="col-md-6">
+                                <select name="reporting_line" class="form-control" id="input">
+                                    <option> </option>
+                                </select>
+                            </div>
+                        </div>
+                        {{-- <div class="form-group row">
+                            <label for="reporting" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
+                            <div class="col-md-6">
+                                <select name ="reporting" placeholder="please select "class="form-control">  
                                     @foreach($reporting_managers as $reporting_manager)
                                         <option value="{{$reporting_manager->id}}">{{$reporting_manager->reporting_manager}}</option>
                                     @endforeach
                                 </select><br>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
-                            <label for="unit" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
+                            <label for="location" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
                             <div class="col-md-6">
-                                <select name ="select" placeholder="please select "class="form-control">  
+                                <select name ="location" placeholder="please select "class="form-control">  
                                     @foreach($locations as $location)
                                         <option value="{{$location->id}}">{{$location->location}}</option>
                                     @endforeach
                                 </select><br>
+                                
                             </div>
                         </div>
+                        
                         
                           
                         <div class="form-group row">
@@ -101,7 +130,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -115,4 +143,57 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+        jQuery('select[name="reporting_designation"]').on('change',function(){
+            var reportingDesignationID = jQuery(this).val();
+               if(reportingDesignationID)
+               {
+                    jQuery.ajax({
+                        url : 'create_user/getreportinglines/' +reportingDesignationID,
+                        type : "GET",
+                        dataType : "json",
+                        success:function(data)
+                       {
+                            console.log(data);
+                            jQuery('select[name="reporting_line"]').empty();
+                            jQuery.each(data, function(key,value){
+                            $('select[name="reporting_line"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                  });
+                }else{
+                    $('select[name="reporting_line"]').empty();
+                }
+            });
+    });
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+        jQuery('select[name="designation"]').on('change',function(){
+            var DesignationID = jQuery(this).val();
+               if(DesignationID)
+               {
+                    jQuery.ajax({
+                        url : 'create_user/getreportinglines/' +DesignationID,
+                        type : "GET",
+                        dataType : "json",
+                        success:function(data)
+                       {
+                            console.log(data);
+                            jQuery('select[name="designation_type"]').empty();
+                            jQuery.each(data, function(key,value){
+                            $('select[name="designation_type"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                    }
+                  });
+                }else{
+                    $('select[name="designation_type"]').empty();
+                }
+            });
+    });
+</script>
+
 @endsection

@@ -9,4 +9,8 @@ class ReportingManager extends Model
 {
     use HasFactory;
     protected $fillable = ['reporting_manager'];
+    
+    public function Users(){
+        return $this->hasMany(User::class);
+    }
 }

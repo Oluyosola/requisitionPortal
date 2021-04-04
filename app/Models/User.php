@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +23,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'unit_id',
+        'location_id',
+        'designation_id',
+        'designation_type_id',
+        // 'reporting_id',
+        'reporting_designation_id',
+        'reporting_designation_type_id',
+        
     ];
 
     /**
@@ -40,4 +51,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function requisitions(){
+        return $this->hasMany(Requisition::class);
+    }
+    public function Unit(){
+        return $this->belongsTo(Unit::class);
+
+    }
+    // public function Designation(){
+    //     return $this->belongsTO(Designation::class);
+
+    // }
+    public function Location(){
+        return $this->belongsTo(Location::class);
+
+    }
+    public function Reporting(){
+        return $this->belongsTo(ReportingManager::class);
+
+    }
+    public function Designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
+    public function Designationtype()
+    {
+        return $this->belongsTo(DesignationType::class);
+    }
+    public function Approval(){
+        return $this->hasMany(Approval::class);
+    }
 }
