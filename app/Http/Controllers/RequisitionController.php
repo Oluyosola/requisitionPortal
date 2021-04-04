@@ -78,7 +78,7 @@ class RequisitionController extends Controller
     public function store(Request $request, Requisition $requisition)
     
     {
-        // dd($request->all());
+        // dd($request->all()['moreFields']);
         // 'moreFields.*.user_id' => Auth::user()->id ;
 $validator = Validator::make($request->all(), [
     'moreFields.*.category_id' => 'required',
@@ -97,14 +97,21 @@ if($validator->fails()){
 // $user_id = [];
 // $user_id = Auth::user()->id;
 // $requisition->user_id = $user_id;
-foreach($request->moreFields as $key => $value ) {   
-    $value['user_id'] = Auth::user()->id;
-    // dd($value['user_id']);
-// dd($value);
-    // $requisition($value);
-    dd($value);
-    Requisition::create($value);
-        // $requisition->save([$value, $user_id]);
+
+$count = count($request->all()['moreFields']);
+
+// dd($count);
+
+
+for($i = 0; $i < $count; $i++ ) {   
+$requisition = new Requisition;
+$requisition->category_id = $request->all()['moreFields'][$i]['category_id'];
+$requisition->item_id = $request->all()['moreFields'][$i]['item_id'];
+$requisition->description = $request->all()['moreFields'][$i]['description'];
+$requisition->quantity = $request->all()['moreFields'][$i]['quantity'];
+$requisition->user_id = Auth::user()->id;
+$requisition->save();
+
 }
  return back();
 // });

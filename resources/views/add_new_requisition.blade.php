@@ -18,7 +18,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)" >
+                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
                                         <option value="">--- Select category ---</option>
                                          @foreach ($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
@@ -60,39 +60,58 @@
 <script type="text/javascript">
 jQuery(document).ready(function () {
     alert('hey');
-function onCategorySelectChange(id){
-            var categoryID = jQuery('.category-select' + id).val();
-            console.log(id);
-               if(categoryID)
-               {
-                    jQuery.ajax({
-                        url : 'requisition/getitems/' +categoryID,
-                        type : "GET",
-                        dataType : "json",
-                        success:function(data)
-                       {
-                            console.log(data);
-                            jQuery('.item-select' + id).empty();
-                            jQuery.each(data, function(key,value){
-                            $('.item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                  });
-                }else{
-                    jQuery('.item-select' + id).empty();
+    
+    });
+    function onCategorySelectChange(id){
+        var categoryID = jQuery('#category-select' + id).val();
+        console.log('tableID =', id);
+
+        console.log('categoryID =', categoryID);
+            if(categoryID)
+            {
+            jQuery.ajax({
+                    url : 'requisition/getitems/' +categoryID,
+                    type : "GET",
+                    dataType : "json",
+                    success:function(data)
+                {
+                console.log(data);
+                jQuery('#item-select' + id).empty();
+                jQuery.each(data, function(key,value){
+                $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
+                });
+                },
+                error:function(data)
+                {
+                    console.log(data);
                 }
             });
-});
+            }else{
+                jQuery('#item-select' + id).empty();
+            }
+        }
 
 </script>
 <script type="text/javascript">
     var i = 0;
 $("#add-btn").click(function(){
     ++i;
-    $("#dynamicAddRemove").append('<tr><td><select name="moreFields['+ i +'][category]" class="form-control" id="input"><option value="">--- Select category ---</option>@foreach ($categories as $key => $value) <option value="{{ $key }}">{{ $value }}</option>@endforeach</select></td><td><select name="moreFields[' + i + '][item]" class="form-control " id="input"><option>--item--</option></select></td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+ 
+    $("#dynamicAddRemove").append('<tr><td>'+
+      '<select name="moreFields['+ i +'][category_id]" class="form-control" id="category-select'+ i + '" onchange="onCategorySelectChange('+ i+')">'+
+      '<option value="">--- Select category ---</option>'+
+      '<?php $categories = App\Models\Category::get()->pluck("name", "id"); foreach($categories as $key => $value) { ?>'+
+      '<option value="'+'<?= $key; ?>'+'">'+'<?= $value; ?>'+'</option>'+'<?php }?>'+'</select>'+
+      '</td><td>'+
+      '<select name="moreFields['+ i + '][item_id]" class="form-control" id="item-select'+ i + '">'+
+      '<option>--item--</option></select>'+
+      '</td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder="e.g brief description of the requisition" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea>'+
+      '<br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" style="width: 150px" placeholder="" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
 });
 $(document).on('click', '.remove-tr', function(){  
+    --i;
 $(this).parents('tr').remove();
+    
 });  
  </script> 
  {{-- <td><select name="moreFields['+i+'][category]" class="form-control" id="input"><option value="">--- Select category ---</option>@foreach ($categories as $key => $value) <option value="{{ $key }}">{{ $value }}</option>@endforeach</select></td> --}}
