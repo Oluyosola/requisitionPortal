@@ -3,19 +3,22 @@
 {{-- <div class="dashboard-header"> --}}
 <div class="container" style="margin-top: 100px">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
                     <form method="POST" action="{{route('store_new_requisition') }} ">
                         @csrf
                         <table class="table table-bordered" id="dynamicAddRemove">
+                            <thead class="thead-light">
                             <tr>
                                 <th>Category</th>
                                 <th>Item</th>
                                 <th>description</th>
                                 <th>Quantity</th>
+                                <th>Action</th>
                             </tr>
+                        </thead>
                             <tr>
                                 <td>
                                     <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
@@ -59,9 +62,7 @@
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function () {
-    alert('hey');
-    
-    });
+        });
     function onCategorySelectChange(id){
         var categoryID = jQuery('#category-select' + id).val();
         console.log('tableID =', id);

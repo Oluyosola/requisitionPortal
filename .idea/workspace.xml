@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e82ed4bb-7a3d-47cf-89ab-50525827ffc9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboards/Procfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboards/general.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboards/general.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +23,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/resources/views/dashboards/general.blade.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -154,6 +158,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/dashboards" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -178,6 +183,7 @@
       <workItem from="1615050652654" duration="658000" />
       <workItem from="1615216358993" duration="903000" />
       <workItem from="1617226124761" duration="2464000" />
+      <workItem from="1617638664201" duration="376000" />
     </task>
     <servers />
   </component>

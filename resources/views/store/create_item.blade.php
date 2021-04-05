@@ -50,50 +50,54 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <h5 class="card-header text-center">Requisition Board</h5>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="bg-light">
-                                <tr class="border-0">
-                                    <th>Requisition ID</th>
-                                    <th class="border-0">Category</th>
-                                    <th class="border-0">Item</th>
-                                    <th class="border-o">Created On</th>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Create Item') }}</h4></div>
+                            <div class="card-body">
+                                <form method="POST" action="{{route('store_new_requisition') }} ">
+                                    <div class="form-group">
+
+                                    <label for="category">Item category</label>
+                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
+                                        <option value="">--- Select Item Category ---</option>
+                                         @foreach ($categories as $category)
+                                        <option value="">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item">Item</label>
+                                    <input type="text" name="item" class="form Control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity</label>
+                                        <input type="number" name="quantity" class="form Control">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="clear" style="clear: both"></div>
+                                        <div class="col-md-12">
+                                            <p align="center" style="margin-top: 10px;">
+                                                <button type="submit" class="btn btn-primary" style="background-color: #0077ad">
+                                                    {{ __('Create') }}
+                                                </button>
+                                            </p>
+                                    </div>
+
                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (count($results) >0)
-                                    @foreach($results as $result)
-                                        <tr>
-                                            {{-- <td>{{$result->id }}</td>  
-                                            td                                                      --}}
-                                            <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
-                                                
-                                            <td>{{$result->category->name }}</td>
-                                            <td>{{$result->item->name}}</td>
-                                            <td>{{date_format($result->created_at, 'jS M Y')}}</td>
-                                           
-                                            
-                                           
-                                        </tr>
-                                        
-                                        
-                                            @endforeach
-                                       @endif
-
-
-                                    </tbody>
-                                </table>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="center">
+            </div>
+
+            
+
+               <div class="center">
                 {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/sh')}}">Go Back</a> </button>
+                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/store')}}">Go Back</a> </button>
             </div>
             
                    <div class="footer">

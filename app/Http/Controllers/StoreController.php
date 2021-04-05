@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
+use App\Models\Category;
 
 
 class StoreController extends Controller
@@ -35,14 +36,20 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createItem()
     {
-        //
+        $categories = Category::get();
+        return view('store.create_item', compact('categories'));
     }
 
     public function StoreApprovalAction (Requisition $requisition)   {
         $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
         return view('approval_actions.store', compact('results'));
+    }
+
+    public function allItem()
+    {
+        return view ('store.all_items');
     }
 
     /**
@@ -64,7 +71,7 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        return view ('store.all_items');
     }
 
     /**

@@ -63,7 +63,9 @@ Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);
 
 Route::get('/store', [App\Http\Controllers\StoreController::class, 'index']);
 Route::get('/store_action', [App\Http\Controllers\StoreController::class, 'storeApprovalAction'])->name('store_action');
-Route::get('/item', [App\Http\Controllers\StoreController::class, 'item']);
+Route::get('/item', [App\Http\Controllers\StoreController::class, 'createItem'])->name('create_item');
+Route::get('/all_items', [App\Http\Controllers\StoreController::class, 'allItem'])->name('item');
+
 
 
 
