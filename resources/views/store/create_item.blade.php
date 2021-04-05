@@ -34,7 +34,7 @@
             <!-- ============================================================== -->
             <!-- pageheader  -->
             <!-- ============================================================== -->
-            <div class="row">
+            <div class="row" style="margin-top: 50px">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
                         <h2 class="pageheader-title">Synlab Requisition Portal </h2>
@@ -50,20 +50,22 @@
                     </div>
                 </div>
             </div>
+            @include('inc.message')
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Create Item') }}</h4></div>
                             <div class="card-body">
-                                <form method="POST" action="{{route('store_new_requisition') }} ">
+                                <form method="POST" action="{{route('store_new_item')}}">
+                                    @csrf
                                     <div class="form-group">
 
                                     <label for="category">Item category</label>
-                                    <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
+                                    <select name="category" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
                                         <option value="">--- Select Item Category ---</option>
                                          @foreach ($categories as $category)
-                                        <option value="">{{$category->name}}</option>
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
                                     </div>

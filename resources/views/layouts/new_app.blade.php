@@ -45,8 +45,10 @@
     </head>
 <body>
     <div id="app">
+        {{-- @include('inc.message') --}}
             @include('inc.nav')
-            @include('message')
+            {{-- @include('inc.message') --}}
+            
         <div>
             {{-- <div id=""></div> --}}
             @yield('content')

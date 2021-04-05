@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
 use App\Models\Category;
-
+use App\Models\Item;
 
 class StoreController extends Controller
 {
@@ -60,7 +60,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item();
+        $item->category_id = $request->input('category');
+        $item->name = $request->input('item');
+        $item->quantity = $request->input('quantity');
+        $item->save();
+        return back()->with('success','Item created successfully!');
+
     }
 
     /**

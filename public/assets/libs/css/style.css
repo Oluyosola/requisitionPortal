@@ -509,6 +509,7 @@ Left Navigation Sidebar
     position: fixed;
     width: 220px;
     height: 100%;
+    /* margin: 0; */
     top: 60px;
     overflow: auto;
     background-color:#003765;
