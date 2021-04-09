@@ -95,7 +95,7 @@
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user->name}}</td>
-                                                        <td>{{$result->category->name }}</td>
+                                                        <td>{{$result->category->name}}</td>
                                                         <td>{{$result->item->name}}</td>
                                                         <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>

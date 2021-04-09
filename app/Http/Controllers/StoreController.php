@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\QuantityUnit;
 
 class StoreController extends Controller
 {
@@ -38,8 +39,8 @@ class StoreController extends Controller
      */
     public function createItem()
     {
-        $categories = Category::get();
-        return view('store.create_item', compact('categories'));
+        // $item_unit = QuantityUnit::get();
+        // return view('store.create_item', compact('item_unit'));
     }
 
     public function StoreApprovalAction (Requisition $requisition)   {
@@ -49,7 +50,10 @@ class StoreController extends Controller
 
     public function allItem()
     {
-        return view ('store.all_items');
+        $quantity_unit = QuantityUnit::all();
+        // dd($item_unit);
+        $results = Item::all();
+        return view('store.create_item', compact('quantity_unit', 'results'));
     }
 
     /**
@@ -60,10 +64,13 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $item = new Item();
-        $item->category_id = $request->input('category');
+        $item->category_id = 1;
         $item->name = $request->input('item');
         $item->quantity = $request->input('quantity');
+        // dd($item->quantity);
+        $item->quantity_unit_id = $request->input('quantity_unit');
         $item->save();
         return back()->with('success','Item created successfully!');
 
@@ -77,7 +84,7 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        return view ('store.all_items');
+        return view ('store.create_item');
     }
 
     /**

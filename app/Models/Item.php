@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'category_id', 'quantity'];
+    protected $fillable = ['name', 'category_id', 'quantity', 'quantity_unit_id'];
     
     
     public function Category (){
@@ -16,5 +16,8 @@ class Item extends Model
     }
     public function Requisitions (){
         return $this->hasMany(Requisition::class);
+    }
+    public function quantityUnit (){
+        return $this->belongsTo('App\Models\QuantityUnit', 'quantity_unit_id');
     }
 }
