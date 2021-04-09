@@ -1,9 +1,10 @@
 @extends('layouts.new_app')
 @section('content')
 {{-- <div class="dashboard-header"> --}}
+<div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="container" style="margin-top: 100px">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        
             <div class="card">
                 <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
@@ -15,7 +16,7 @@
                                 <th>Category</th>
                                 <th>Item</th>
                                 <th>description</th>
-                                <th>Quantity</th>
+                                <th colspan="2">Quantity</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,7 +38,15 @@
                                     <textarea name="moreFields[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" class="form-control description-textarea" value="" required="required" title=""></textarea><br>
                                 </td>
                                 <td> 
-                                    <input type="number" name="moreFields[0][quantity]" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control quantity-input" value="" required="required" title=""></textarea><br>
+                                    <input type="number" name="moreFields[0][quantity]" step="0.01" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control quantity-input" value="" required="required" title=""></textarea><br>
+                                </td>
+                                <td>
+                                    <select name="moreFields[0][item_unit]" class="form-control unit-select">
+                                        <option>--unit--</option>
+                                        @foreach($item_unit as $unit)
+                                            <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" name="add" id="add-btn">Add More</button>
@@ -107,7 +116,14 @@ $("#add-btn").click(function(){
       '<select name="moreFields['+ i + '][item_id]" class="form-control" id="item-select'+ i + '">'+
       '<option>--item--</option></select>'+
       '</td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder="e.g brief description of the requisition" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea>'+
-      '<br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" style="width: 150px" placeholder="" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea><br></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+      '<br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" step="0.01" style="width: 150px" placeholder="" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea>'+
+      '<br></td><td><select name="moreFields['+ i + '][item_unit]" class="form-control unit-select">'+
+                                       '<option>--unit--</option>'+
+                                       '<?php $item_unit = App\Models\QuantityUnit::get()->pluck("name", "id"); foreach($item_unit as $key=>$value){ ?>'+
+                                           '<option value="'+'<?= $key; ?> '+'">'+'<?=$value; ?> '+'</option>'+'<?php }?>'+'</select>'+
+
+                                    
+                                '</td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
 });
 $(document).on('click', '.remove-tr', function(){  
     --i;

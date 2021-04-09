@@ -17,7 +17,7 @@ class Requisition extends Model
     'clevel_approval_comment', 'manager_id', 'sh_tl_id',
     'clevel_id', 'is_manager_approved', 
     'sh_tl_rejection_comment', 'manager_rejection_comment', 
-    'clevel_rejection_comment', 'req_id' ];
+    'clevel_rejection_comment', 'req_id', 'item_unit_id'];
   
 
     public function Category (){
@@ -29,11 +29,15 @@ class Requisition extends Model
     public function Item (){
         return $this->belongsTo('App\Models\Item', 'item_id');
     }
+    
     public function User(){
         return $this->belongsTo('App\Models\User', 'user_id');
     }
     public function Approvals (){
         return $this->hasMany(Approval::class);
+    }
+    public function quantityUnit (){
+        return $this->belongsTo('App\Models\QuantityUnit', 'item_unit_id');
     }
     public static function boot()
 {

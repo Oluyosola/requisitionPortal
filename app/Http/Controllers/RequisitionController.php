@@ -7,10 +7,12 @@ use App\Models\Requisition;
 use App\Models\Item;
 use App\Models\Status;
 use App\Models\User;
+use App\Models\QuantityUnit;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
 
 class RequisitionController extends Controller
 {
@@ -33,8 +35,9 @@ class RequisitionController extends Controller
         $item = Item::all();
         $status = Status::all();
         $user = User::all();
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user')->paginate(10);
-        return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user'));
+        $item_unit = QuantityUnit::get()->pluck("name", "id");
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(10);
+        return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user', 'item_unit'));
     }
     
 
@@ -66,7 +69,9 @@ class RequisitionController extends Controller
     public function getCategories(){
         $categories = Category::get()
         ->pluck("name", "id");
-        return view('add_new_requisition', compact('categories'));   
+        $item_unit = QuantityUnit::all();
+
+        return view('add_new_requisition', compact('categories', 'item_unit'));   
     }
     public function getItems($id){
         $items = Item::get()->where('category_id', $id)->pluck("name", "id");
@@ -109,11 +114,12 @@ $requisition->category_id = $request->all()['moreFields'][$i]['category_id'];
 $requisition->item_id = $request->all()['moreFields'][$i]['item_id'];
 $requisition->description = $request->all()['moreFields'][$i]['description'];
 $requisition->quantity = $request->all()['moreFields'][$i]['quantity'];
+$requisition->item_unit_id = $request->all()['moreFields'][$i]['item_unit'];
 $requisition->user_id = Auth::user()->id;
 $requisition->save();
 
 }
- return back();
+ return redirect('/home')->with('success', 'New Requisition Made');
 // });
 
         

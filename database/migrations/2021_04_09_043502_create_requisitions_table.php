@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateRequisitionsTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateRequisitionsTable extends Migration
             
             $table->id();
             $table->timestamps();
-            $table->integer('quantity');
+            $table->decimal('quantity', $precision = 8, $scale = 2);
             $table->integer('category_id');
             $table->integer('item_id');
             $table->text('description');
@@ -38,7 +39,11 @@ class CreateRequisitionsTable extends Migration
             $table->integer('manager_id')->nullable();
             $table->integer('clevel_id')->nullable();
             $table->string('req_id');
-            
+            $table->integer('is_store_approved')->nullable();
+            $table->integer('store_id')->nullable();
+            $table->integer('item_unit_id')->nullable();
+            // $table->double('quantity', 8, 2);
+
         });
     }
 

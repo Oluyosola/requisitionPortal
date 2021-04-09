@@ -157,6 +157,15 @@
                                                                         <textarea name="sh_tl_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                     </div>
                                                                 </div>
+                                                                <div>
+                                                                    <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+
+                                                                    {{-- <input type="quantity" name="" id=""> --}}
+                                                                    <div class="col-md-6">
+
+                                                                    <input type="number" value="{{$result->quantity}}" step="0.01" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                              <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

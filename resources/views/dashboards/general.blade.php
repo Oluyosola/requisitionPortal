@@ -32,7 +32,7 @@
                     <!-- ============================================================== -->
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
-                <div class="row">
+                <div class="row" style="margin-top: 50px">
                     <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Synlab Requisition Portal </h2>
@@ -50,6 +50,8 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
+                    @include('inc.message')
+
                 <div class="ecommerce-widget">
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -161,8 +163,8 @@
                                                                  <div class="modal-body">
                                                                      <h5>REQ Number: {{$result->req_id}}</h5>
                                                                      <h5>REQ category: {{$result->category->name}}</h5>
-                                                                     <h5>REQ Item: {{$result->item_name}}</h5>
-                                                                     <h5>REQ Quantity: {{$result->quantity}}</h5>
+                                                                     <h5>REQ Item: {{$result->item->name}}</h5>
+                                                                     <h5>REQ Quantity: {{$result->quantity.$result->QuantityUnit->name}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
                                                                      <h5>REQ Status: {{$result->status->name}}</h5>
                                                                  </div>
@@ -333,6 +335,7 @@
                         jQuery('#item-select' + id).empty();
                     }
                 }
+                </script>
 <script type="text/javascript">
 jQuery(document).ready(function () {
     alert('hey');
@@ -366,5 +369,6 @@ jQuery(document).ready(function () {
                 jQuery('#item-select' + id).empty();
             }
         }
+        </script>
         
   @endsection

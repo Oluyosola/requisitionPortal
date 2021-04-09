@@ -36,6 +36,7 @@ class ShTlController extends Controller
     public function shTlApproval(Request $request, Requisition $requisition){
         $requisition->sh_tl_approval_comment = $request->input('sh_tl_approval_comment');
         $requisition->is_sh_tl_approved = true;
+        $requisition->quantity = $request->input('quantity');
         $requisition->sh_tl_id = Auth::user()->id;
         $requisition->save();
         return redirect('/sh');

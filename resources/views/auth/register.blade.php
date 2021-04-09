@@ -62,7 +62,7 @@
                             <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
                             <div class="col-md-6">
                                 <select name="designation_type" class="form-control" id="input">
-                                    <option>--Designation Type--</option>
+                                    <option></option>
                                 </select>
                             </div>
                         </div>

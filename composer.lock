@@ -1411,16 +1411,16 @@
         },
         {
             "name": "haruncpi/laravel-id-generator",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/haruncpi/laravel-id-generator.git",
-                "reference": "9e5f59ec2e670afd970d0ab6eb7c20d026705c6d"
+                "reference": "c8b1814df3615b22217ec7669d863fd18e3226cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/haruncpi/laravel-id-generator/zipball/9e5f59ec2e670afd970d0ab6eb7c20d026705c6d",
-                "reference": "9e5f59ec2e670afd970d0ab6eb7c20d026705c6d",
+                "url": "https://api.github.com/repos/haruncpi/laravel-id-generator/zipball/c8b1814df3615b22217ec7669d863fd18e3226cb",
+                "reference": "c8b1814df3615b22217ec7669d863fd18e3226cb",
                 "shasum": ""
             },
             "require": {
@@ -1452,22 +1452,22 @@
             "description": "Easy way to generate custom ID in laravel framework",
             "support": {
                 "issues": "https://github.com/haruncpi/laravel-id-generator/issues",
-                "source": "https://github.com/haruncpi/laravel-id-generator/tree/v1.0.7"
+                "source": "https://github.com/haruncpi/laravel-id-generator/tree/v1.0.8"
             },
-            "time": "2021-03-17T15:32:02+00:00"
+            "time": "2021-04-06T03:40:52+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.35.1",
+            "version": "v8.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602"
+                "reference": "c07477098c3685fcf812920d2fa8fa3a77e1e0bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d118c0df39e7524131176aaf76493eae63a8a602",
-                "reference": "d118c0df39e7524131176aaf76493eae63a8a602",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c07477098c3685fcf812920d2fa8fa3a77e1e0bf",
+                "reference": "c07477098c3685fcf812920d2fa8fa3a77e1e0bf",
                 "shasum": ""
             },
             "require": {
@@ -1622,7 +1622,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-30T21:34:17+00:00"
+            "time": "2021-04-06T13:58:47+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6153,16 +6153,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.10",
+            "version": "v1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a"
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/4f0b2bac128ee60a11d9758651f103f78157474a",
-                "reference": "4f0b2bac128ee60a11d9758651f103f78157474a",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/e46a3228da4e95a411a981ac807bd119ab2485fa",
+                "reference": "e46a3228da4e95a411a981ac807bd119ab2485fa",
                 "shasum": ""
             },
             "require": {
@@ -6209,7 +6209,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-03-30T21:26:44+00:00"
+            "time": "2021-04-06T14:00:39+00:00"
         },
         {
             "name": "mockery/mockery",
