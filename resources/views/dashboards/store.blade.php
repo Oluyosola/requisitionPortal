@@ -10,20 +10,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
                     <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
+                        <h3 style="color: white">Menu</h3>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
+                    
+                    <li class="nav-item nav-link">
+                            <a class="" href="{{url('/sh')}}" >Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         <a class="" href="{{route('store_action')}}" >Dispatched</a>
                     </li>
-                    <li class="nav-item ">
-                        {{-- <a class="" href="{{route('items')}}" >Items</a> --}}
-                    </li>                    
+                    <li class="nav-item nav-link">
+                        <a class="" href="{{route('create_item')}}" >Create Item</a>
+                    </li>  
+                    <li class="nav-item nav-link">
+                        <a class="" href="{{route('item')}}" > View all Items</a>
+                    </li>                  
                 </ul>
             </div>
         </nav>
@@ -80,13 +84,7 @@
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
-                                                    {{-- <th class="border-0">Item</th> --}}
-                                                    {{-- <th class="border-0">Quantity</th>
-                                                    <th class="border-0">Description</th> --}}
-                                                    {{-- <th class="border-0">Manger's comment</th> --}}
-                                                    {{-- <th class="border-0">Status</th> --}}
-                                                    {{-- <th>Dispatched</th> --}}
-                                                    <th class="border-0" colspan="">Dispatched</th>
+                                                    <th class="border-0" colspan="">Approved</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
@@ -102,18 +100,11 @@
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name}}</td>
-                                                        {{-- <td>{{$result->item_name}}</td> --}}
-                                                        {{-- <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td> --}}
-                                                        {{-- <td>{{$result->manger_app}}</td> --}}
-                                                        {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
-                                                            <td>
+                                                           <td>
  
-                                                                {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
+                                                                
                                                                 <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Dispatched</a>
-                                                               {{-- <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a> --}}
- 
+                                                               
                                                              
                                                          </td>
                                                      </tr>

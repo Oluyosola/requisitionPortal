@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveColoumnsFromRequisitionsTable extends Migration
+class CreateQuantityUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class RemoveColoumnsFromRequisitionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            //
-            $table->dropColumn('is_store_approved');
-            $table->dropColumn('store_id');
+        Schema::create('quantity_units', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -27,8 +27,6 @@ class RemoveColoumnsFromRequisitionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('requisitions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('quantity_units');
     }
 }

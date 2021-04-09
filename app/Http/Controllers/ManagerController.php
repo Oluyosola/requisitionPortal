@@ -29,6 +29,7 @@ class ManagerController extends Controller
     public function index()
     {
         $manager = Auth::user()->designation_type_id;
+        // dd($manager);
         $results = $this->manager_repo->getManagerApproval($manager);
         return view('dashboards.manager', compact('results'));
    }

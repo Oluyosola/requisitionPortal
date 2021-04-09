@@ -507,11 +507,12 @@ Left Navigation Sidebar
 
 .nav-left-sidebar {
     position: fixed;
-    width: 260px;
+    width: 220px;
     height: 100%;
+    /* margin: 0; */
     top: 60px;
     overflow: auto;
-    background-color: #fff;
+    background-color:#003765;
     -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
     box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
 }
@@ -520,6 +521,7 @@ Left Navigation Sidebar
     position: relative;
     display: flex;
     align-items: center;
+    
 }
 
 .nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
@@ -534,6 +536,7 @@ Left Navigation Sidebar
     border-right: 0.3em solid transparent;
     border-bottom: 0;
     border-left: 0.3em solid transparent;
+    
 }
 
 .nav-left-sidebar .nav-link[data-toggle="collapse"][aria-expanded="false"]:after {
@@ -780,7 +783,7 @@ Container / Wrapper
 .dashboard-wrapper {
     position: relative;
     left: 0;
-    margin-left: 264px;
+    margin-left: 224px;
     min-height: 870px !important;
 }
 

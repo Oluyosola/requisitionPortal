@@ -1,9 +1,5 @@
 @extends('layouts.new_app')
 @section('content')
-{{--@section('style')--}}
-{{--      @include('layouts.datatables')--}}
-{{--    @endsection--}}
-
     <div class="nav-left-sidebar sidebar-light" style="background-color: #08457e">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -36,7 +32,7 @@
                     <!-- ============================================================== -->
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
-                <div class="row">
+                <div class="row" style="margin-top: 50px">
                     <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Synlab Requisition Portal </h2>
@@ -54,6 +50,8 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
+                    @include('inc.message')
+
                 <div class="ecommerce-widget">
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -73,13 +71,7 @@
                                     <h5 class="text-muted">Total Number of Requisitions Made</h5>
                                     <div class="metric-value d-inline-block">
                                         <h1 class="mb-1">{{$results->total()}}</h1>
-                                                {{-- @foreach ($results as $r) --}}
-
-                                                {{-- @endforeach --}}
                                     </div>
-                                    {{-- <div class="metric-label d-inline-block float-right text-success font-weight-bold">
-                                            {{-- <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span> --}}
-                                        {{-- </div> --}}
                                 </div>
                                 <div id="sparkline-revenue2"></div>
                             </div>
@@ -91,9 +83,6 @@
                                     <div class="metric-value d-inline-block">
                                         <h1 class="mb-1">0</h1>
                                     </div>
-                                    {{-- <div class="metric-label d-inline-block float-right text-primary font-weight-bold"> --}}
-                                            {{-- <span>N/A</span> --}}
-                                        {{-- </div> --}}
                                 </div>
                                 <div id="sparkline-revenue3"></div>
                             </div>
@@ -105,25 +94,12 @@
                                     <div class="metric-value d-inline-block">
                                         <h1 class="mb-1">Asset</h1>
                                     </div>
-                                    {{-- <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
-                                            {{-- <span>-2.00%</span> --}}
-                                        {{-- </div> --}}
                                 </div>
                                 <div id="sparkline-revenue4"></div>
                             </div>
                         </div>
                     </div>
-                        {{-- <div class="row"> --}}
-                            <!-- ============================================================== -->
-
-                            <!-- ============================================================== -->
-
-                                          <!-- recent orders  -->
-                            <!-- ============================================================== -->
-                            {{-- <div class="d-flex justify-content-start mb-4">
-                                <a class="btn btn-primary" href="{{ URL::to('/op') }}">Export to PDF</a>
-                            </div> --}}
-
+                        
                     <div class="col-xl-12 col-12 col-md-12 col-sm-12 col-12">
                         <div class="d-flex justify-content-end mb-4">
                             <a class="btn btn-primary" style="background-color: #003765" href="{{ route('requisition_pdf') }}">Export to PDF</a>
@@ -150,7 +126,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (count($results) >0)
+                                            @if(count($results) >0)
                                                 @foreach($results as $result)
                                                     <tr>
                                                         {{-- <td>{{$result->id }}</td>
@@ -167,9 +143,9 @@
                                                         <td>{{$result->status->name}}</td>
 
                                                         <td>
-                                                            
+
                                                                 <a data-toggle="modal" href='#modal-edit{{$result->id}}'><img src="{{ asset('/assets/img/edit.svg') }}" width="15px" > </a>
-                                                            
+
                                                         </td>
                                                         <td>
                                                             <center>
@@ -187,8 +163,8 @@
                                                                  <div class="modal-body">
                                                                      <h5>REQ Number: {{$result->req_id}}</h5>
                                                                      <h5>REQ category: {{$result->category->name}}</h5>
-                                                                     <h5>REQ Item: {{$result->item_name}}</h5>
-                                                                     <h5>REQ Quantity: {{$result->quantity}}</h5>
+                                                                     <h5>REQ Item: {{$result->item->name}}</h5>
+                                                                     <h5>REQ Quantity: {{$result->quantity.$result->QuantityUnit->name}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
                                                                      <h5>REQ Status: {{$result->status->name}}</h5>
                                                                  </div>
@@ -227,26 +203,27 @@
                                                                 <div class="form-group row">
                                                                     <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <select name="category" class="form-control" id="input">
+                                                                        <select name="moreFields[0][category_id]" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
                                                                             <option value="">--- Select category ---</option>
-                                                                            @foreach ($categories as $key => $value)
+                                                                             @foreach ($categories as $key => $value)
                                                                             <option value="{{ $key }}">{{ $value }}</option>
-                                                                         @endforeach
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="item" class="col-md-4 col-form-label text-md-right">{{ __('Select Item') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <select name="item" class="form-control" id="input">
+                                                                        <select name="moreFields[0][item_id]" class="form-control item-select" id="item-select0">
                                                                             <option>--item--</option>
                                                                         </select>
+                                    
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <textarea name="description" rows="4" cols="50" maxlength="50" id="input"class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
+                                                                        <textarea name="description" rows="4" cols="50" maxlength="50" id= "input"class="form-control" value="{{$result->description}}" required="required" title=""></textarea><br>
                                                                     </div>
                                                                 </div>
 
@@ -326,30 +303,72 @@
     <!-- ============================================================== -->
 
     <script type="text/javascript">
-        jQuery(document).ready(function ()
-        {
-            jQuery('select[name="category"]').on('change',function(){
-                var categoryID = jQuery(this).val();
-                   if(categoryID)
-                   {
-                        jQuery.ajax({
-                            url : 'requisition/edititems/' +categoryID,
+        jQuery(document).ready(function () {
+            alert('hey');
+            
+            });
+            function onCategorySelectChange(id){
+                var categoryID = jQuery('#category-select' + id).val();
+                console.log('tableID =', id);
+        
+                console.log('categoryID =', categoryID);
+                    if(categoryID)
+                    {
+                    jQuery.ajax({
+                            url : 'requisition/getitems/' +categoryID,
                             type : "GET",
                             dataType : "json",
                             success:function(data)
-                           {
-                                console.log(data);
-                                jQuery('select[name="item"]').empty();
-                                jQuery.each(data, function(key,value){
-                                $('select[name="item"]').append('<option value="'+ key +'">'+ value +'</option>');
-                            });
+                        {
+                        console.log(data);
+                        jQuery('#item-select' + id).empty();
+                        jQuery.each(data, function(key,value){
+                        $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                        },
+                        error:function(data)
+                        {
+                            console.log(data);
                         }
-                      });
+                    });
                     }else{
-                        jQuery('select[name="item"]').empty();
+                        jQuery('#item-select' + id).empty();
                     }
-                });
-        });
-    </script>
+                }
+                </script>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+    alert('hey');
+    
+    });
+    function onCategorySelectChange(id){
+        var categoryID = jQuery('#category-select' + id).val();
+        console.log('tableID =', id);
 
+        console.log('categoryID =', categoryID);
+            if(categoryID)
+            {
+            jQuery.ajax({
+                    url : 'requisition/getitems/' +categoryID,
+                    type : "GET",
+                    dataType : "json",
+                    success:function(data)
+                {
+                console.log(data);
+                jQuery('#item-select' + id).empty();
+                jQuery.each(data, function(key,value){
+                $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
+                });
+                },
+                error:function(data)
+                {
+                    console.log(data);
+                }
+            });
+            }else{
+                jQuery('#item-select' + id).empty();
+            }
+        }
+        </script>
+        
   @endsection

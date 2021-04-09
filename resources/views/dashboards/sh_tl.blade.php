@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
+<div class="nav-left-sidebar">
     <div class="menu-list">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
@@ -10,15 +10,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
                     <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
+                        <h3 style="color: white">Menu</h3>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         <a class="" href="{{url('/sh')}}" >Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         <a href="{{route('home')}}" >General Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         
                         <a class="" href="{{route('sh_tl_actions')}}" >Approved/Rejected</a>
                     </li>
@@ -66,11 +66,11 @@
                         <!-- ============================================================== -->
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header text-center">Requisition Approval Board</h5>
+                                <h5 class="card-header text-center" style="background-color: #0077ad">Requisition Approval Board</h5>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
-                                        <table class="table">
-                                            <thead class="bg-light">
+                                        <table class="table table-hover" >
+                                            <thead class="">
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
@@ -90,13 +90,7 @@
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
                                                     @if((Auth::user()->designation_id == 2||3) && ($result->user->reporting_designation_type_id == Auth::user()->designation_type_id))
-                                                       
-                                                    {{-- @if(($result->user->reporting_line1_id == Auth::user()->designation_type_id) ||
-                                                        (Auth::user()->designation_id == 3 && $result->is_shth_approved == 1) || --}}
-                                                         
-                                                         {{-- $result->user->reporting_line1_id == Auth::user()->designation_type_i --}}
-                                                         {{-- && $result->user->reporting_line1_id == Auth::user()->designation_type_id --}}
-                                                                                                    
+                                                                                          
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->req_id}}</td>
@@ -107,15 +101,9 @@
                                                         <td>{{$result->description}}</td>
                                                         
                                                        
-                                                        {{-- <td>{{$result->created_at}}</td> --}}
-                                                        {{-- <td>{{ $result->status->name }}</td> --}}
-                                                        {{-- <td> --}}
-                                                            {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
+                        
                                                         <td>
- 
-                                                               {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
-                                                               <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary">Approve</a>
+                                                               <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                
                                                               <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
 
@@ -169,10 +157,19 @@
                                                                         <textarea name="sh_tl_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                     </div>
                                                                 </div>
+                                                                <div>
+                                                                    <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+
+                                                                    {{-- <input type="quantity" name="" id=""> --}}
+                                                                    <div class="col-md-6">
+
+                                                                    <input type="number" value="{{$result->quantity}}" step="0.01" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                              <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                <input type="submit" name="submit" value="Approve" class="btn btn-success">
+                                                                <input type="submit" name="submit" value="Approve" class="btn btn-success" style="background-color: #0077ad">
                                                                
                                                              </div>
                                                           </div>
@@ -183,8 +180,12 @@
                                                 </tr>
                                                 
                                                 @endif
-                                                    @endforeach
-                                                    @endif
+                                                 @endforeach
+                                               @else
+                                                   <p>No Requiistion found for Approval</p> 
+                                                @endif
+                                                   
+
 
                                             </tbody>
                                         </table>
