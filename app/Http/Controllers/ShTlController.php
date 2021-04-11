@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
+// use App\Models\ShTl;
+use App\Models\ShTlApproval;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,12 +35,12 @@ class ShTlController extends Controller
     
     }
 
-    public function shTlApproval(Request $request, Requisition $requisition){
-        $requisition->sh_tl_approval_comment = $request->input('sh_tl_approval_comment');
-        $requisition->is_sh_tl_approved = true;
-        $requisition->quantity = $request->input('quantity');
-        $requisition->sh_tl_id = Auth::user()->id;
-        $requisition->save();
+    public function shTlApproval(Request $request, ShTlApproval $sh_tl){
+        $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
+        $sh_tl->is_approved = true;
+        // $sh_tl->quantity = $request->input('quantity');
+        $sh_tl->sh_tl_id = Auth::user()->id;
+        $sh_tl->save();
         return redirect('/sh');
 
           }

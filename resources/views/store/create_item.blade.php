@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="card">
-                            <h5 class="card-header text-center">List Items</h5>
+                            <h5 class="card-header text-center"> Items List</h5>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table">
