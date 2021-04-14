@@ -12,11 +12,11 @@
                     <li class="nav-divider">
                         <h3 style="color: white">Menu</h3>
                     </li>
-                    <li class="nav-item nav-link">
-                        <a class="" href="{{url('/sh')}}" >Dashboard</a>
+                    <li class="nav-item nav-link" style="color: white">
+                        <a class="" href="{{url('/sh')}}" style="color: white">Dashboard</a>
                     </li>
-                    <li class="nav-item nav-link">
-                        <a href="{{route('home')}}" >General Dashboard</a>
+                    <li class="nav-item nav-link" style="color: white">
+                        <a href="{{route('home')}}" style="color: white">General Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
                         
@@ -86,22 +86,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- {{dd($results->user->email)}} --}}
+                                                
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                    @if((Auth::user()->designation_id == 2||3) && ($result->user->reporting_designation_type_id == Auth::user()->designation_type_id))
-                                                                                          
+                                                   
+                                            
+                                                                                                  
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->req_id}}</td>
-                                                        <td>{{$result->user->name}}</td>
-                                                        <td>{{$result->category->name}}</td>
-                                                        <td>{{$result->item->name}}</td>
-                                                        <td>{{$result->quantity}}</td>
+                                                        <td>{{$result->user_name}}</td>
+                                                        <td>{{$result->category_name }}</td>
+
+                                                        <td>{{$result->item_name}}</td> 
+                                                        {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
-                                                        
+                                                         --}}
                                                        
-                        
+  
                                                         <td>
                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                
@@ -109,7 +111,7 @@
 
                                                             
                                                         </td>
-                                                    </tr>
+                                                    </tr> 
                                                     <div class="modal fade" id="modal-reject{{$result->id}}">
                                                         <form action="{{route('sh_tl_reject_requisition', $result->id)}}" method="GET">
                                                             <div class="modal-dialog">
@@ -158,6 +160,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div>
+                                                                    <input type="hidden" name="requisition" value="{{$result->id}}">
+                                                                </div>
+                                                                <div>
                                                                     <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
 
                                                                     {{-- <input type="quantity" name="" id=""> --}}
@@ -179,7 +184,7 @@
                                                  
                                                 </tr>
                                                 
-                                                @endif
+                                                {{-- @endif --}}
                                                  @endforeach
                                                @else
                                                    <p>No Requiistion found for Approval</p> 

@@ -10,15 +10,25 @@ use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Interfaces\ShTlRepositoryInterface;
+// use App\Repositories\shTlRepository;
+
 // use Auth;
 
 class ShTlController extends Controller
 {
-    public function __construct()
+    
+
+    public $sh_tl_repo;
+
+    public function __construct(ShTlRepositoryInterface $sh_tl_repo)
+
     {
         $this->middleware('auth');
+        $this->sh_tl_repo = $sh_tl_repo;
     }
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -26,19 +36,25 @@ class ShTlController extends Controller
     public function index()
     {
 
-        $category = Category::all();
-        $item = Item::all();
-        $status = Status::all();
-        $user = User::all();
-        $results = Requisition::where(['is_sh_tl_approved' => null])->get();
-        return view('dashboards.sh_tl', compact('results', 'status', 'category', 'item', 'user'));
-    
-    }
+$sh_tl = Auth::user()->designation_type_id;
 
-    public function shTlApproval(Request $request, ShTlApproval $sh_tl){
+// dd($manager);
+$results = $this->sh_tl_repo->getRequisition($sh_tl);
+return view('dashboards.sh_tl', compact('results'));
+}
+
+        // -- $category = Category::all();
+        // -- $item = Item::all();
+        // -- $status = Status::all();
+        // -- $user = User::all();
+        // -- $results = Requisition::where(['is_sh_tl_approved' => null])->get();
+       
+
+    public function shTlApproval(Request $request, ShTlApproval $sh_tl, Requisition $requisition){
         $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
         $sh_tl->is_approved = true;
-        // $sh_tl->quantity = $request->input('quantity');
+        $sh_tl->requisition_id = $request->input('requisition');
+        // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();
         return redirect('/sh');
@@ -54,7 +70,12 @@ class ShTlController extends Controller
         
     }  
     public function shTlApprovalAction (Requisition $requisition)   {
-        $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        $sh_tl = Auth::user()->designation_type_id;
+
+// dd($manager);
+        $results = $this->sh_tl_repo->getApproval($sh_tl);
+
         return view('approval_actions.sh_tl', compact('results'));
     }
 

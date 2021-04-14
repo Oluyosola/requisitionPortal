@@ -1,6 +1,6 @@
   <div class="dashboard-header fixed-top">
     <nav class="navbar navbar-expand-lg bg-white" style="position: sticky">
-        <a class="navbar-brand" href="assets/img/synlab.png"><img src="assets/img/synlab.png" height="50px" alt=""></a>    
+        <a class="navbar-brand" href="assets/img/synlab.png"><img src="assets/img/synlab.png" height="50px" alt="" style="margin-left: 20px"></a>    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         {{-- Left Side Of Navbar  --}}
                         

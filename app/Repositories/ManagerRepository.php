@@ -13,7 +13,7 @@ class ManagerRepository implements ManagerRepositoryInterface
         LEFT JOIN items ON requisitions.item_id = items.id
         LEFT JOIN users ON requisitions.sh_tl_id = users.id  WHERE requisitions.is_manager_approved IS NULL 
         AND users.reporting_designation_type_id = $manager
-        OR requisitions.is_sh_tl_approved = 1 
+        -- OR requisitions.is_sh_tl_approved = 1 
         -- AND requisitions.user_id = users.id
         -- AND requisitions.is_sh_tl_approved is NULL
         -- GROUP BY users.name

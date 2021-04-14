@@ -14,19 +14,19 @@
                     </li>
                     
                     <li class="nav-item nav-link">
-                            <a class="" href="{{url('/sh')}}" >Dashboard</a>
+                            <a class="" href="{{url('/store')}}" >Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
                         <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('store_action')}}" >Dispatched</a>
+                        <a class="" href="{{route('store_action')}}" >Processed</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('create_item')}}" >Create Item</a>
+                        <a class="" href="{{route('create_item')}}" >Items</a>
                     </li>  
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('item')}}" > View all Items</a>
+                        <a class="" href="" > Reorder Request</a>
                     </li>                  
                 </ul>
             </div>
@@ -103,7 +103,7 @@
                                                            <td>
  
                                                                 
-                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Dispatched</a>
+                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Process</a>
                                                                
                                                              
                                                          </td>

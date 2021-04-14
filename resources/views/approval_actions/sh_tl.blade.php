@@ -72,9 +72,9 @@
                                             td                                                      --}}
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
                                                 
-                                            <td>{{$result->category->name }}</td>
-                                            <td>{{$result->item->name}}</td>
-                                            <td>{{date_format($result->created_at, 'jS M Y')}}</td>
+                                            <td>{{$result->category_name }}</td>
+                                            <td>{{$result->item_name}}</td>
+                                            {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                            
                                             
                                            
