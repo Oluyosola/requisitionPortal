@@ -7,24 +7,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
-            {{-- <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
-                    </li>
-                    <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        {{-- <a class="" href="{{route('home')}}" >General Dashboard</a>
-                    </li>
-                    <li class="nav-item "> --}}
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> 
-                        <a class="" href="{{route('manager_actions')}}" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Approved/Rejected Requisition</a>
-                    </li>                    
-                </ul>
-            </div> --}}
         </nav>
     </div>
 </div>
@@ -51,33 +33,37 @@
                 </div>
             </div>
             @include('inc.message')
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="card">
+            {{-- <div class="container"> --}}
+                {{-- <div class="row justify-content-center"> --}}
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> 
+                        {{-- <div class="card">
                             <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Create Item') }}</h4></div>
-                            <div class="card-body">
+                            <div class="card-body"> --}}
                                 <form method="POST" action="{{route('store_new_item')}}">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="item">Item</label>
+                                            <input type="text" name="item" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number"step="0.01" name="quantity" class="form-control">
+                                        </div>
 
-                                    <label for="category">Item category</label>
-                                    <select name="category" class="form-control category-select" id="category-select0" onchange="onCategorySelectChange(0)">
-                                        <option value="">--- Select Item Category ---</option>
-                                         @foreach ($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="item">Item</label>
-                                    <input type="text" name="item" class="form Control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="quantity">Quantity</label>
-                                        <input type="number" name="quantity" class="form Control">
-                                    </div>
-                                    <div class="form-group">
+                                        
+                                        {{-- </div> --}}
+                                        <div class="col">
+                                            <label for="quantity_unit">Item category</label>
+                                            <select name="quantity_unit" class="form-control " id="">
+                                                <option value="">--- Select Item Unit ---</option>
+                                                @foreach ($quantity_unit as $unit)
+                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="row">
                                         <div class="clear" style="clear: both"></div>
                                         <div class="col-md-12">
                                             <p align="center" style="margin-top: 10px;">
@@ -86,22 +72,61 @@
                                                 </button>
                                             </p>
                                     </div>
-
-                                   
+                                        </div>
+                                        
                                 </form>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        </div>
+                        </div>
 
+                        <div class="card">
+                            <h5 class="card-header text-center"> Items List</h5>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                <th>Item</th>
+                                                <th class="border-0">Quantity</th>
+                                               
+                                                <th class="border-o">Created On</th>
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (count($results) >0)
+                                                @foreach($results as $result)
+                                                    <tr>
+                                                        {{-- <td>{{$result->id }}</td>  
+                                                        td                                                      --}}
+                                                        {{-- <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a> --}}
+                                                            
+                                                        
+                                                        <td>{{$result->name}}</td>
+                                                        <td>{{$result->quantity.$result->quantityUnit->name}}</td>
+                                                        {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
+                                                       
+                                                        
+                                                       
+                                                    </tr>
+                                                    
+                                                    
+                                                        @endforeach
+                                                   @endif
             
-
-               <div class="center">
-                {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/store')}}">Go Back</a> </button>
-            </div>
             
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="center">
+                            {{-- {{ $results->links() }} --}}
+                            <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/sh')}}">Go Back</a> </button>
+                        </div>
+                        
+                                     
                    <div class="footer">
             <div class="container-fluid">
                 <div class="row">

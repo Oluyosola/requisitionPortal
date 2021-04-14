@@ -54,6 +54,18 @@ class User extends Authenticatable
     public function requisitions(){
         return $this->hasMany(Requisition::class);
     }
+    public function stores(){
+        return $this->hasMany(Store::class);
+    }
+    public function ics(){
+        return $this->hasMany(Ic::class);
+    }
+    public function managers(){
+        return $this->hasMany(Manager::class);
+    }
+    public function shTls(){
+        return $this->hasMany(ShTL::class);
+    }
     public function Unit(){
         return $this->belongsTo(Unit::class);
 

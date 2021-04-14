@@ -33,7 +33,7 @@
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
                 <div class="row" style="margin-top: 50px">
-                    <div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Synlab Requisition Portal </h2>
                             <div class="page-breadcrumb">
@@ -51,7 +51,8 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     @include('inc.message')
-
+                    {{-- <div class="container"> --}}
+                        
                 <div class="ecommerce-widget">
                     <div class="row">
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">

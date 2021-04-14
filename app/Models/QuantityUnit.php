@@ -17,4 +17,7 @@ class QuantityUnit extends Model
     public function Requisitions(){
         return $this->hasOne(Requisition::class);
     }
+    public function item (){
+        return $this->hasOne(Item::class);
+    }
 }

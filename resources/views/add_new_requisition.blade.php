@@ -1,8 +1,8 @@
 @extends('layouts.new_app')
 @section('content')
 {{-- <div class="dashboard-header"> --}}
-<div class="col-xl- col-lg-12 col-md-12 col-sm-12 col-12">
-<div class="container" style="margin-top: 100px">
+{{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> --}}
+<div style="margin-top: 100px">
     <div class="row justify-content-center">
         
             <div class="card">
