@@ -86,10 +86,10 @@
                                     <table class="table">
                                         <thead class="bg-light">
                                             <tr class="border-0">
-                                                <th>Item</th>
+                                                <th class="border-0">Item Name</th>
                                                 <th class="border-0">Quantity</th>
-                                               
-                                                <th class="border-o">Created On</th>
+                                                <th class="border-0">Quantity</th>
+                                                <th class="border-0">Created On</th>
                                                
                                             </tr>
                                         </thead>

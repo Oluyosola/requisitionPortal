@@ -47,7 +47,8 @@ Route::get('user/{user}', [App\Http\Controllers\AdminController::class, 'delete'
 Route::get('/sh', [App\Http\Controllers\ShTlController::class, 'index']);
 Route::get('requisition/{requisition}/sh_tl_approve_requisition', [App\Http\Controllers\ShTlController::class, 'shTlApproval'])->name('sh_tl_approve_requisition');
 Route::get('requisition/{requisition}/sh_tl_reject_requisition', [App\Http\Controllers\ShTlController::class, 'shTlRejection'])->name('sh_tl_reject_requisition');
-Route::get('/sh_tl_action', [App\Http\Controllers\ShTlController::class, 'shTlApprovalAction'])->name('sh_tl_actions');
+Route::get('/sh_tl_approved', [App\Http\Controllers\ShTlController::class, 'shTlApproved'])->name('sh_tl_approved');
+Route::get('/sh_tl_rejected', [App\Http\Controllers\ShTlController::class, 'shTlRejected'])->name('sh_tl_rejected');
 
 
 // Manager

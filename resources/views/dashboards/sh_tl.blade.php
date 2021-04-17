@@ -12,16 +12,21 @@
                     <li class="nav-divider">
                         <h3 style="color: white">Menu</h3>
                     </li>
-                    <li class="nav-item nav-link">
-                        <a class="" href="{{url('/sh')}}" >Dashboard</a>
+                    <li class="nav-item nav-link" style="color: white">
+                        <a class="" href="{{url('/sh')}}" style="color: white">Dashboard</a>
                     </li>
-                    <li class="nav-item nav-link">
-                        <a href="{{route('home')}}" >General Dashboard</a>
+                    <li class="nav-item nav-link" style="color: white">
+                        <a href="{{route('home')}}" style="color: white">General Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
                         
-                        <a class="" href="{{route('sh_tl_actions')}}" >Approved/Rejected</a>
+                        <a class="" href="{{route('sh_tl_approved')}}" >Approved</a>
                     </li>
+                    <li class="nav-item nav-link">
+                        
+                        <a class="" href="{{route('sh_tl_rejected')}}" >Rejected</a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
@@ -33,6 +38,7 @@
     <!-- ============================================================== -->
     <!-- wrapper  -->
     <!-- ============================================================== -->
+    
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
@@ -64,6 +70,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
+                        @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center" style="background-color: #0077ad">Requisition Approval Board</h5>
@@ -86,22 +93,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- {{dd($results->user->email)}} --}}
+                                                
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                    @if((Auth::user()->designation_id == 2||3) && ($result->user->reporting_designation_type_id == Auth::user()->designation_type_id))
-                                                                                          
+                                                   
+                                            
+                                                                                                  
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->req_id}}</td>
-                                                        <td>{{$result->user->name}}</td>
-                                                        <td>{{$result->category->name}}</td>
-                                                        <td>{{$result->item->name}}</td>
-                                                        <td>{{$result->quantity}}</td>
+                                                        <td>{{$result->user_name}}</td>
+                                                        <td>{{$result->category_name }}</td>
+
+                                                        <td>{{$result->item_name}}</td> 
+                                                        {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
-                                                        
+                                                         --}}
                                                        
-                        
+  
                                                         <td>
                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                
@@ -109,12 +118,12 @@
 
                                                             
                                                         </td>
-                                                    </tr>
+                                                    </tr> 
                                                     <div class="modal fade" id="modal-reject{{$result->id}}">
                                                         <form action="{{route('sh_tl_reject_requisition', $result->id)}}" method="GET">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
-                                                                    <input type="hidden" name="reject" value="{{$result->id}}">
+                                                                    
                                                                     <div class="modal-header">
                                                                         <h4 class="modal-title">Reject Requistion</h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -125,6 +134,9 @@
                                                                             <label for="sh_tl_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                             <div class="col-md-6">
                                                                                 <textarea name="sh_tl_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
+                                                                            </div>
+                                                                            <div>
+                                                                                <input type="hidden" name="requisition" value="{{$result->id}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -144,7 +156,7 @@
                                                     <form action="{{route('sh_tl_approve_requisition', $result->id)}}" method="GET">
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
-                                                             <input type="hidden" name="approve" value="{{$result->id}}">
+                                                             {{-- <input type="hidden" name="requisition" value="{{$result->id}}"> --}}
                                                              <div class="modal-header">
                                                                 <h4 class="modal-title">Approve Requistion</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -156,6 +168,9 @@
                                                                     <div class="col-md-6">
                                                                         <textarea name="sh_tl_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                     </div>
+                                                                </div>
+                                                                <div>
+                                                                    <input type="hidden" name="requisition" value="{{$result->id}}">
                                                                 </div>
                                                                 <div>
                                                                     <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
@@ -179,7 +194,7 @@
                                                  
                                                 </tr>
                                                 
-                                                @endif
+                                                {{-- @endif --}}
                                                  @endforeach
                                                @else
                                                    <p>No Requiistion found for Approval</p> 

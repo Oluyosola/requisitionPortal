@@ -2,6 +2,6 @@
 namespace App\Repositories\Interfaces;
 
 interface ManagerRepositoryInterface{
-    public function getManagerApproval($manager_id);
+    public function getManagerApproval($manager);
     
 }

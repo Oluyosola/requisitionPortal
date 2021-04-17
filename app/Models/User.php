@@ -64,7 +64,7 @@ class User extends Authenticatable
         return $this->hasMany(Manager::class);
     }
     public function shTls(){
-        return $this->hasMany(ShTL::class);
+        return $this->hasMany('App\Models\ShTlApproval', 'sh_tl_id');
     }
     public function Unit(){
         return $this->belongsTo(Unit::class);

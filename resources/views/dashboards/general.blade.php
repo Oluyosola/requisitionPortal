@@ -304,8 +304,8 @@
     <!-- ============================================================== -->
 
     <script type="text/javascript">
-        jQuery(document).ready(function () {
-            alert('hey');
+        $(document).ready(function () {
+            // alert('hey');
             
             });
             function onCategorySelectChange(id){
@@ -322,7 +322,7 @@
                             success:function(data)
                         {
                         console.log(data);
-                        jQuery('#item-select' + id).empty();
+                        $('#item-select' + id).empty();
                         jQuery.each(data, function(key,value){
                         $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
                         });
@@ -338,8 +338,8 @@
                 }
                 </script>
 <script type="text/javascript">
-jQuery(document).ready(function () {
-    alert('hey');
+$(document).ready(function () {
+    // alert('hey');
     
     });
     function onCategorySelectChange(id){
@@ -349,15 +349,15 @@ jQuery(document).ready(function () {
         console.log('categoryID =', categoryID);
             if(categoryID)
             {
-            jQuery.ajax({
+            $.ajax({
                     url : 'requisition/getitems/' +categoryID,
                     type : "GET",
                     dataType : "json",
                     success:function(data)
                 {
                 console.log(data);
-                jQuery('#item-select' + id).empty();
-                jQuery.each(data, function(key,value){
+                $('#item-select' + id).empty();
+                $.each(data, function(key,value){
                 $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
                 });
                 },
@@ -367,7 +367,7 @@ jQuery(document).ready(function () {
                 }
             });
             }else{
-                jQuery('#item-select' + id).empty();
+                $('#item-select' + id).empty();
             }
         }
         </script>

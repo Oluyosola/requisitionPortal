@@ -31,6 +31,7 @@ class ManagerController extends Controller
         $manager = Auth::user()->designation_type_id;
         // dd($manager);
         $results = $this->manager_repo->getManagerApproval($manager);
+        // dd($results);
         return view('dashboards.manager', compact('results'));
    }
 
@@ -46,13 +47,13 @@ class ManagerController extends Controller
     }
 
     public function managerApproval(Request $request, Requisition $requisition){
-        if($requisition->is_manager_approved == null){
+        
         $requisition->manager_approval_comment = $request->input('manager_approval_comment');
         $requisition->is_manager_approved = true;
         $requisition->manager_id = Auth::user()->id;
         $requisition->save();
-        return redirect('/manager');
-        }
+        return redirect('/manager')->with('success', 'Requisition Approved');
+        
 
     }
 

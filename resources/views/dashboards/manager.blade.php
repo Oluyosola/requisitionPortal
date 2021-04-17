@@ -21,7 +21,11 @@
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected</a>
+                        <a class="" href="{{route('manager_actions')}}" >Rejected</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        <a class="" href="" >Rejected</a>
                     </li>                    
                 </ul>
             </div>
