@@ -72,10 +72,10 @@ return view('dashboards.sh_tl', compact('results'));
         
     }  
     public function shTlApproved (Requisition $requisition)   {
-        // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        
         $sh_tl = Auth::user()->designation_type_id;
 
-// dd($manager);
+
         $results = $this->sh_tl_repo->getApproval($sh_tl);
 
         return view('approval_actions.sh_tl', compact('results'));

@@ -55,7 +55,8 @@ Route::get('/sh_tl_rejected', [App\Http\Controllers\ShTlController::class, 'shTl
 Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index']);
 Route::get('requisition/{requisition}/manager_approve_requisition', [App\Http\Controllers\ManagerController::class, 'managerApproval'])->name('manager_approve_requisition');
 Route::get('requisition/{requisition}/manager_reject_requisition', [App\Http\Controllers\ManagerController::class, 'managerRejection'])->name('manager_reject_requisition');
-Route::get('/manager_action', [App\Http\Controllers\ManagerController::class, 'ManagerApprovalAction'])->name('manager_actions');
+Route::get('/manager_action', [App\Http\Controllers\ManagerController::class, 'ManagerApproved'])->name('manager_actions');
+Route::get('/manager_rejected', [App\Http\Controllers\ManagerController::class, 'ManagerRejected'])->name('manager_rejected');
 
 
 // IC

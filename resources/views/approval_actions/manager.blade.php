@@ -57,12 +57,9 @@
                         <table class="table">
                             <thead class="bg-light">
                                 <tr class="border-0">
-                                    {{-- <th class="border-0">Id</th> --}}
                                     <th>Requisition ID</th>
                                     <th class="border-0">Category</th>
                                     <th class="border-0">Item</th>
-                                    {{-- <th class="border-0">Quantity</th> --}}
-                                    {{-- <th class="border-0">Description</th> --}}
                                     <th class="border-o">Created On</th>
                                    
                                 </tr>
@@ -75,12 +72,9 @@
                                             td                                                      --}}
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
                                                 
-                                            <td>{{$result->category->name }}</td>
-                                            <td>{{$result->item->name}}</td>
-                                            {{-- <td>{{$result->quantity}}</td> --}}
-                                            {{-- <td>{{$result->description}}</td> --}}
-
-                                            <td>{{date_format($result->created_at, 'jS M Y')}}</td>
+                                            <td>{{$result->category_name }}</td>
+                                            <td>{{$result->item_name}}</td>
+                                            {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                            
                                             
                                            
@@ -99,7 +93,7 @@
                 </div>
                 <div class="center">
                 {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/manager')}}">Go Back</a> </button>
+                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/sh')}}">Go Back</a> </button>
             </div>
             
                    <div class="footer">

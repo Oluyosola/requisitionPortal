@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Rejected</a>
+                        <a class="" href="{{route('manager_actions')}}" >Approved</a>
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
@@ -69,6 +69,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
+                        @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center" style="background-color: #0077ad" >Requisition Approval Board</h5>
@@ -132,6 +133,9 @@
                                                                      <div class="col-md-6">
                                                                          <textarea name="manager_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                      </div>
+                                                                     <div>
+                                                                         <input type="hidden" value="{{$result->id}}" name="req_id">
+                                                                     </div>
                                                                  </div>
                                                              </div>
                                                               <div class="modal-footer">
@@ -159,6 +163,10 @@
                                                                         <div class="col-md-6">
                                                                             <textarea name="manager_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
                                                                         </div>
+                                                                        <div>
+                                                                            <input type="hidden" value="{{$result->id}}" name="req_id">
+                                                                        </div>
+                                                                    {{-- </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
