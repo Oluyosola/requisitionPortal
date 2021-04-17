@@ -20,8 +20,13 @@
                     </li>
                     <li class="nav-item nav-link">
                         
-                        <a class="" href="{{route('sh_tl_actions')}}" >Approved/Rejected</a>
+                        <a class="" href="{{route('sh_tl_approved')}}" >Approved</a>
                     </li>
+                    <li class="nav-item nav-link">
+                        
+                        <a class="" href="{{route('sh_tl_rejected')}}" >Rejected</a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
@@ -33,6 +38,7 @@
     <!-- ============================================================== -->
     <!-- wrapper  -->
     <!-- ============================================================== -->
+    
     <div class="dashboard-wrapper">
         <div class="dashboard-ecommerce">
             <div class="container-fluid dashboard-content ">
@@ -64,6 +70,7 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
+                        @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center" style="background-color: #0077ad">Requisition Approval Board</h5>
@@ -116,7 +123,7 @@
                                                         <form action="{{route('sh_tl_reject_requisition', $result->id)}}" method="GET">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
-                                                                    <input type="hidden" name="reject" value="{{$result->id}}">
+                                                                    
                                                                     <div class="modal-header">
                                                                         <h4 class="modal-title">Reject Requistion</h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -127,6 +134,9 @@
                                                                             <label for="sh_tl_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                             <div class="col-md-6">
                                                                                 <textarea name="sh_tl_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
+                                                                            </div>
+                                                                            <div>
+                                                                                <input type="hidden" name="requisition" value="{{$result->id}}">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -146,7 +156,7 @@
                                                     <form action="{{route('sh_tl_approve_requisition', $result->id)}}" method="GET">
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
-                                                             <input type="hidden" name="approve" value="{{$result->id}}">
+                                                             {{-- <input type="hidden" name="requisition" value="{{$result->id}}"> --}}
                                                              <div class="modal-header">
                                                                 <h4 class="modal-title">Approve Requistion</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

@@ -50,26 +50,28 @@ return view('dashboards.sh_tl', compact('results'));
         // -- $results = Requisition::where(['is_sh_tl_approved' => null])->get();
        
 
-    public function shTlApproval(Request $request, ShTlApproval $sh_tl, Requisition $requisition){
+    public function shTlApproval(Request $request, ShTlApproval $sh_tl){
         $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
         $sh_tl->is_approved = true;
         $sh_tl->requisition_id = $request->input('requisition');
         // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();
-        return redirect('/sh');
+        return redirect('/sh')->with('success', 'Requisition Accepted');;
 
           }
 
-    public function shTlRejection(Request $request, Requisition $requisition){
-        $requisition->sh_tl_rejection_comment = $request->input('sh_tl_rejection_comment');
-        $requisition->is_sh_tl_approved = false;
-        $requisition->sh_tl_id = Auth::user()->id;
-        $requisition->save();
-        return redirect('/sh');
+    public function shTlRejection(Request $request, ShTlApproval $sh_tl){
+        $sh_tl->rejection_comment = $request->input('sh_tl_rejection_comment');
+        $sh_tl->is_approved = false;
+        $sh_tl->sh_tl_id = Auth::user()->id;
+        $sh_tl->reporting_id = Auth::user()->reporting_designation_type_id;
+        $sh_tl->requisition_id = $request->input('requisition');
+        $sh_tl->save();
+        return redirect('/sh')->with('success', 'Requisition Rejected');
         
     }  
-    public function shTlApprovalAction (Requisition $requisition)   {
+    public function shTlApproved (Requisition $requisition)   {
         // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
         $sh_tl = Auth::user()->designation_type_id;
 
@@ -77,6 +79,16 @@ return view('dashboards.sh_tl', compact('results'));
         $results = $this->sh_tl_repo->getApproval($sh_tl);
 
         return view('approval_actions.sh_tl', compact('results'));
+    }
+
+    public function shTlRejected (Requisition $requisition)   {
+        // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        $sh_tl = Auth::user()->designation_type_id;
+
+// dd($manager);
+        $results = $this->sh_tl_repo->getRejected($sh_tl);
+
+        return view('reject_actions.sh_tl', compact('results'));
     }
 
     /**
