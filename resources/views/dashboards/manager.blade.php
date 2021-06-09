@@ -25,7 +25,7 @@
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="" >Rejected</a>
+                        <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
                     </li>                    
                 </ul>
             </div>
@@ -183,8 +183,11 @@
                                                  
                                                
                                                     @endforeach
-                                                    
-                                                @endif
+                                                    @else
+                                                    <h3 style="text-align: center">No Requistion found for Approval</h3> 
+                                                 @endif
+                                                 
+                                                {{-- @endif --}}
 
                                             </tbody>
                                         </table>

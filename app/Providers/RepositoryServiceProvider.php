@@ -9,7 +9,8 @@ use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider{
     public function register()
         {
-    $this->app->bind(ManagerRepositoryInterface::class, ManagerRepository::class,);
+    $this->app->bind(ManagerRepositoryInterface::class, ManagerRepository::class);
+    $this->app->bind(IcRepositoryInterface::class, IcRepository::class);
         }
     
 }

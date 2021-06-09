@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(ShTlRepositoryInterface::class, ShTlRepository::class);
         $this->app->bind(ManagerRepositoryInterface::class, ManagerRepository::class);
+        $this->app->bind(IcRepositoryInterface::class, IcRepository::class);
     }
 
     /**

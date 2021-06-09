@@ -10,18 +10,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
                     <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
+                        <h3 style="color: white">Menu</h3>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
+                    <li class="nav-item nav-link">
+                        <a class="" href="{{url('/manager')}}">Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link ">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
                         <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Approved/Rejected</a>
+                        <a class="" href="{{route('manager_actions')}}" >Approved</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
+                        <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
                     </li>                    
                 </ul>
             </div>
@@ -65,12 +69,13 @@
 
                                       <!-- recent orders  -->
                         <!-- ============================================================== -->
+                        @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header text-center">Requisition Approval Board</h5>
+                                <h5 class="card-header text-center" style="background-color: #0077ad" >Requisition Approval Board</h5>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table" >
                                             <thead class="bg-light">
                                                 <tr class="border-0">
                                                     {{-- <th class="border-0">#</th> --}}
@@ -78,11 +83,7 @@
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
-                                                    {{-- <th class="border-0">Item</th> --}}
-                                                    {{-- <th class="border-0">Quantity</th>
-                                                    <th class="border-0">Description</th> --}}
-                                                    {{-- <th class="border-0">Manger's comment</th> --}}
-                                                    {{-- <th class="border-0">Status</th> --}}
+                                                    <th class="border-0">Description</th>
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
@@ -99,6 +100,7 @@
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
+                                                        <td>{{$result->description}}</td>
                                                         {{-- <td>{{$result->item_name}}</td> --}}
                                                         {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td> --}}
@@ -133,11 +135,14 @@
                                                                      <div class="col-md-6">
                                                                          <textarea name="manager_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                      </div>
+                                                                     <div>
+                                                                         <input type="hidden" value="{{$result->id}}" name="req_id">
+                                                                     </div>
                                                                  </div>
                                                              </div>
                                                               <div class="modal-footer">
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                 <input type="submit" name="submit" value="Approve" class="btn btn-success">
+                                                                 <input type="submit" name="submit" value="Approve" class="btn btn-success" style="background-color: #0077ad">
                                                                 
                                                               </div>
                                                            </div>
@@ -160,6 +165,10 @@
                                                                         <div class="col-md-6">
                                                                             <textarea name="manager_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
                                                                         </div>
+                                                                        <div>
+                                                                            <input type="hidden" value="{{$result->id}}" name="req_id">
+                                                                        </div>
+                                                                    {{-- </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -174,8 +183,11 @@
                                                  
                                                
                                                     @endforeach
-                                                    
-                                                @endif
+                                                    @else
+                                                    <h3 style="text-align: center">No Requistion found for Approval</h3> 
+                                                 @endif
+                                                 
+                                                {{-- @endif --}}
 
                                             </tbody>
                                         </table>
