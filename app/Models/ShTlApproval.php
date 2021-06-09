@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ShTlApproval extends Model
 {
     use HasFactory;
-    protected $fillable = ['requisition_id', 'is_approved', 'approval_comment', 'rejection_comment', 'sh_tl_id'];
+    protected $fillable = ['requisition_id', 'is_approved', 'approval_comment', 'rejection_comment', 'sh_tl_id', 'reporting_id'];
     public function Users()
     {
         return $this->belongsToMany('App\Models\User', 'id');

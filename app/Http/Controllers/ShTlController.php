@@ -54,6 +54,7 @@ return view('dashboards.sh_tl', compact('results'));
         $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
         $sh_tl->is_approved = true;
         $sh_tl->requisition_id = $request->input('requisition');
+        $sh_tl->reporting_id = Auth::user()->reporting_designation_type_id;
         // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();

@@ -28,8 +28,9 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
         LEFT JOIN users ON requisitions.user_id = users.id
         LEFT JOIN sh_tl_approvals ON requisitions.id = sh_tl_approvals.requisition_id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id 
-        WHERE manager_approvals.is_approved IS NULL
-        AND users.reporting_designation_type_id = $manager OR sh_tl_approvals.is_approved = 1 AND sh_tl_approvals.reporting_id = $manager";
+        WHERE manager_approvals.is_approved IS NULL OR sh_tl_approvals.is_approved = 1 AND sh_tl_approvals.reporting_id = $manager
+        AND users.reporting_designation_type_id = $manager
+        ";
         
         $results=  DB::select($sql_query);
         return $results;
@@ -42,7 +43,9 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
         LEFT JOIN users ON requisitions.user_id = users.id 
         WHERE manager_approvals.is_approved = 1
-        AND users.reporting_designation_type_id = $manager";
+        -- AND users.reporting_designation_type_id = $manager";
+
+        // id that should be check should be maager not reporting ID
         $results=  DB::select($sql_query);     
         return $results;
     }

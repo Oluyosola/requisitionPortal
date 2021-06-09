@@ -83,6 +83,7 @@
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
+                                                    <th class="border-0">Description</th>
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
@@ -99,6 +100,7 @@
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
+                                                        <td>{{$result->description}}</td>
                                                         {{-- <td>{{$result->item_name}}</td> --}}
                                                         {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td> --}}
