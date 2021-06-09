@@ -197,7 +197,7 @@
                                                 {{-- @endif --}}
                                                  @endforeach
                                                @else
-                                                   <p>No Requiistion found for Approval</p> 
+                                                   <h3 style="text-align: center">No Requistion found for Approval</h3> 
                                                 @endif
                                                    
 

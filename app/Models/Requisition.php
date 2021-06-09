@@ -40,7 +40,7 @@ class Requisition extends Model
         return $this->hasOne(Ic::class);
     }
     public function manager (){
-        return $this->hasOne(Manager::class);
+        return $this->hasOne(ManagerApproval::class);
     }
     public function shTl (){
         return $this->hasOne(ShTl::class);

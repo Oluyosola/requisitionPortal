@@ -54,6 +54,7 @@ return view('dashboards.sh_tl', compact('results'));
         $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
         $sh_tl->is_approved = true;
         $sh_tl->requisition_id = $request->input('requisition');
+        $sh_tl->reporting_id = Auth::user()->reporting_designation_type_id;
         // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();
@@ -72,10 +73,10 @@ return view('dashboards.sh_tl', compact('results'));
         
     }  
     public function shTlApproved (Requisition $requisition)   {
-        // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
+        
         $sh_tl = Auth::user()->designation_type_id;
 
-// dd($manager);
+
         $results = $this->sh_tl_repo->getApproval($sh_tl);
 
         return view('approval_actions.sh_tl', compact('results'));

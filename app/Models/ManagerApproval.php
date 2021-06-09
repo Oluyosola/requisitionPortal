@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manager extends Model
+class ManagerApproval extends Model
 {
     use HasFactory;
     protected $fillable = ['requisition_id', 'is_approved', 'approval_comment', 'rejection_comment', 'manager_id'];

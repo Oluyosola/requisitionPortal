@@ -61,7 +61,7 @@ class User extends Authenticatable
         return $this->hasMany(Ic::class);
     }
     public function managers(){
-        return $this->hasMany(Manager::class);
+        return $this->hasMany(ManagerApproval::class);
     }
     public function shTls(){
         return $this->hasMany('App\Models\ShTlApproval', 'sh_tl_id');
