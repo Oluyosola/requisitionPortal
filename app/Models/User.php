@@ -55,10 +55,10 @@ class User extends Authenticatable
         return $this->hasMany(Requisition::class);
     }
     public function stores(){
-        return $this->hasMany(Store::class);
+        return $this->hasMany(StoreApproval::class);
     }
     public function ics(){
-        return $this->hasMany(Ic::class);
+        return $this->hasMany(IcApproval::class);
     }
     public function managers(){
         return $this->hasMany(ManagerApproval::class);

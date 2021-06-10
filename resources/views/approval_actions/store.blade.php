@@ -7,24 +7,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
-            {{-- <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
-                    </li>
-                    <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        {{-- <a class="" href="{{route('home')}}" >General Dashboard</a>
-                    </li>
-                    <li class="nav-item "> --}}
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> 
-                        <a class="" href="{{route('manager_actions')}}" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Approved/Rejected Requisition</a>
-                    </li>                    
-                </ul>
-            </div> --}}
         </nav>
     </div>
 </div>
@@ -57,12 +39,9 @@
                         <table class="table">
                             <thead class="bg-light">
                                 <tr class="border-0">
-                                    {{-- <th class="border-0">Id</th> --}}
                                     <th>Requisition ID</th>
                                     <th class="border-0">Category</th>
                                     <th class="border-0">Item</th>
-                                    {{-- <th class="border-0">Quantity</th> --}}
-                                    {{-- <th class="border-0">Description</th> --}}
                                     <th class="border-o">Created On</th>
                                    
                                 </tr>
@@ -75,12 +54,9 @@
                                             td                                                      --}}
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
                                                 
-                                            <td>{{$result->category->name }}</td>
-                                            <td>{{$result->item->name}}</td>
-                                            {{-- <td>{{$result->quantity}}</td> --}}
-                                            {{-- <td>{{$result->description}}</td> --}}
-
-                                            <td>{{date_format($result->created_at, 'jS M Y')}}</td>
+                                            <td>{{$result->category_name }}</td>
+                                            <td>{{$result->item_name}}</td>
+                                            {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                            
                                             
                                            
@@ -99,7 +75,7 @@
                 </div>
                 <div class="center">
                 {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/manager')}}">Go Back</a> </button>
+                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/store)}}">Go Back</a> </button>
             </div>
             
                    <div class="footer">

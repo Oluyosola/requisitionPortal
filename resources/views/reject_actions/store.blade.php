@@ -7,6 +7,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
+        
         </nav>
     </div>
 </div>
@@ -75,7 +76,7 @@
                 </div>
                 <div class="center">
                 {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/ic')}}">Go Back</a> </button>
+                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/store')}}">Go Back</a> </button>
             </div>
             
                    <div class="footer">

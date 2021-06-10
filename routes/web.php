@@ -61,6 +61,10 @@ Route::get('/manager_rejected', [App\Http\Controllers\ManagerController::class, 
 
 // IC
 Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);
+Route::get('requisition/{requisition}/ic_approve_requisition', [App\Http\Controllers\IcController::class, 'icApproval'])->name('ic_approve_requisition');
+Route::get('requisition/{requisition}/ic_reject_requisition', [App\Http\Controllers\IcController::class, 'icRejection'])->name('ic_reject_requisition');
+Route::get('/ic_action', [App\Http\Controllers\IcController::class, 'IcApproved'])->name('ic_actions');
+Route::get('/ic_rejected', [App\Http\Controllers\IcController::class, 'IcRejected'])->name('ic_rejected');
 
 
 Route::get('/store', [App\Http\Controllers\StoreController::class, 'index']);

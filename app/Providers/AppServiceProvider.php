@@ -4,6 +4,12 @@ namespace App\Providers;
 
 use App\Repositories\Interfaces\ShTlRepositoryInterface;
 use App\Repositories\ShTlRepository;
+use App\Repositories\Interfaces\IcRepositoryInterface;
+use App\Repositories\IcRepository;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+use App\Repositories\StoreRepository;
+
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -19,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ShTlRepositoryInterface::class, ShTlRepository::class);
         $this->app->bind(ManagerRepositoryInterface::class, ManagerRepository::class);
         $this->app->bind(IcRepositoryInterface::class, IcRepository::class);
+        $this->app->bind(StoreRepositoryInterface::class, StoreRepository::class);
     }
 
     /**

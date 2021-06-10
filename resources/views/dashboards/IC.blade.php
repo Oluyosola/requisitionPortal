@@ -13,7 +13,7 @@
                         <h3 style="color: white">Menu</h3>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{url('/manager')}}">Dashboard</a>
+                        <a class="" href="{{url('/ic')}}">Dashboard</a>
                     </li>
                     <li class="nav-item nav-link ">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
@@ -21,11 +21,11 @@
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_actions')}}" >Approved</a>
+                        <a class="" href="{{route('ic_actions')}}" >Approved</a>
                     </li>
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
+                        <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
                     </li>                    
                 </ul>
             </div>
@@ -120,7 +120,7 @@
  
                                                    
                                                    <div class="modal fade" id="modal-approval{{$result->id}}">
-                                                     <form action="{{route('manager_approve_requisition', $result->id)}}" method="GET">
+                                                     <form action="{{route('ic_approve_requisition', $result->id)}}" method="GET">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
                                                               <input type="hidden" name="approve" value="{{$result->id}}">
@@ -131,9 +131,9 @@
                                                               </div>
                                                               <div class="modal-body">
                                                                  <div class="form-group row" style="padding-top: 20px">
-                                                                     <label for="manager_approval_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                     <label for="ic_approval_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                      <div class="col-md-6">
-                                                                         <textarea name="manager_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
+                                                                         <textarea name="ic_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
                                                                      </div>
                                                                      <div>
                                                                          <input type="hidden" value="{{$result->id}}" name="req_id">
@@ -150,7 +150,7 @@
                                                      </form>
                                                   </div>
                                                   <div class="modal fade" id="modal-reject{{$result->id}}">
-                                                    <form action="{{route('manager_reject_requisition', $result->id)}}" method="GET">
+                                                    <form action="{{route('ic_reject_requisition', $result->id)}}" method="GET">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <input type="hidden" name="reject" value="{{$result->id}}">
@@ -161,9 +161,9 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group row" style="padding-top: 20px">
-                                                                        <label for="manager_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                        <label for="ic_reject_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                         <div class="col-md-6">
-                                                                            <textarea name="manager_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
+                                                                            <textarea name="ic_rejection_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give reasons for rejecting"id="reject" class="form-control" required="required"></textarea><br>
                                                                         </div>
                                                                         <div>
                                                                             <input type="hidden" value="{{$result->id}}" name="req_id">

@@ -6,12 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
-use App\Models\Category;
+use App\Models\StoreApproval;
 use App\Models\Item;
 use App\Models\QuantityUnit;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+
+
 
 class StoreController extends Controller
 {
+
+    public $store_repo;
+
+    public function __construct(StoreRepositoryInterface $store_repo)
+
+    {
+        $this->middleware('auth');
+        $this->store_repo = $store_repo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,19 +31,15 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $ic = Auth::user()->designation_type_id;
-        // dd($clevel);
-            $sql_query = "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity,requisitions.req_id as req_id, 
-        requisitions.description as description, users.name as user_name, categories.name as category_name, 
-        items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
-        LEFT JOIN items ON requisitions.item_id = items.id
-        LEFT JOIN users ON requisitions.manager_id = users.id OR requisitions.user_id = users.id WHERE users.reporting_designation_type_id = $ic
-        OR requisitions.is_clevel_approved = 1";
-        $results=  DB::select($sql_query);
-        // return view ('dashboards.internal_control', compact('results'));
+        
+        $store = Auth::user()->unit_id;
+        // $manager = 4;
+        // dd($store);
+        $results = $this->store_repo->getStoreApproval($store);
+        // dd($results);
         return view('dashboards.store', compact('results'));
     }
-
+       
     /**
      * Show the form for creating a new resource.
      *
