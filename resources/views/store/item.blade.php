@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="row">
                                         <div class="clear" style="clear: both"></div>
-                                        <div class="col-md-12">
+                                        <div class="col">
                                             <p align="center" style="margin-top: 10px;">
                                                 <button type="submit" class="btn btn-primary" style="background-color: #0077ad">
                                                     {{ __('Create') }}
@@ -88,8 +88,8 @@
                                             <tr class="border-0">
                                                 <th class="border-0">Item Name</th>
                                                 <th class="border-0">Quantity</th>
-                                                <th class="border-0">Quantity</th>
-                                                <th class="border-0">Created On</th>
+                                                
+                                                {{-- <th class="border-0">Created On</th> --}}
                                                
                                             </tr>
                                         </thead>

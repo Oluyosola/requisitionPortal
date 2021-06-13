@@ -20,7 +20,7 @@
                         <a class="" href="{{route('home')}}" >General Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('store_action')}}" >Processed</a>
+                        <a class="" href="{{route('store_processed')}}" >Processed</a>
                     </li>
                     <li class="nav-item nav-link">
                         <a class="" href="{{route('create_item')}}" >Items</a>
@@ -84,7 +84,7 @@
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
-                                                    <th class="border-0" colspan="">Approved</th>
+                                                    <th class="border-0" colspan="">Process</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
@@ -112,33 +112,36 @@
  
                                                    
                                                    <div class="modal fade" id="modal-approval{{$result->id}}">
-                                                     <form action="{{route('manager_approve_requisition', $result->id)}}" method="GET">
+                                                     <form action="{{route('store_action', $result->id)}}" method="GET">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
                                                               <input type="hidden" name="approve" value="{{$result->id}}">
                                                               <div class="modal-header">
-                                                                 <h4 class="modal-title">Approve Requistion</h4>
+                                                                 <h4 class="modal-title">Process Requistion</h4>
                                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                                  
                                                               </div>
                                                               <div class="modal-body">
                                                                  <div class="form-group row" style="padding-top: 20px">
-                                                                     <label for="manager_approval_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
+                                                                     <label for="store_processing_comment" class="col-md-4 col-form-label text-md-right">{{ __('Comment') }}</label>
                                                                      <div class="col-md-6">
-                                                                         <textarea name="manager_approval_comment" rows="4" cols="50" maxlength="50" placeholder = "e.g Give Justification for the approval"id="name" class="form-control" required="required"></textarea><br>
+                                                                         <textarea name="store_processing_comment" rows="4" cols="50" maxlength="50" placeholder = "Justification"id="name" class="form-control" required="required"></textarea><br>
                                                                      </div>
                                                                  </div>
+                                                                 <div>
+                                                                    <input type="hidden" value="{{$result->id}}" name="req_id">
+                                                                </div>
                                                              </div>
                                                               <div class="modal-footer">
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                 <input type="submit" name="submit" value="Approve" class="btn btn-success">
+                                                                 <input type="submit" name="submit" value="Process" class="btn btn-success">
                                                                 
                                                               </div>
                                                            </div>
                                                         </div>
                                                      </form>
                                                   </div>
-                                                  <div class="modal fade" id="modal-reject{{$result->id}}">
+                                                  {{-- <div class="modal fade" id="modal-reject{{$result->id}}">
                                                     <form action="{{route('manager_reject_requisition', $result->id)}}" method="GET">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
@@ -166,7 +169,7 @@
                                                 </div>
 
                                                  
-                                               
+                                                --}}
                                                     @endforeach
                                                     
                                                 @endif

@@ -36,12 +36,12 @@ class RequisitionController extends Controller
         $status = Status::all();
         $user = User::all();
         $item_unit = QuantityUnit::get()->pluck("name", "id");
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(10);
+        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(4);
         return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user', 'item_unit'));
     }
     
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

@@ -33,7 +33,7 @@ class StoreController extends Controller
     {
         
         $store = Auth::user()->unit_id;
-        // $manager = 4;
+        // $store = 4;
         // dd($store);
         $results = $this->store_repo->getStoreApproval($store);
         // dd($results);
@@ -50,18 +50,29 @@ class StoreController extends Controller
         // $item_unit = QuantityUnit::get();
         // return view('store.create_item', compact('item_unit'));
     }
+    public function storeProcess(Request $request, StoreApproval $store){
+        $store->approval_comment = $request->input('store_processing_comment');
+        $store->is_approved = true;
+        $store->requisition_id = $request->input('req_id');
+        // $store->reporting_id = Auth::user()->reporting_designation_type_id;
+        // $store->requisition->quantity = $request->input('quantity');
+        $store->store_id = Auth::user()->id;
+        $store->save();
+        return redirect('/store')->with('success', 'Requisition Accepted');;
 
-    public function StoreApprovalAction (Requisition $requisition)   {
-        $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
-        return view('approval_actions.store', compact('results'));
-    }
+          }
+
+    // public function StoreApprovalAction (Requisition $requisition)   {
+    //     $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
+    //     return view('approval_actions.store', compact('results'));
+    // }
 
     public function allItem()
     {
         $quantity_unit = QuantityUnit::all();
         // dd($item_unit);
         $results = Item::all();
-        return view('store.create_item', compact('quantity_unit', 'results'));
+        return view('store.item', compact('quantity_unit', 'results'));
     }
 
     /**
@@ -82,6 +93,17 @@ class StoreController extends Controller
         $item->save();
         return back()->with('success','Item created successfully!');
 
+    }
+
+
+    public function storeProcessed(){
+        $store = Auth::user()->designation_type_id;
+
+
+        $results = $this->store_repo->getProcessed($store);
+        // dd($results);
+
+        return view('approval_actions.store', compact('results'));
     }
 
     /**

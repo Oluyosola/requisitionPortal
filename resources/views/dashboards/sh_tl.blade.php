@@ -86,7 +86,7 @@
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
-                                                    <th class="border-0">Description</th>
+                                                    {{-- <th class="border-0">Description</th> --}}
                                                     {{-- <th class="border-0">Status</th> --}}
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                             
@@ -104,8 +104,10 @@
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
+                                                        <td>{{$result->item_name}}</td>
+                                                        <td>{{$result->quantity.$result->quantityUnit}}</td>
 
-                                                        <td>{{$result->item_name}}</td> 
+                                                        
                                                         {{-- <td>{{$result->quantity}}</td>
                                                         <td>{{$result->description}}</td>
                                                          --}}
