@@ -6,12 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
-use App\Models\Category;
+use App\Models\StoreApproval;
 use App\Models\Item;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Models\QuantityUnit;
+use App\Repositories\Interfaces\StoreRepositoryInterface;
+
+
 
 class StoreController extends Controller
 {
+
+    public $store_repo;
+
+    public function __construct(StoreRepositoryInterface $store_repo)
+
+    {
+        $this->middleware('auth');
+        $this->store_repo = $store_repo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,19 +32,15 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $ic = Auth::user()->designation_type_id;
-        // dd($clevel);
-            $sql_query = "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity,requisitions.req_id as req_id, 
-        requisitions.description as description, users.name as user_name, categories.name as category_name, 
-        items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
-        LEFT JOIN items ON requisitions.item_id = items.id
-        LEFT JOIN users ON requisitions.manager_id = users.id OR requisitions.user_id = users.id WHERE users.reporting_designation_type_id = $ic
-        OR requisitions.is_clevel_approved = 1";
-        $results=  DB::select($sql_query);
-        // return view ('dashboards.internal_control', compact('results'));
+        
+        $store = Auth::user()->unit_id;
+        // $store = 4;
+        // dd($store);
+        $results = $this->store_repo->getStoreApproval($store);
+        // dd($results);
         return view('dashboards.store', compact('results'));
     }
-
+       
     /**
      * Show the form for creating a new resource.
      *
@@ -42,18 +51,29 @@ class StoreController extends Controller
         // $item_unit = QuantityUnit::get();
         // return view('store.create_item', compact('item_unit'));
     }
+    public function storeProcess(Request $request, StoreApproval $store){
+        $store->approval_comment = $request->input('store_processing_comment');
+        $store->quantity_given = $request->input('quantity_given');
+        $store->is_approved = true;
+        $store->requisition_id = $request->input('req_id');
+        $store->store_id = Auth::user()->id;
+        $store->save();
+        
+        return redirect('/store')->with('success', 'Requisition Processed');;
 
-    public function StoreApprovalAction (Requisition $requisition)   {
-        $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
-        return view('approval_actions.store', compact('results'));
-    }
+          }
+
+    // public function StoreApprovalAction (Requisition $requisition)   {
+    //     $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
+    //     return view('approval_actions.store', compact('results'));
+    // }
 
     public function allItem()
     {
         $quantity_unit = QuantityUnit::all();
         // dd($item_unit);
         $results = Item::all();
-        return view('store.create_item', compact('quantity_unit', 'results'));
+        return view('store.item', compact('quantity_unit', 'results'));
     }
 
     /**
@@ -65,15 +85,30 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id','length' => 10, 'prefix' => 'ITE-']);
+        if(Item::where('name', $request->item)->exists()) {
+         return back()->with('error', 'Item exist!');
+        }
         $item = new Item();
         $item->category_id = 1;
         $item->name = $request->input('item');
         $item->quantity = $request->input('quantity');
+        $item->item_id = $id;
         // dd($item->quantity);
         $item->quantity_unit_id = $request->input('quantity_unit');
         $item->save();
         return back()->with('success','Item created successfully!');
+    }
 
+
+    public function storeProcessed(){
+        $store = Auth::user()->designation_type_id;
+
+
+        $results = $this->store_repo->getProcessed($store);
+        // dd($results);
+
+        return view('approval_actions.store', compact('results'));
     }
 
     /**

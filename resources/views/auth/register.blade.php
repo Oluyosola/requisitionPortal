@@ -62,7 +62,8 @@
                             <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
                             <div class="col-md-6">
                                 <select name="designation_type" class="form-control" id="input">
-                                    <option></option>
+                                    <option value="">   not</option>
+                                    <option> </option>
                                 </select>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                             <label for="reportingdesignation" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
                             <div class="col-md-6">        
                                 <select name="reporting_designation" class="form-control" id="input">
-                                    <option value="">  </option>
+                                    <option value=""> </option>
                                     @foreach ($reporting_designation as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                      @endforeach

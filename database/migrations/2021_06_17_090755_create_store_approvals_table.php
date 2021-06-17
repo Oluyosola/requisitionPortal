@@ -20,7 +20,7 @@ class CreateStoreApprovalsTable extends Migration
             $table->integer('requisition_id');
             $table->boolean('is_approved');
             $table->text('approval_comment')->nullable();
-            $table->text('rejection_comment')->nullable();
+            $table->integer('quantity_given');
         });
     }
 

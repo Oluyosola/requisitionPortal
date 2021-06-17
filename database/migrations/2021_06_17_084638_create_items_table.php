@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddItemsIdToItemsTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class AddItemsIdToItemsTable extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('name');
             $table->string('item_id');
+            $table->integer('quantity');
+            $table->integer('quantity_unit_id');
+            $table->integer('category_id')->references('id')->on('categories');
         });
     }
 
@@ -25,8 +31,6 @@ class AddItemsIdToItemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('items', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('items');
     }
 }

@@ -34,16 +34,16 @@ class Requisition extends Model
         return $this->belongsTo('App\Models\User', 'user_id');
     }
     public function store (){
-        return $this->hasOne(Store::class);
+        return $this->hasOne(StoreApproval::class);
     }
     public function ic (){
-        return $this->hasOne(Ic::class);
+        return $this->hasOne(IcApproval::class);
     }
     public function manager (){
         return $this->hasOne(ManagerApproval::class);
     }
     public function shTl (){
-        return $this->hasOne(ShTl::class);
+        return $this->hasOne(ShTlApproval::class);
     }
     public function Approvals (){
         return $this->hasMany(Approval::class);

@@ -61,10 +61,15 @@ Route::get('/manager_rejected', [App\Http\Controllers\ManagerController::class, 
 
 // IC
 Route::get('/ic', [App\Http\Controllers\IcController::class, 'index']);
+Route::get('requisition/{requisition}/ic_approve_requisition', [App\Http\Controllers\IcController::class, 'icApproval'])->name('ic_approve_requisition');
+Route::get('requisition/{requisition}/ic_reject_requisition', [App\Http\Controllers\IcController::class, 'icRejection'])->name('ic_reject_requisition');
+Route::get('/ic_action', [App\Http\Controllers\IcController::class, 'IcApproved'])->name('ic_actions');
+Route::get('/ic_rejected', [App\Http\Controllers\IcController::class, 'IcRejected'])->name('ic_rejected');
 
-
+// 
 Route::get('/store', [App\Http\Controllers\StoreController::class, 'index']);
-Route::get('/store_action', [App\Http\Controllers\StoreController::class, 'storeApprovalAction'])->name('store_action');
+Route::get('/store_action', [App\Http\Controllers\StoreController::class, 'storeProcess'])->name('store_action');
+Route::get('/store_processed', [App\Http\Controllers\StoreController::class, 'storeProcessed'])->name('store_processed');
 Route::get('/item', [App\Http\Controllers\StoreController::class, 'allItem'])->name('create_item');
 Route::get('/all_items', [App\Http\Controllers\StoreController::class, 'allItem'])->name('item');
 Route::post('/new_item', [App\Http\Controllers\StoreController::class, 'store'])->name('store_new_item');

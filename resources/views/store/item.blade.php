@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="row">
                                         <div class="clear" style="clear: both"></div>
-                                        <div class="col-md-12">
+                                        <div class="col">
                                             <p align="center" style="margin-top: 10px;">
                                                 <button type="submit" class="btn btn-primary" style="background-color: #0077ad">
                                                     {{ __('Create') }}
@@ -86,10 +86,11 @@
                                     <table class="table">
                                         <thead class="bg-light">
                                             <tr class="border-0">
+                                                <th class="border-0">Item ID</th>
                                                 <th class="border-0">Item Name</th>
                                                 <th class="border-0">Quantity</th>
-                                                <th class="border-0">Quantity</th>
-                                                <th class="border-0">Created On</th>
+                                                
+                                                {{-- <th class="border-0">Created On</th> --}}
                                                
                                             </tr>
                                         </thead>
@@ -101,8 +102,9 @@
                                                         td                                                      --}}
                                                         {{-- <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a> --}}
                                                             
-                                                        
+                                                        <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
+
                                                         <td>{{$result->quantity.$result->quantityUnit->name}}</td>
                                                         {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                                        

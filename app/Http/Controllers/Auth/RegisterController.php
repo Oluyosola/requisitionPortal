@@ -94,11 +94,11 @@ class RegisterController extends Controller
             'unit_id' => $data['unit'],
             'location_id' => $data['location'],
             'designation_id' => $data['designation'],
-            'designation_type_id' => $data['designation_type'],
+            'designation_type_id' => $data['designation_type'] ??null,
             'reporting_designation_id' => $data['reporting_designation'],
             'reporting_designation_type_id' => $data['reporting_line'],
         
         ]);
-        return back()->with('success','Product successfully added.');
+        return back()->with('success','User successfully added.');
     }
 }

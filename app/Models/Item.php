@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
+// use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Item extends Model
 {
@@ -21,13 +21,13 @@ class Item extends Model
     public function quantityUnit (){
         return $this->belongsTo('App\Models\QuantityUnit', 'quantity_unit_id');
     }
-    public static function boot()
-    {
-    parent::boot();
-    self::creating(function ($model) {
-        $model->item_id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id', 'length' => 10, 'prefix' =>'ITE-']);
-    });
-    }
+    // public static function boot()
+    // {
+    // // parent::boot();
+    // // self::creating(function ($model) {
+    // //     $model->item_id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id', 'length' => 10, 'prefix' =>'ITE-']);
+    // // });
+    // }
     
 }
 
