@@ -83,7 +83,7 @@
                                                     <th class="border-0">#</th>
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
-                                                    <th class="border-0">Category</th>
+                                                    <th class="border-0">Item</th>
                                                     <th class="border-0" colspan="">Process</th>
                                                     {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
@@ -99,7 +99,7 @@
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$result->req_id}}</td>
                                                         <td>{{$result->user_name}}</td>
-                                                        <td>{{$result->category_name}}</td>
+                                                        <td>{{$result->quantity.$result->item_name}}</td>
                                                            <td>
  
                                                                 
@@ -128,6 +128,12 @@
                                                                          <textarea name="store_processing_comment" rows="4" cols="50" maxlength="50" placeholder = "Justification"id="name" class="form-control" required="required"></textarea><br>
                                                                      </div>
                                                                  </div>
+                                                                 <div class="form-group row" style="padding-top: 20px">
+                                                                    <label for="quantity_given" class="col-md-4 col-form-label text-md-right">{{ __('Quantity Given') }}</label>
+                                                                    <div class="col-md-6">
+                                                                        <input type="number" name="quantity_given" id="quantity_given" class="form-control" required="required"><br>
+                                                                    </div>
+                                                                </div>
                                                                  <div>
                                                                     <input type="hidden" value="{{$result->id}}" name="req_id">
                                                                 </div>

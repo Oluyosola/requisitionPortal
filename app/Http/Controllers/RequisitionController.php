@@ -88,7 +88,7 @@ class RequisitionController extends Controller
 $validator = Validator::make($request->all(), [
     'moreFields.*.category_id' => 'required',
     'moreFields.*.item_id' => 'required',
-    'moreFields.*.description' => 'required',
+    // 'moreFields.*.description' => 'required',
     'moreFields.*.quantity' => 'required'
     // 'moreFields.*.' => 'required'
     // 'moreFields.*.user_id' => 'required',
@@ -96,6 +96,7 @@ $validator = Validator::make($request->all(), [
 ]);
 if($validator->fails()){
     echo "oopps validation failed";
+
 }
 
 // $requisition = new Requisition;
@@ -109,7 +110,15 @@ $count = count($request->all()['moreFields']);
 
 
 for($i = 0; $i < $count; $i++ ) {   
+    
 $requisition = new Requisition;
+$item = Item::where('id', $request->all()['moreFields'][$i]['item_id'])->limit(3)->get();
+// dd($item);
+$item_remaining = $item['quantity'] < $request->all()['moreFields'][$i]['quantity'];
+
+if ($item_remaining ){
+    return redirect()->back()->with('error', 'Item is out of stock');
+}
 $requisition->category_id = $request->all()['moreFields'][$i]['category_id'];
 $requisition->item_id = $request->all()['moreFields'][$i]['item_id'];
 $requisition->description = $request->all()['moreFields'][$i]['description'];
@@ -117,8 +126,8 @@ $requisition->quantity = $request->all()['moreFields'][$i]['quantity'];
 $requisition->item_unit_id = $request->all()['moreFields'][$i]['item_unit'];
 $requisition->user_id = Auth::user()->id;
 $requisition->save();
-
 }
+
  return redirect('/home')->with('success', 'New Requisition Made');
 // });
 

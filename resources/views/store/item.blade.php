@@ -86,6 +86,7 @@
                                     <table class="table">
                                         <thead class="bg-light">
                                             <tr class="border-0">
+                                                <th class="border-0">Item ID</th>
                                                 <th class="border-0">Item Name</th>
                                                 <th class="border-0">Quantity</th>
                                                 
@@ -101,8 +102,9 @@
                                                         td                                                      --}}
                                                         {{-- <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a> --}}
                                                             
-                                                        
+                                                        <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
+
                                                         <td>{{$result->quantity.$result->quantityUnit->name}}</td>
                                                         {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                                        

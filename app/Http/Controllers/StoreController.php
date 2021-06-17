@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Requisition;
 use App\Models\StoreApproval;
 use App\Models\Item;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Models\QuantityUnit;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
 
@@ -52,13 +53,13 @@ class StoreController extends Controller
     }
     public function storeProcess(Request $request, StoreApproval $store){
         $store->approval_comment = $request->input('store_processing_comment');
+        $store->quantity_given = $request->input('quantity_given');
         $store->is_approved = true;
         $store->requisition_id = $request->input('req_id');
-        // $store->reporting_id = Auth::user()->reporting_designation_type_id;
-        // $store->requisition->quantity = $request->input('quantity');
         $store->store_id = Auth::user()->id;
         $store->save();
-        return redirect('/store')->with('success', 'Requisition Accepted');;
+        
+        return redirect('/store')->with('success', 'Requisition Processed');;
 
           }
 
@@ -84,15 +85,19 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        $id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id','length' => 10, 'prefix' => 'ITE-']);
+        if(Item::where('name', $request->item)->exists()) {
+         return back()->with('error', 'Item exist!');
+        }
         $item = new Item();
         $item->category_id = 1;
         $item->name = $request->input('item');
         $item->quantity = $request->input('quantity');
+        $item->item_id = $id;
         // dd($item->quantity);
         $item->quantity_unit_id = $request->input('quantity_unit');
         $item->save();
         return back()->with('success','Item created successfully!');
-
     }
 
 

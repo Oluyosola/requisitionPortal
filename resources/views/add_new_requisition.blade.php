@@ -2,9 +2,10 @@
 @section('content')
 {{-- <div class="dashboard-header"> --}}
 {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> --}}
+    
 <div style="margin-top: 100px">
     <div class="row justify-content-center">
-        
+        @include('inc.message')
             <div class="card">
                 <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Requisition Form') }}</h4></div>
                 <div class="card-body">
@@ -35,7 +36,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea name="moreFields[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" class="form-control description-textarea" value="" required="required" title=""></textarea><br>
+                                    <textarea name="moreFields[0][description]" rows="4" cols="50" maxlength="50" placeholder = "e.g brief description of the requisition"id="input" class="form-control description-textarea" value=""  title=""></textarea><br>
                                 </td>
                                 <td> 
                                     <input type="number" name="moreFields[0][quantity]" step="0.01" style="width: 150px" placeholder = "" id="input" cols="30" rows="10" class="form-control quantity-input" value="" required="required" title=""></textarea><br>
@@ -115,7 +116,7 @@ $("#add-btn").click(function(){
       '</td><td>'+
       '<select name="moreFields['+ i + '][item_id]" class="form-control" id="item-select'+ i + '">'+
       '<option>--item--</option></select>'+
-      '</td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder="e.g brief description of the requisition" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea>'+
+      '</td><td><textarea name="moreFields[' + i + '][description]" rows="4" cols="50" maxlength="50" placeholder="e.g brief description of the requisition" id="input" cols="30" rows="10" class="form-control" value="" title=""></textarea>'+
       '<br></td><td> <input type="number" name="moreFields[' + i + '][quantity]" step="0.01" style="width: 150px" placeholder="" id="input" cols="30" rows="10" class="form-control" value="" required="required" title=""></textarea>'+
       '<br></td><td><select name="moreFields['+ i + '][item_unit]" class="form-control unit-select">'+
                                        '<option>--unit--</option>'+
