@@ -58,7 +58,7 @@ return view('dashboards.sh_tl', compact('results'));
         // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();
-        return redirect('/sh')->with('success', 'Requisition Accepted');;
+        return redirect('/sh')->with('success', 'Requisition Approved');;
 
           }
 
