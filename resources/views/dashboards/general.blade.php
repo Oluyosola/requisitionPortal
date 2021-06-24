@@ -171,7 +171,7 @@
                                                                  </div>
                                                               {{-- </div> --}}
                                                               <div class="modal-footer">
-                                                                 {{-- <a href="{{route('delete_requisition', $result->id)}}" class="btn btn-danger">Yes</a> --}}
+                                                                
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                               </div>
                                                            </div>

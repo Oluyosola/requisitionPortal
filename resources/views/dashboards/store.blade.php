@@ -23,10 +23,13 @@
                         <a class="" href="{{route('store_processed')}}" >Processed</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('create_item')}}" >Items</a>
+                        <a class="" href="{{route('create_item')}}">Items</a>
                     </li>  
                     <li class="nav-item nav-link">
-                        <a class="" href="" > Reorder Request</a>
+                        <a class="" href="{{route('reorder')}}"> Reorder</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a class="" href="{{route('stock_out')}}">Stock Out</a>
                     </li>                  
                 </ul>
             </div>

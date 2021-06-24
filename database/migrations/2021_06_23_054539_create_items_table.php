@@ -18,7 +18,8 @@ class CreateItemsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('item_id');
-            $table->integer('quantity');
+            $table->decimal('quantity');
+            $table->decimal('reorder_quantity');
             $table->integer('quantity_unit_id');
             $table->integer('category_id')->references('id')->on('categories');
         });

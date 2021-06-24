@@ -203,6 +203,7 @@ public function editItems($id){
     public function destroy(Requisition $requisition)
     {
        $requisition->delete();
+    //    dd($requisition->id);
         return back();
     }
 
