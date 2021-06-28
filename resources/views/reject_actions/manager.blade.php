@@ -41,6 +41,7 @@
                             <thead class="bg-light">
                                 <tr class="border-0">
                                     <th>Requisition ID</th>
+                                    <th>Requestor</th>
                                     <th class="border-0">Category</th>
                                     <th class="border-0">Item</th>
                                     <th class="border-o">Created On</th>
@@ -54,7 +55,7 @@
                                             {{-- <td>{{$result->id }}</td>  
                                             td                                                      --}}
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
-                                                
+                                            <td>{{$result->user_name}}</td>
                                             <td>{{$result->category_name }}</td>
                                             <td>{{$result->item_name}}</td>
                                             {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
@@ -62,7 +63,30 @@
                                             
                                            
                                         </tr>
-                                        
+                                        <div class="modal fade" id="modal-view{{$result->id}}">
+                                            <div class="modal-dialog">
+                                               <div class="modal-content">
+                                                  {{-- <div class="row"> --}}
+                                                      <div class="modal-header">
+                                                     <h4 class="text-center">Requisition Details</h4>
+                                                    </div>
+                                                     <div class="modal-body">
+                                                         <h5>REQ Number: {{$result->req_id}}</h5>
+                                                         <h5>REQ category: {{$result->category_name}}</h5>
+                                                         <h5>REQ Item: {{$result->item_name}}</h5>
+                                                         <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
+                                                         <h5>REQ Description: {{$result->description}}</h5>
+                                                         {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
+                                                     </div>
+                                                  {{-- </div> --}}
+                                                  <div class="modal-footer">
+                                                    
+                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                      </div>
+
                                         
                                             @endforeach
                                        @endif

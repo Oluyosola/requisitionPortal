@@ -92,6 +92,7 @@ class StoreController extends Controller
         $item = new Item();
         $item->category_id = 1;
         $item->name = $request->input('item');
+        $item->reorder_quantity = $request->input('reorder_quantity');
         $item->quantity = $request->input('quantity');
         $item->item_id = $id;
         // dd($item->quantity);
@@ -140,11 +141,31 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+    
+
+
+        $item->update([
+            'quantity' => $request->quantity,
+            'reorder_quantity' => $request->reorder_quantity
+        ]);
+       
+    
+        return redirect('/item')->with('success','Item updated successfully');
+    
+    }
+    public function reorder(){
+        $results = Item::where('quantity', '==', 'reorder_quantity')->get();
+        // dd($results);
+        return view('store.reorder', compact('results'));
     }
 
+    public function stockOut(){
+        $results = Item::where('quantity', '<=', 0)->get();
+        return view('store.stock_out', compact('results'));
+    }
+        
     /**
      * Remove the specified resource from storage.
      *

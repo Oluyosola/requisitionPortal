@@ -73,7 +73,9 @@ Route::get('/store_processed', [App\Http\Controllers\StoreController::class, 'st
 Route::get('/item', [App\Http\Controllers\StoreController::class, 'allItem'])->name('create_item');
 Route::get('/all_items', [App\Http\Controllers\StoreController::class, 'allItem'])->name('item');
 Route::post('/new_item', [App\Http\Controllers\StoreController::class, 'store'])->name('store_new_item');
-
+Route::get('/item/{item}/update_item', [App\Http\Controllers\StoreController::class, 'update'])->name('update_item');
+Route::get('/reorder', [App\Http\Controllers\StoreController::class, 'reorder'])->name('reorder');
+Route::get('/stock_out', [App\Http\Controllers\StoreController::class, 'stockOut'])->name('stock_out');
 
 
 

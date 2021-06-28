@@ -23,10 +23,13 @@
                         <a class="" href="{{route('store_processed')}}" >Processed</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a class="" href="{{route('create_item')}}" >Items</a>
+                        <a class="" href="{{route('create_item')}}">Items</a>
                     </li>  
                     <li class="nav-item nav-link">
-                        <a class="" href="" > Reorder Request</a>
+                        <a class="" href="{{route('reorder')}}"> Reorder</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a class="" href="{{route('stock_out')}}">Stock Out</a>
                     </li>                  
                 </ul>
             </div>
@@ -97,7 +100,7 @@
                                                                                                   
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
-                                                        <td>{{$result->req_id}}</td>
+                                                        <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</a></td>
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->quantity.$result->item_name}}</td>
                                                            <td>
@@ -109,7 +112,30 @@
                                                          </td>
                                                      </tr>
                                                       
- 
+                                                     <div class="modal fade" id="modal-view{{$result->id}}">
+                                                        <div class="modal-dialog">
+                                                           <div class="modal-content">
+                                                              {{-- <div class="row"> --}}
+                                                                  <div class="modal-header">
+                                                                 <h4 class="text-center">Requisition Details</h4>
+                                                                </div>
+                                                                 <div class="modal-body">
+                                                                     <h5>REQ Number: {{$result->req_id}}</h5>
+                                                                     <h5>REQ category: {{$result->category_name}}</h5>
+                                                                     <h5>REQ Item: {{$result->item_name}}</h5>
+                                                                     <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
+                                                                     <h5>REQ Description: {{$result->description}}</h5>
+                                                                     {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
+                                                                 </div>
+                                                              {{-- </div> --}}
+                                                              <div class="modal-footer">
+                                                                
+                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                  </div>
+
                                                    
                                                    <div class="modal fade" id="modal-approval{{$result->id}}">
                                                      <form action="{{route('store_action', $result->id)}}" method="GET">

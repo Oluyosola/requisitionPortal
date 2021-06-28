@@ -21,9 +21,10 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
        
        $sql_query =  "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
-        items.name as item_name FROM requisitions
+        items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM requisitions
         LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id 
+        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
         LEFT JOIN users ON requisitions.user_id = users.id
         LEFT JOIN sh_tl_approvals ON requisitions.id = sh_tl_approvals.requisition_id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id 
@@ -36,8 +37,9 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
     public function getApproved($manager){
         $sql_query =  "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
-        items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
+        items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id
+        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
         LEFT JOIN users ON requisitions.user_id = users.id 
         WHERE manager_approvals.is_approved = 1
@@ -52,8 +54,9 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
     public function getRejected($manager){
         $sql_query =  "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
-        items.name as item_name FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
+        items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id
+        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
         LEFT JOIN users ON requisitions.user_id = users.id 
         WHERE manager_approvals.is_approved = 0
