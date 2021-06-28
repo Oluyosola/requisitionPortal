@@ -62,6 +62,30 @@
                                             
                                            
                                         </tr>
+                                        <div class="modal fade" id="modal-view{{$result->id}}">
+                                            <div class="modal-dialog">
+                                               <div class="modal-content">
+                                                  {{-- <div class="row"> --}}
+                                                      <div class="modal-header">
+                                                     <h4 class="text-center">Requisition Details</h4>
+                                                    </div>
+                                                     <div class="modal-body">
+                                                         <h5>REQ Number: {{$result->req_id}}</h5>
+                                                         <h5>REQ category: {{$result->category_name}}</h5>
+                                                         <h5>REQ Item: {{$result->item_name}}</h5>
+                                                         <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
+                                                         <h5>REQ Description: {{$result->description}}</h5>
+                                                         {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
+                                                     </div>
+                                                  {{-- </div> --}}
+                                                  <div class="modal-footer">
+                                                    
+                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                      </div>
+
                                         
                                         
                                             @endforeach
