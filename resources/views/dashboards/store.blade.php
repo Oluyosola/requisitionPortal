@@ -2,6 +2,54 @@
 @section('content')
 <div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
     <div class="menu-list">
+        <div class="ecommerce-widget">
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body" style="background-color:#0077ad">
+                            <h5 class="" style="color:#003765">Create New Requisition</h5>
+                            <div class="metric-value d-inline-block">
+                                <a class="mb-1" href="{{route('new_requisition')}}"><img src="assets/img/addition.png" alt="" width="50px" height="40px"></a>
+                            </div>
+                        </div>
+                        <div id="sparkline-revenue"></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body" >
+                            <h5 class="text-muted">Total Number of Requisitions Made</h5>
+                            <div class="metric-value d-inline-block">
+                                {{-- <h1 class="mb-1">{{$results->total()}}</h1> --}}
+                            </div>
+                        </div>
+                        <div id="sparkline-revenue2"></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body" style= "background-color:#08457e; color:white">
+                            <h5 class=>Total Number of Requisitions approved</h5>
+                            <div class="metric-value d-inline-block">
+                                <h1 class="mb-1">0</h1>
+                            </div>
+                        </div>
+                        <div id="sparkline-revenue3"></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-muted">Favourite category</h5>
+                            <div class="metric-value d-inline-block">
+                                <h1 class="mb-1">Asset</h1>
+                            </div>
+                        </div>
+                        <div id="sparkline-revenue4"></div>
+                    </div>
+                </div>
+            </div>
+
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
