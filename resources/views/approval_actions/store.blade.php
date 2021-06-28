@@ -49,7 +49,7 @@
                             </thead>
                             <tbody>
                                 @if (count($results) >0)
-                                    @foreach($results as $result)
+                                    @foreach($results ?? '' as $result)
                                         <tr>
                                             {{-- <td>{{$result->id }}</td>  
                                             td                                                      --}}

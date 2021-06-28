@@ -11,6 +11,10 @@ use App\Models\Item;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Models\QuantityUnit;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
+use Barryvdh\DomPDF\Facade as PDF;
+
+
+
 
 
 
@@ -176,4 +180,18 @@ class StoreController extends Controller
     {
         //
     }
+    public function createPDF() {
+
+        $store = Auth::user()->unit_id;
+
+        $result = $this->store_repo->getStoreApproval($store);
+
+        // share data to view
+        view()->share('results',$result);
+        $pdf = PDF::loadView('un', $result);
+  
+        // download PDF file with download method
+        return  $pdf->download('req.pdf');
+      }
+
 }

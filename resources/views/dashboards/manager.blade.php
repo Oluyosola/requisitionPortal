@@ -6,11 +6,11 @@
             <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button> 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: white">Menu</h3>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <li class="nav-divider">
+                            <h3 style="color: white">Menu</h3>
                     </li>
                     <li class="nav-item nav-link">
                         <a class="" href="{{url('/manager')}}">Dashboard</a>
@@ -26,7 +26,7 @@
                     <li class="nav-item nav-link">
                         {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
                         <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
-                    </li>                    
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -89,12 +89,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            
+
                                                 @if (count($results)>0)
                                                     @foreach ($results as $result)
-                                                   
-                                            
-                                                                                                  
+
+
+
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</a></td>
@@ -108,16 +108,16 @@
                                                         {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
                                                         <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
                                                             <td>
- 
+
                                                                 {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
                                                                 <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
- 
-                                                             
+
+
                                                          </td>
                                                      </tr>
-                                                      
- 
+
+
                                                      <div class="modal fade" id="modal-view{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
@@ -135,7 +135,7 @@
                                                                  </div>
                                                               {{-- </div> --}}
                                                               <div class="modal-footer">
-                                                                
+
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                               </div>
                                                            </div>
@@ -150,7 +150,7 @@
                                                               <div class="modal-header">
                                                                  <h4 class="modal-title">Approve Requistion</h4>
                                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                 
+
                                                               </div>
                                                               <div class="modal-body">
                                                                  <div class="form-group row" style="padding-top: 20px">
@@ -166,7 +166,7 @@
                                                               <div class="modal-footer">
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                  <input type="submit" name="submit" value="Approve" class="btn btn-success" style="background-color: #0077ad">
-                                                                
+
                                                               </div>
                                                            </div>
                                                         </div>
@@ -180,7 +180,7 @@
                                                                 <div class="modal-header">
                                                                     <h4 class="modal-title">Reject Requistion</h4>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                           
+
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-group row" style="padding-top: 20px">
@@ -203,13 +203,13 @@
                                                     </form>
                                                 </div>
 
-                                                 
-                                               
+
+
                                                     @endforeach
                                                     @else
-                                                    <h3 style="text-align: center">No Requistion found for Approval</h3> 
+                                                    <h3 style="text-align: center">No Requistion found for Approval</h3>
                                                  @endif
-                                                 
+
                                                 {{-- @endif --}}
 
                                             </tbody>
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- ============================================================== -->
                         <!-- end recent orders  -->
 
