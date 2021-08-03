@@ -19,15 +19,12 @@
                         <a href="{{route('home')}}" style="color: white">General Dashboard</a>
                     </li>
                     <li class="nav-item nav-link">
-                        
                         <a class="" href="{{route('sh_tl_approved')}}" >Approved</a>
                     </li>
                     <li class="nav-item nav-link">
-                        
                         <a class="" href="{{route('sh_tl_rejected')}}" >Rejected</a>
                     </li>
-
-                </ul>
+                 </ul>
             </div>
         </nav>
     </div>
@@ -64,13 +61,7 @@
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
-                       <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-
-                                      <!-- recent orders  -->
-                        <!-- ============================================================== -->
-                        @include('inc.message')
+                @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
                                 <h5 class="card-header text-center" style="background-color: #0077ad">Requisition Approval Board</h5>

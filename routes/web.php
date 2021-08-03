@@ -76,7 +76,7 @@ Route::post('/new_item', [App\Http\Controllers\StoreController::class, 'store'])
 Route::get('/item/{item}/update_item', [App\Http\Controllers\StoreController::class, 'update'])->name('update_item');
 Route::get('/reorder', [App\Http\Controllers\StoreController::class, 'reorder'])->name('reorder');
 Route::get('/stock_out', [App\Http\Controllers\StoreController::class, 'stockOut'])->name('stock_out');
-
+Route::get('/req/pdf', [App\Http\Controllers\StoreController::class, 'createPDF']);
 
 
 // C Level

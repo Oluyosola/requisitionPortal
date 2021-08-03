@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e82ed4bb-7a3d-47cf-89ab-50525827ffc9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/requisitionPortal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/requisitionPortal.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/dashboards/general.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboards/general.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboards/manager.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboards/manager.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboards/sh_tl.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboards/sh_tl.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboards/store.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboards/store.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +151,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/haruncpi/laravel-id-generator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pOOPelQNX2ntlIGawu7IeFUQiX" />
@@ -184,10 +190,22 @@
       <workItem from="1615216358993" duration="903000" />
       <workItem from="1617226124761" duration="2464000" />
       <workItem from="1617638664201" duration="376000" />
+      <workItem from="1624910789758" duration="742000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/dashboards/general.blade.php</url>
+          <line>277</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
