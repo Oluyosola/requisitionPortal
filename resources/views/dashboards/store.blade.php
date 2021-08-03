@@ -73,8 +73,9 @@
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body" style="background-color:#0077ad">
-                                <h5 class="" style="color:#003765">Total Number of Items</h5>
+                                <h5 class="" style="color:#003765">Total Number of Items In Store</h5>
                                 <div class="metric-value d-inline-block">
+                                     <h1 class="mb-1">{{$item->total()}}</h1>
                                 </div>
                             </div>
                             <div id="sparkline-revenue"></div>

@@ -41,8 +41,8 @@ class StoreController extends Controller
         // $store = 4;
         // dd($store);
         $results = $this->store_repo->getStoreApproval($store);
-        // dd($results);
-        return view('dashboards.store', compact('results'));
+        $item = Item::paginate();
+        return view('dashboards.store', compact('results', 'item'));
     }
        
     /**
@@ -160,10 +160,12 @@ class StoreController extends Controller
     
     }
     public function reorder(){
-        $results = Item::where('quantity', '==', 'reorder_quantity')->get();
+        $results = Item::where(['quantity' => 'reorder_quantity'])->get();
         // dd($results);
+        if($results){
         return view('store.reorder', compact('results'));
     }
+}
 
     public function stockOut(){
         $results = Item::where('quantity', '<=', 0)->get();
@@ -188,7 +190,7 @@ class StoreController extends Controller
 
         // share data to view
         view()->share('results',$result);
-        $pdf = PDF::loadView('un', $result);
+        $pdf = PDF::loadView('dashboards.store', $result)->setOptions(['defaultFont' => 'sans-serif']);
   
         // download PDF file with download method
         return  $pdf->download('req.pdf');
