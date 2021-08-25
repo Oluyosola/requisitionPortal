@@ -1,41 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
-    <div class="menu-list">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: white">Menu</h3>
-                    </li>
-                    <li class="nav-item nav-link">
-                        <a class="" href="{{url('/ic')}}">Dashboard</a>
-                    </li>
-                    <li class="nav-item nav-link ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('home')}}" >General Dashboard</a>
-                    </li>
-                    <li class="nav-item nav-link">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('ic_actions')}}" >Approved</a>
-                    </li>
-                    <li class="nav-item nav-link">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
-                    </li>                    
-                </ul>
-            </div>
-        </nav>
-    </div>
-</div>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
+@include('dashboards.sidebar')
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">

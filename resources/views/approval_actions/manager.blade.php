@@ -98,11 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="center">
-                {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/manager')}}">Go Back</a> </button>
-            </div>
-            
+                
                    <div class="footer">
             <div class="container-fluid">
                 <div class="row">

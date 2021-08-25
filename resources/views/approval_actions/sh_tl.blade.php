@@ -1,33 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
-    <div class="menu-list">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> 
-            {{-- <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: wheat">Menu</h3>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Approval Dashboard</a>
-                    </li>
-                    <li class="nav-item ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        {{-- <a class="" href="{{route('home')}}" >General Dashboard</a>
-                    </li>
-                    <li class="nav-item "> --}}
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> 
-                        <a class="" href="{{route('manager_actions')}}" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">Approved/Rejected Requisition</a>
-                    </li>                    
-                </ul>
-            </div> --}}
-        </nav>
-    </div>
-</div>
+@include('dashboards.sidebar')
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -115,10 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="center">
-                {{-- {{ $results->links() }} --}}
-                <button class="btn btn-primanry" style="background-color: #003765; color:white"> <a href="{{url('/sh')}}">Go Back</a> </button>
-            </div>
+                
             
                    <div class="footer">
             <div class="container-fluid">

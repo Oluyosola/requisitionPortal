@@ -1,5 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
+@include('dashboards.sidebar')
 {{-- <div class="dashboard-header"> --}}
 {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> --}}
     
