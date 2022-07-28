@@ -1,7 +1,9 @@
 <?php
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\CheckStatus;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+
+
 
 
 /*
@@ -22,15 +24,20 @@ Route::get('/', function () {
 
 
 
-// User's Registration and Login
+// User's Login
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::post('register', 'Auth\RegisterController@register');
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::get('register/getreportinglines/{id}', [RegisterController::class, 'getReportingLines']);
+// User's Registration
+
+Route::controller(RegisterController::class)->group(function () {
+Route::post('register', 'register');
+Route::get('register', 'showRegistrationForm')->name('register');
+Route::get('register/getreportinglines/{id}', 'getReportingLines');
+});
+
 
 
 
