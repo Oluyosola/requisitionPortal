@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -71,19 +71,7 @@
                     </div>
                 </div>
                 
-                   <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
+                  @include('inc.footer')
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

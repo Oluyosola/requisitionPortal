@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
     <!-- wrapper  -->
     <!-- ============================================================== -->
 <div class="dashboard-wrapper">
@@ -48,7 +48,6 @@
                             <div class="card-body" >
                                 <h5 class="text-muted">Items at Reorder Level</h5>
                                 <div class="metric-value d-inline-block">
-                                    {{-- <h1 class="mb-1">{{$results->total()}}</h1> --}}
                                 </div>
                             </div>
                             <div id="sparkline-revenue2"></div>
@@ -78,7 +77,6 @@
                     </div>
                 </div>
                     
-                {{-- <div class="col-xl-12 col-12 col-md-12 col-sm-12 col-12"> --}}
                     <div class="d-flex justify-content-end mb-4">
                         <a class="btn btn-primary" style="background-color: #003765" href="{{ URL::to('/req/pdf') }}">Export to PDF</a>
                     </div> 
@@ -87,10 +85,7 @@
        
     </div>
 </div>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
+        <!-- ============================================================== -->
     <!-- wrapper  -->
     <!-- ============================================================== -->
                        <!-- ============================================================== -->
@@ -102,13 +97,11 @@
                                         <table class="table">
                                             <thead class="">
                                                 <tr class="border-0">
-                                                    {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0" colspan="">Process</th>
-                                                    {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -145,9 +138,7 @@
                                                                      <h5>REQ Item: {{$result->item_name}}</h5>
                                                                      <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
-                                                                     {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
                                                                  </div>
-                                                              {{-- </div> --}}
                                                               <div class="modal-footer">
                                                                 
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -205,27 +196,7 @@
                             </div>
                         </div>
                         
-                        <!-- ============================================================== -->
-                        <!-- end recent orders  -->
-
-
-
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
+                       @include('inc.footer')
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

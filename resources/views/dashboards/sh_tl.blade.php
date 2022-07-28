@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- wrapper  -->
@@ -40,15 +40,12 @@
                                         <table class="table table-hover" >
                                             <thead class="">
                                                 <tr class="border-0">
-                                                    {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
                                                     <th class="border-0">Requisistion ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Item</th>
                                                     <th class="border-0">Quantity</th>
-                                                    {{-- <th class="border-0">Description</th> --}}
-                                                    {{-- <th class="border-0">Status</th> --}}
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
                                             
                                                 </tr>
@@ -66,13 +63,7 @@
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->item_name}}</td>
-                                                        <td>{{$result->quantity.$result->quantityUnit}}</td>
-
-                                                        
-                                                        {{-- <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td>
-                                                         --}}
-                                                       
+                                                        <td>{{$result->quantity.$result->quantityUnit}}</td>                                                       
   
                                                         <td>
                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
@@ -85,7 +76,6 @@
                                                     <div class="modal fade" id="modal-view{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
-                                                              {{-- <div class="row"> --}}
                                                                   <div class="modal-header">
                                                                  <h4 class="text-center">Requisition Details</h4>
                                                                 </div>
@@ -95,9 +85,7 @@
                                                                      <h5>REQ Item: {{$result->item_name}}</h5>
                                                                      <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
-                                                                     {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
                                                                  </div>
-                                                              {{-- </div> --}}
                                                               <div class="modal-footer">
                                                                 
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -143,7 +131,6 @@
                                                     <form action="{{route('sh_tl_approve_requisition', $result->id)}}" method="GET">
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
-                                                             {{-- <input type="hidden" name="requisition" value="{{$result->id}}"> --}}
                                                              <div class="modal-header">
                                                                 <h4 class="modal-title">Approve Requistion</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -162,7 +149,6 @@
                                                                 <div>
                                                                     <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
 
-                                                                    {{-- <input type="quantity" name="" id=""> --}}
                                                                     <div class="col-md-6">
 
                                                                     <input type="number" value="{{$result->quantity}}" step="0.01" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
@@ -181,7 +167,6 @@
                                                  
                                                 </tr>
                                                 
-                                                {{-- @endif --}}
                                                  @endforeach
                                                @else
                                                    <h3 style="text-align: center">No Requistion found for Approval</h3> 
@@ -196,28 +181,7 @@
                             </div>
                         </div>
                         
-                        <!-- ============================================================== -->
-                        <!-- end recent orders  -->
-
-
-
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
-    </div>
+                        @include('inc.footer')    </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->

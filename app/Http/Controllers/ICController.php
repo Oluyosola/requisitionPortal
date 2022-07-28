@@ -29,10 +29,7 @@ class IcController extends Controller
     public function index()
     {
         $ic = Auth::user()->unit_id;
-        // $manager = 4;
-        // dd($ic);
         $results = $this->ic_repo->getIcApproval($ic);
-        // dd($results);
         return view('dashboards.ic', compact('results'));
     }
 
@@ -58,7 +55,6 @@ class IcController extends Controller
     }
 
     public function icRejection(Request $request, IcApproval $ic){
-        // dd($request->all());
         $ic->rejection_comment = $request->input('ic_rejection_comment');
         $ic->is_approved = false;
         $ic->ic_id = Auth::user()->id;
@@ -68,11 +64,7 @@ class IcController extends Controller
     }  
     public function icApproved (){
         $ic = Auth::user()->designation_type_id;
-
-
         $results = $this->ic_repo->getApproved($ic);
-        // dd($results);
-
         return view('approval_actions.ic', compact('results'));
     }
 

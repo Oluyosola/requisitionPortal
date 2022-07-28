@@ -33,7 +33,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
                         </li>
-                    @elseif(Auth::user()->designation_id == 6)
+                        @elseif(Auth::user()->designation_id == 5)
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/ic')}}">IC Dashboard</a>
                         </li>
@@ -43,7 +43,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
                         </li>
-                    @elseif(Auth::user()->designation_id == 7)
+                    @elseif(Auth::user()->designation_id == 6)
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/store')}}" >Store's Dashboard</a>
                         </li>

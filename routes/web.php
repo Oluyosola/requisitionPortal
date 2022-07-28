@@ -20,22 +20,28 @@ Route::get('/', function () {
 });
 
 
-// User's Registration
-Auth::routes();
-Route::get('create_user', [App\Http\Controllers\Auth\RegisterController::class, 'getUserDetails']);
-Route::get('create_user/getreportinglines/{id}', [App\Http\Controllers\Auth\RegisterController::class, 'getReportingLines']);
+
+
+// User's Registration and Login
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('register/getreportinglines/{id}', [RegisterController::class, 'getReportingLines']);
+
 
 
 // requisition controller
-Route::get('/op', [App\Http\Controllers\RequisitionController::class, 'createPdf']);
-Route::get('requisition/{requisition}/delete_requisition', [App\Http\Controllers\RequisitionController::class, 'destroy'])->name('delete_requisition');
-Route::get('requisition', [App\Http\Controllers\RequisitionController::class, 'getCategories'])->name('new_requisition');
-Route::get('requisition/getitems/{id}', [App\Http\Controllers\RequisitionController::class, 'getItems']);
-Route::post('/create_new_requisition',  [App\Http\Controllers\RequisitionController::class, 'store'])->name('store_new_requisition');
-Route::get('/home', [App\Http\Controllers\RequisitionController::class, 'index'])->name('home');
-Route::get('requisition/edit_categories', [App\Http\Controllers\RequisitionController::class, 'editCategories'])->name('edit');
-Route::get('requisition/edititems/{id}', [App\Http\Controllers\RequisitionController::class, 'editItems']);
-Route::get('requisition/pdf', [App\Http\Controllers\RequisitionController::class, 'requisitionPdf'])->name('requisition_pdf');
+Route::get('requisition/{requisition}/delete_requisition', [RequisitionController::class, 'destroy'])->name('delete_requisition');
+Route::get('requisition', [RequisitionController::class, 'getCategories'])->name('new_requisition');
+Route::get('requisition/getitems/{id}', [RequisitionController::class, 'getItems']);
+Route::post('/create_new_requisition',  [RequisitionController::class, 'store'])->name('store_new_requisition');
+Route::get('/home', [RequisitionController::class, 'index'])->name('home');
+Route::get('requisition/edit_categories', [RequisitionController::class, 'editCategories'])->name('edit');
+Route::get('requisition/edititems/{id}', [RequisitionController::class, 'editItems']);
 
 
 // Admin
@@ -77,9 +83,3 @@ Route::get('/item/{item}/update_item', [App\Http\Controllers\StoreController::cl
 Route::get('/reorder', [App\Http\Controllers\StoreController::class, 'reorder'])->name('reorder');
 Route::get('/stock_out', [App\Http\Controllers\StoreController::class, 'stockOut'])->name('stock_out');
 Route::get('/req/pdf', [App\Http\Controllers\StoreController::class, 'createPDF']);
-
-
-// C Level
-// Route::get('/clevel', [App\Http\Controllers\CLevelController::class, 'index']);
-// Route::get('requisition/{requisition}/clevel_approve_requisition', [App\Http\Controllers\ClevelController::class, 'clevelApproval'])->name('clevel_approve_requisition');
-// Route::get('requisition/{requisition}/clevel_reject_requisition', [App\Http\Controllers\ClevelController::class, 'clevelRejection'])->name('clevel_reject_requisition');

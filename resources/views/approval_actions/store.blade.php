@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -42,13 +42,10 @@
                                 @if (count($results) >0)
                                     @foreach($results ?? '' as $result)
                                         <tr>
-                                            {{-- <td>{{$result->id }}</td>  
-                                            td                                                      --}}
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
                                             <td>{{$result->user_name}}</td>
                                             <td>{{$result->category_name }}</td>
                                             <td>{{$result->item_name}}</td>
-                                            {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                            
                                             
                                            
@@ -56,7 +53,6 @@
                                         <div class="modal fade" id="modal-view{{$result->id}}">
                                             <div class="modal-dialog">
                                                <div class="modal-content">
-                                                  {{-- <div class="row"> --}}
                                                       <div class="modal-header">
                                                      <h4 class="text-center">Requisition Details</h4>
                                                     </div>
@@ -66,9 +62,7 @@
                                                          <h5>REQ Item: {{$result->item_name}}</h5>
                                                          <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
                                                          <h5>REQ Description: {{$result->description}}</h5>
-                                                         {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
                                                      </div>
-                                                  {{-- </div> --}}
                                                   <div class="modal-footer">
                                                     
                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -89,19 +83,8 @@
                     </div>
                 </div>
                             
-                   <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
+                @include('inc.footer')
 
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

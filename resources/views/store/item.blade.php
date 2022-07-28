@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -24,13 +24,10 @@
                 </div>
             </div>
             @include('inc.message')
-            {{-- <div class="container"> --}}
-                {{-- <div class="row justify-content-center"> --}}
+            
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> 
-                        {{-- <div class="card">
-                            <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Create Item') }}</h4></div>
-                            <div class="card-body"> --}}
+                        
                                 <form method="POST" action="{{route('store_new_item')}}">
                                     @csrf
                                     <div class="row">
@@ -48,7 +45,6 @@
                                         </div>
 
                                         
-                                        {{-- </div> --}}
                                         <div class="col">
                                             <label for="quantity_unit">Item Unit</label>
                                             <select name="quantity_unit" class="form-control " id="">
@@ -88,7 +84,6 @@
                                                 <th class="border-0">Reorder Quantity</th>
                                                 <th class="border-0" colspan="">Update Item</th>
                                                 
-                                                {{-- <th class="border-0">Created On</th> --}}
                                                
                                             </tr>
                                         </thead>
@@ -96,16 +91,12 @@
                                             @if (count($results) >0)
                                                 @foreach($results as $result)
                                                     <tr>
-                                                        {{-- <td>{{$result->id }}</td>  
-                                                        td                                                      --}}
-                                                        {{-- <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a> --}}
                                                             
                                                         <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
 
                                                         <td>{{$result->quantity.$result->quantityUnit->name}}</td>
                                                         <td>{{$result->reorder_quantity.$result->quantityUnit->name}}</td>
-                                                        {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                                        
                                                         <td>
  
@@ -122,7 +113,6 @@
                                                  <form action="{{route('update_item', $result->id)}}" method="GET">
                                                     <div class="modal-dialog">
                                                        <div class="modal-content">
-                                                          {{-- <input type="hidden" name="approve" value="{{$result->id}}"> --}}
                                                           <div class="modal-header">
                                                              <h4 class="modal-title">Update Item</h4>
                                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -144,7 +134,6 @@
                                                             
                                                          </div>
                                                           <div class="modal-footer">
-                                                            {{-- <a href="{{route('update_item', $result->id)}}" class="btn btn-danger">Update</a> --}}
                                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                              <input type="submit" name="submit" value="Save" class="btn btn-success">
                                                             
@@ -168,19 +157,7 @@
                                 </div>
                             </div>
                                     
-                   <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
+                   @include('inc.footer')
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

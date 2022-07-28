@@ -1,9 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
-{{-- <div class="dashboard-header"> --}}
-{{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> --}}
-    
+@include('inc.sidebar')   
 <div style="margin-top: 100px">
     <div class="row justify-content-center">
         @include('inc.message')
@@ -62,7 +59,7 @@
                                     {{ __('Create') }}
                                 </button>
                 
-                                <a href="{{ route('home') }}" class="btn btn-primary btnCancelForm" style="background-color: #003765">Cancel</a>
+                                <a href="{{ route('home') }}" class="btn btn-danger btnCancelForm" style="background-color: #003765">Cancel</a>
                             </p>
                         </div>
                     </form>
@@ -133,9 +130,7 @@ $(this).parents('tr').remove();
     
 });  
  </script> 
- {{-- <td><select name="moreFields['+i+'][category]" class="form-control" id="input"><option value="">--- Select category ---</option>@foreach ($categories as $key => $value) <option value="{{ $key }}">{{ $value }}</option>@endforeach</select></td> --}}
 
 
-{{-- </script> --}}
    
 @endsection

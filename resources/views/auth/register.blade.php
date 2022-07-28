@@ -15,120 +15,110 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email"
+                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="unit" class="col-md-4 col-form-label text-md-right">Select unit</label>
                             <div class="col-md-6">
-                                <select name ="unit" placeholder="please select "class="form-control" value="">  
+                                <select name="unit" placeholder="please select " class="form-control" value="">
                                     @foreach($units as $unit)
-                                        <option value="{{$unit->id}}">{{$unit->unit}}</option>
+                                    <option value="{{$unit->id}}">{{$unit->unit}}</option>
                                     @endforeach
                                 </select><br>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="designation" class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
+                            <label for="designation"
+                                class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
                             <div class="col-md-6">
-                                <select name ="designation" placeholder="please select "class="form-control" value ="">  
+                                <select name="designation" placeholder="please select " class="form-control" value="">
                                     @foreach ($reporting_designation as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select><br>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
+                            <label for="reporting_line"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Select Designation Type') }}</label>
                             <div class="col-md-6">
                                 <select name="designation_type" class="form-control" id="input">
-                                    <option value="">   not</option>
+                                    <option value=""> </option>
                                     <option> </option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reportingdesignation" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
-                            <div class="col-md-6">        
+                            <label for="reportingdesignation"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation') }}</label>
+                            <div class="col-md-6">
                                 <select name="reporting_designation" class="form-control" id="input">
                                     <option value=""> </option>
                                     @foreach ($reporting_designation as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
-                                     @endforeach
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reporting_line" class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation type') }}</label>
+                            <label for="reporting_line"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Select Reporting Designation type') }}</label>
                             <div class="col-md-6">
                                 <select name="reporting_line" class="form-control" id="input">
                                     <option> </option>
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="form-group row">
-                            <label for="reporting" class="col-md-4 col-form-label text-md-right">Select Reporting Managers</label>
-                            <div class="col-md-6">
-                                <select name ="reporting" placeholder="please select "class="form-control">  
-                                    @foreach($reporting_managers as $reporting_manager)
-                                        <option value="{{$reporting_manager->id}}">{{$reporting_manager->reporting_manager}}</option>
-                                    @endforeach
-                                </select><br>
-                            </div>
-                        </div> --}}
+
+
                         <div class="form-group row">
-                            <label for="location" class="col-md-4 col-form-label text-md-right">Select Locationss</label>
-                            <div class="col-md-6">
-                                <select name ="location" placeholder="please select "class="form-control">  
-                                    @foreach($locations as $location)
-                                        <option value="{{$location->id}}">{{$location->location}}</option>
-                                    @endforeach
-                                </select><br>
-                                
-                            </div>
-                        </div>
-                        
-                        
-                          
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
                         <div class="form-group row mb-0">
@@ -144,57 +134,58 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-        jQuery('select[name="reporting_designation"]').on('change',function(){
+    jQuery(document).ready(function () {
+        jQuery('select[name="reporting_designation"]').on('change', function () {
             var reportingDesignationID = jQuery(this).val();
-               if(reportingDesignationID)
-               {
-                    jQuery.ajax({
-                        url : 'create_user/getreportinglines/' +reportingDesignationID,
-                        type : "GET",
-                        dataType : "json",
-                        success:function(data)
-                       {
-                            console.log(data);
-                            jQuery('select[name="reporting_line"]').empty();
-                            jQuery.each(data, function(key,value){
-                            $('select[name="reporting_line"]').append('<option value="'+ key +'">'+ value +'</option>');
+            if (reportingDesignationID) {
+                jQuery.ajax({
+                    url: 'create_user/getreportinglines/' + reportingDesignationID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        jQuery('select[name="reporting_line"]').empty();
+                        jQuery.each(data, function (key, value) {
+                            $('select[name="reporting_line"]').append(
+                                '<option value="' + key + '">' + value +
+                                '</option>');
                         });
                     }
-                  });
-                }else{
-                    $('select[name="reporting_line"]').empty();
-                }
-            });
+                });
+            } else {
+                $('select[name="reporting_line"]').empty();
+            }
+        });
     });
+
 </script>
 <script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-        jQuery('select[name="designation"]').on('change',function(){
+    jQuery(document).ready(function () {
+        jQuery('select[name="designation"]').on('change', function () {
             var DesignationID = jQuery(this).val();
-               if(DesignationID)
-               {
-                    jQuery.ajax({
-                        url : 'create_user/getreportinglines/' +DesignationID,
-                        type : "GET",
-                        dataType : "json",
-                        success:function(data)
-                       {
-                            console.log(data);
-                            jQuery('select[name="designation_type"]').empty();
-                            jQuery.each(data, function(key,value){
-                            $('select[name="designation_type"]').append('<option value="'+ key +'">'+ value +'</option>');
+            if (DesignationID) {
+                jQuery.ajax({
+                    url: 'create_user/getreportinglines/' + DesignationID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        jQuery('select[name="designation_type"]').empty();
+                        jQuery.each(data, function (key, value) {
+                            $('select[name="designation_type"]').append(
+                                '<option value="' + key + '">' + value +
+                                '</option>');
                         });
                     }
-                  });
-                }else{
-                    $('select[name="designation_type"]').empty();
-                }
-            });
+                });
+            } else {
+                $('select[name="designation_type"]').empty();
+            }
+        });
     });
+
 </script>
 
 @endsection

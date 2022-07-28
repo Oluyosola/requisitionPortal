@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Requisition;
 use App\Models\StoreApproval;
 use App\Models\Item;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Models\QuantityUnit;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
-use Barryvdh\DomPDF\Facade as PDF;
 
 
 
@@ -38,8 +35,7 @@ class StoreController extends Controller
     {
         
         $store = Auth::user()->unit_id;
-        // $store = 4;
-        // dd($store);
+        
         $results = $this->store_repo->getStoreApproval($store);
         $item = Item::paginate();
         return view('dashboards.store', compact('results', 'item'));
@@ -50,11 +46,7 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createItem()
-    {
-        // $item_unit = QuantityUnit::get();
-        // return view('store.create_item', compact('item_unit'));
-    }
+    
     public function storeProcess(Request $request, StoreApproval $store){
         $store->approval_comment = $request->input('store_processing_comment');
         $store->quantity_given = $request->input('quantity_given');
@@ -67,11 +59,7 @@ class StoreController extends Controller
 
           }
 
-    // public function StoreApprovalAction (Requisition $requisition)   {
-    //     $results = Requisition::where(['is_store_approved' => 1||0, 'store_id' => Auth::user()->id])->get();
-    //     return view('approval_actions.store', compact('results'));
-    // }
-
+    
     public function allItem()
     {
         $quantity_unit = QuantityUnit::all();
@@ -88,7 +76,6 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id','length' => 10, 'prefix' => 'ITE-']);
         if(Item::where('name', $request->item)->exists()) {
          return back()->with('error', 'Item exist!');
@@ -99,7 +86,6 @@ class StoreController extends Controller
         $item->reorder_quantity = $request->input('reorder_quantity');
         $item->quantity = $request->input('quantity');
         $item->item_id = $id;
-        // dd($item->quantity);
         $item->quantity_unit_id = $request->input('quantity_unit');
         $item->save();
         return back()->with('success','Item created successfully!');
@@ -182,18 +168,4 @@ class StoreController extends Controller
     {
         //
     }
-    public function createPDF() {
-
-        $store = Auth::user()->unit_id;
-
-        $result = $this->store_repo->getStoreApproval($store);
-
-        // share data to view
-        view()->share('results',$result);
-        $pdf = PDF::loadView('dashboards.store', $result)->setOptions(['defaultFont' => 'sans-serif']);
-  
-        // download PDF file with download method
-        return  $pdf->download('req.pdf');
-      }
-
 }

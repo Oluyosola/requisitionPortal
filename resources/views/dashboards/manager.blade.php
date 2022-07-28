@@ -1,6 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-@include('dashboards.sidebar')
+@include('inc.sidebar')
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">
@@ -50,7 +50,6 @@
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Description</th>
                                                     <th class="border-0" colspan="2">Approval/Rejection</th>
-                                                    {{-- <th class="border-0">Delete</th> --}}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -66,15 +65,9 @@
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->description}}</td>
-                                                        {{-- <td>{{$result->item_name}}</td> --}}
-                                                        {{-- <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td> --}}
-                                                        {{-- <td>{{$result->manger_app}}</td> --}}
-                                                        {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
+                                                       
                                                             <td>
 
-                                                                {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
                                                                 <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
 
@@ -86,7 +79,6 @@
                                                      <div class="modal fade" id="modal-view{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
-                                                              {{-- <div class="row"> --}}
                                                                   <div class="modal-header">
                                                                  <h4 class="text-center">Requisition Details</h4>
                                                                 </div>
@@ -96,9 +88,7 @@
                                                                      <h5>REQ Item: {{$result->item_name}}</h5>
                                                                      <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
-                                                                     {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
                                                                  </div>
-                                                              {{-- </div> --}}
                                                               <div class="modal-footer">
 
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -156,7 +146,6 @@
                                                                         <div>
                                                                             <input type="hidden" value="{{$result->id}}" name="req_id">
                                                                         </div>
-                                                                    {{-- </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -175,7 +164,6 @@
                                                     <h3 style="text-align: center">No Requistion found for Approval</h3>
                                                  @endif
 
-                                                {{-- @endif --}}
 
                                             </tbody>
                                         </table>
@@ -183,29 +171,8 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- ============================================================== -->
-                        <!-- end recent orders  -->
-
-
-
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
-    </div>
+@include('inc.footer')
+                            </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->
