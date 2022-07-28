@@ -27,7 +27,6 @@ class User extends Authenticatable
         'location_id',
         'designation_id',
         'designation_type_id',
-        // 'reporting_id',
         'reporting_designation_id',
         'reporting_designation_type_id',
         
@@ -68,19 +67,6 @@ class User extends Authenticatable
     }
     public function Unit(){
         return $this->belongsTo(Unit::class);
-
-    }
-    // public function Designation(){
-    //     return $this->belongsTO(Designation::class);
-
-    // }
-    public function Location(){
-        return $this->belongsTo(Location::class);
-
-    }
-    public function Reporting(){
-        return $this->belongsTo(ReportingManager::class);
-
     }
     public function Designation()
     {
@@ -90,7 +76,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(DesignationType::class);
     }
-    public function Approval(){
-        return $this->hasMany(Approval::class);
-    }
+    
 }

@@ -1,29 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-    <div class="nav-left-sidebar">
-        <div class="menu-list">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-divider">
-                            <h3 style="color: wheat">Menu</h3>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
+@include('inc.sidebar')
         <!-- wrapper  -->
         <!-- ============================================================== -->
     <div class="dashboard-wrapper">
@@ -93,7 +70,7 @@
                                 <div class="card-body">
                                     <h5 class="text-muted">Favourite category</h5>
                                     <div class="metric-value d-inline-block">
-                                        <h1 class="mb-1">Asset</h1>
+                                        <h1 class="mb-1">Store</h1>
                                     </div>
                                 </div>
                                 <div id="sparkline-revenue4"></div>
@@ -101,13 +78,7 @@
                         </div>
                     </div>
                         
-                    {{-- <div class="col-xl-12 col-12 col-md-12 col-sm-12 col-12"> --}}
-                        <div class="d-flex justify-content-end mb-4">
-                            <a class="btn btn-primary" style="background-color: #003765" href="{{ route('requisition_pdf') }}">Export to PDF</a>
-                        </div>
-
-                        
-                     {{-- </div> --}}
+                       
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
@@ -234,114 +205,16 @@
                     <div class="center">
                         {{ $results->links() }}
                     </div>
-                    <div class="row no-print">
-                        <div class="col-12">
-                            <a href="{{ url('/home') }}" target="_blank" class= "btn btn-default"><i class="fa fa-print" aria-hidden = "true"></i>Print</a>
-                        </div>
-                    </div>
+                   
                 </div>
-                        <!-- ============================================================== -->
-                            <!-- end recent orders  -->
-
-
-                            <script type="text/javascript">
-                                $(document).ready(function(){
-                                $('.btnprn').printPage();
-                                });
-                                </script>
-
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
+                        
             </div>
-            <div class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © Synlab. All rights reserved.
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
+            @include('inc.footer')
         </div>
         <!-- ============================================================== -->
         <!-- end wrapper  -->
         <!-- ============================================================== -->
     </div>
         
-   
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // alert('hey');
-            
-            });
-            function onCategorySelectChange(id){
-                var categoryID = jQuery('#category-select' + id).val();
-                console.log('tableID =', id);
-        
-                console.log('categoryID =', categoryID);
-                    if(categoryID)
-                    {
-                    jQuery.ajax({
-                            url : 'requisition/getitems/' +categoryID,
-                            type : "GET",
-                            dataType : "json",
-                            success:function(data)
-                        {
-                        console.log(data);
-                        $('#item-select' + id).empty();
-                        jQuery.each(data, function(key,value){
-                        $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                        },
-                        error:function(data)
-                        {
-                            console.log(data);
-                        }
-                    });
-                    }else{
-                        jQuery('#item-select' + id).empty();
-                    }
-                }
-                </script>
-<script type="text/javascript">
-$(document).ready(function () {
-    // alert('hey');
-    
-    });
-    function onCategorySelectChange(id){
-        var categoryID = jQuery('#category-select' + id).val();
-        console.log('tableID =', id);
-
-        console.log('categoryID =', categoryID);
-            if(categoryID)
-            {
-            $.ajax({
-                    url : 'requisition/getitems/' +categoryID,
-                    type : "GET",
-                    dataType : "json",
-                    success:function(data)
-                {
-                console.log(data);
-                $('#item-select' + id).empty();
-                $.each(data, function(key,value){
-                $('#item-select' + id).append('<option value="'+ key +'">'+ value +'</option>');
-                });
-                },
-                error:function(data)
-                {
-                    console.log(data);
-                }
-            });
-            }else{
-                $('#item-select' + id).empty();
-            }
-        }
-        </script>
-        
+           
   @endsection

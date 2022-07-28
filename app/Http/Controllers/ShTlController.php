@@ -1,20 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
 use App\Models\Requisition;
-use App\Models\Item;
-// use App\Models\ShTl;
 use App\Models\ShTlApproval;
-use App\Models\Status;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Repositories\Interfaces\ShTlRepositoryInterface;
-// use App\Repositories\shTlRepository;
 
-// use Auth;
 
 class ShTlController extends Controller
 {
@@ -38,24 +30,16 @@ class ShTlController extends Controller
 
 $sh_tl = Auth::user()->designation_type_id;
 
-// dd($manager);
 $results = $this->sh_tl_repo->getRequisition($sh_tl);
 return view('dashboards.sh_tl', compact('results'));
 }
 
-        // -- $category = Category::all();
-        // -- $item = Item::all();
-        // -- $status = Status::all();
-        // -- $user = User::all();
-        // -- $results = Requisition::where(['is_sh_tl_approved' => null])->get();
-       
 
     public function shTlApproval(Request $request, ShTlApproval $sh_tl){
         $sh_tl->approval_comment = $request->input('sh_tl_approval_comment');
         $sh_tl->is_approved = true;
         $sh_tl->requisition_id = $request->input('requisition');
         $sh_tl->reporting_id = Auth::user()->reporting_designation_type_id;
-        // $sh_tl->requisition->quantity = $request->input('quantity');
         $sh_tl->sh_tl_id = Auth::user()->id;
         $sh_tl->save();
         return redirect('/sh')->with('success', 'Requisition Approved');;
@@ -75,20 +59,13 @@ return view('dashboards.sh_tl', compact('results'));
     public function shTlApproved (Requisition $requisition)   {
         
         $sh_tl = Auth::user()->designation_type_id;
-
-
         $results = $this->sh_tl_repo->getApproval($sh_tl);
-
         return view('approval_actions.sh_tl', compact('results'));
     }
 
     public function shTlRejected (Requisition $requisition)   {
-        // $results = Requisition::where(['is_sh_tl_approved' => 1||0, 'sh_tl_id' => Auth::user()->id])->get();
         $sh_tl = Auth::user()->designation_type_id;
-
-// dd($manager);
         $results = $this->sh_tl_repo->getRejected($sh_tl);
-
         return view('reject_actions.sh_tl', compact('results'));
     }
 

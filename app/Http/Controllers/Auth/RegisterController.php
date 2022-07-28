@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\Unit;
-use App\Models\Location;
-// use App\Models\Designation;
-use App\Models\ReportingManager;
 use App\Models\Designation;
 use App\Models\DesignationType;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -45,7 +41,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
+
     }
 
     /**
@@ -62,12 +59,10 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-    public function getUserDetails(){
+    public function showRegistrationForm(){
         $units = Unit::get();
-        $locations = Location::get();
         $reporting_designation = Designation::get()->pluck("name", "id");
-        // $reporting_line = ReportingLine::all();
-        return view('auth.register', compact('units', 'locations', 'reporting_designation'));   
+        return view('auth.register', compact('units', 'reporting_designation'));   
     }
  
     public function getReportingLines($id){
@@ -92,13 +87,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'unit_id' => $data['unit'],
-            'location_id' => $data['location'],
             'designation_id' => $data['designation'],
             'designation_type_id' => $data['designation_type'] ??null,
             'reporting_designation_id' => $data['reporting_designation'],
             'reporting_designation_type_id' => $data['reporting_line'],
         
         ]);
-        return back()->with('success','User successfully added.');
     }
 }

@@ -20,7 +20,7 @@ class DesignationSeeder extends Seeder
     
     public function run()
     {
-            $designations = ["Officer", "Site Head", "Team Lead", "Manager", "CLevel", "Ic", "Store"];
+            $designations = ["Officer", "Site Head", "Team Lead", "Manager", "Ic", "Store"];
             for ($i = 0; $i < count($designations); $i++){
                 foreach ($designations as $designation){
                     $designation = new Designation;

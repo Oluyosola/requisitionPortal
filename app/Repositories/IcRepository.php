@@ -16,7 +16,6 @@ use App\Repositories\Interfaces\IcRepositoryInterface;
     LEFT JOIN users ON requisitions.user_id = users.id
     LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
     LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
-    -- LEFT JOIN users ON requisitions.manager_id = users.id OR requisitions.user_id = users.id 
     LEFT JOIN ic_approvals ON requisitions.id = ic_approvals.requisition_id
     WHERE (ic_approvals.is_approved IS NULL AND manager_approvals.is_approved = 1) OR (ic_approvals.is_approved IS NULL AND users.designation_id = 4)";
     

@@ -1,41 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
-<div class="nav-left-sidebar sidebar-light" style="background-color: #003765">
-    <div class="menu-list">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button> 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-column">
-                    <li class="nav-divider">
-                        <h3 style="color: white">Menu</h3>
-                    </li>
-                    <li class="nav-item nav-link">
-                        <a class="" href="{{url('/ic')}}">Dashboard</a>
-                    </li>
-                    <li class="nav-item nav-link ">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('home')}}" >General Dashboard</a>
-                    </li>
-                    <li class="nav-item nav-link">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('ic_actions')}}" >Approved</a>
-                    </li>
-                    <li class="nav-item nav-link">
-                        {{-- <a href="{{route('home')}}" ><i class="fa fa-fw fa-user-circle"></i>General Dashboard</a> --}}
-                        <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
-                    </li>                    
-                </ul>
-            </div>
-        </nav>
-    </div>
-</div>
-    <!-- ============================================================== -->
-    <!-- end left sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
+@include('inc.sidebar')
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">
@@ -63,12 +28,7 @@
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
                 <!-- ============================================================== -->
-                       <!-- ============================================================== -->
-
-                        <!-- ============================================================== -->
-
-                                      <!-- recent orders  -->
-                        <!-- ============================================================== -->
+                       
                         @include('inc.message')
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
@@ -78,15 +38,12 @@
                                         <table class="table" >
                                             <thead class="bg-light">
                                                 <tr class="border-0">
-                                                    {{-- <th class="border-0">#</th> --}}
                                                     <th class="border-0">#</th>
                                                     <th class = "border-0">Requisition ID</th>
                                                     <th class="border-0">Requestor Name</th>
                                                     <th class="border-0">Category</th>
                                                     <th class="border-0">Description</th>
-                                                    <th class="border-0" colspan="2">Approval/Rejection</th>
-                                                    {{-- <th class="border-0">Delete</th> --}}
-                                                </tr>
+                                                    <th class="border-0" colspan="2">Approval/Rejection</th>                                               </tr>
                                             </thead>
                                             <tbody>
                                             
@@ -98,19 +55,12 @@
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</a></td>
-                                                        {{-- <td>{{$result->req_id}}</td> --}}
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->description}}</td>
-                                                        {{-- <td>{{$result->item_name}}</td> --}}
-                                                        {{-- <td>{{$result->quantity}}</td>
-                                                        <td>{{$result->description}}</td> --}}
-                                                        {{-- <td>{{$result->manger_app}}</td> --}}
-                                                        {{-- <td><button style="background-color: #0077ad"> <a href="{{route('approve_requisition', $result->id)}}">Accept</a></button></td>
-                                                        <td><button style="background-color: red"> <a href="{{route('reject_requisition', $result->id)}}">Reject</button></td> --}}
+                                                         
                                                             <td>
  
-                                                                {{-- <button class="btn btn-success"><a data-toggle="modal" href='#modal-approve{{$result->id}}'>Approval </a></button>  --}}
                                                                 <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
                                                                <a data-toggle="modal" href='#modal-reject{{$result->id}}' class="btn btn-danger">Reject</a>
  
@@ -121,7 +71,6 @@
                                                      <div class="modal fade" id="modal-view{{$result->id}}">
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
-                                                              {{-- <div class="row"> --}}
                                                                   <div class="modal-header">
                                                                  <h4 class="text-center">Requisition Details</h4>
                                                                 </div>
@@ -131,9 +80,7 @@
                                                                      <h5>REQ Item: {{$result->item_name}}</h5>
                                                                      <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
                                                                      <h5>REQ Description: {{$result->description}}</h5>
-                                                                     {{-- <h5>REQ Status: {{$result->status_name}}</h5> --}}
                                                                  </div>
-                                                              {{-- </div> --}}
                                                               <div class="modal-footer">
                                                                 
                                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -192,7 +139,6 @@
                                                                         <div>
                                                                             <input type="hidden" value="{{$result->id}}" name="req_id">
                                                                         </div>
-                                                                    {{-- </div> --}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -211,7 +157,6 @@
                                                     <h3 style="text-align: center">No Requistion found for Approval</h3> 
                                                  @endif
                                                  
-                                                {{-- @endif --}}
 
                                             </tbody>
                                         </table>
@@ -225,22 +170,8 @@
 
 
 
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                         Copyright © Synlab. All rights reserved.
-                    </div>
+                        @include('inc.footer')
 
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
-        <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

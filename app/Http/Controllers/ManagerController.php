@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Requisition;
 use App\Repositories\Interfaces\ManagerRepositoryInterface;
-
-use App\Constant\designations;
 use App\Models\ManagerApproval;
-use App\Notifications\RequisitionRejected;
-use Illuminate\Support\Facades\DB;
-// use Auth;
 
 class ManagerController extends Controller
 {   
@@ -30,9 +24,7 @@ class ManagerController extends Controller
     public function index()
     {
         $manager = Auth::user()->designation_type_id;
-        // dd($manager);
         $results = $this->manager_repo->getManagerApproval($manager);
-        // dd($results);
         return view('dashboards.manager', compact('results'));
    }
 
@@ -60,7 +52,6 @@ class ManagerController extends Controller
     }
 
     public function managerRejection(Request $request, ManagerApproval $manager){
-        // dd($request->all());
         $manager->rejection_comment = $request->input('manager_rejection_comment');
         $manager->is_approved = false;
         $manager->manager_id = Auth::user()->id;
@@ -70,18 +61,12 @@ class ManagerController extends Controller
     }  
     public function managerApproved (){
         $manager = Auth::user()->designation_type_id;
-
-
         $results = $this->manager_repo->getApproved($manager);
-        // dd($results);
-
         return view('approval_actions.manager', compact('results'));
     }
 
     public function managerRejected() {
         $manager = Auth::user()->designation_type_id;
-
-
         $results = $this->manager_repo->getRejected($manager);
 
         return view('reject_actions.manager', compact('results'));
