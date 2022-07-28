@@ -31,7 +31,6 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 // User's Registration
-
 Route::controller(RegisterController::class)->group(function () {
 Route::post('register', 'register');
 Route::get('register', 'showRegistrationForm')->name('register');
