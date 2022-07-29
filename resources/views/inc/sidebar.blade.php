@@ -28,7 +28,7 @@
                             <a class="" href="{{url('/manager')}}">Manager's Dashboard</a>
                         </li>
                         <li class="nav-item nav-link">
-                            <a class="" href="{{route('manager_actions')}}" >Approved</a>
+                            <a class="" href="{{route('manager_approved')}}" >Approved</a>
                         </li>
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
@@ -38,7 +38,7 @@
                             <a class="" href="{{url('/ic')}}">IC Dashboard</a>
                         </li>
                         <li class="nav-item nav-link">
-                            <a class="" href="{{route('ic_actions')}}" >Approved</a>
+                            <a class="" href="{{route('ic_approved')}}" >Approved</a>
                         </li>
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
