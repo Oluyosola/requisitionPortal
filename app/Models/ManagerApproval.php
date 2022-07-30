@@ -10,12 +10,12 @@ class ManagerApproval extends Model
     use HasFactory;
     protected $fillable = ['requisition_id', 'is_approved', 'approval_comment', 'rejection_comment', 'manager_id'];
 
-    public function Users()
+    public function user()
     {
-        return $this->belongsToMany('App\Models\User', 'id');
+        return $this->belongsTo(User::class);
     }
     public function requisition()
     {
-        return $this->belongsTo('App\Models\Requisition', 'id');
+        return $this->belongsTo(Requisition::class);
     }
 }

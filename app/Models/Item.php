@@ -12,14 +12,14 @@ class Item extends Model
     protected $fillable = ['name', 'category_id', 'quantity', 'reorder_quantity', 'quantity_unit_id', 'item_id'];
     
     
-    public function Category (){
+    public function category (){
         return $this->belongsTo(Category::class);
     }
-    public function Requisitions (){
+    public function requisitions (){
         return $this->hasMany(Requisition::class);
     }
     public function quantityUnit (){
-        return $this->belongsTo('App\Models\QuantityUnit', 'quantity_unit_id');
+        return $this->belongsTo(QuantityUnit::class);
     }
     // public static function boot()
     // {
