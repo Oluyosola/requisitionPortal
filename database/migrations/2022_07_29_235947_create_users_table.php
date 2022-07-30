@@ -19,14 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['user','admin'])->default('user');
-            $table->integer('unit_id');
-            $table->integer('designation_id');
-            $table->integer('designation_type_id')->nullable();
-            $table->integer('reporting_designation_id')->nullable();
-            $table->integer('reporting_designation_type_id')->nullable();
-
-
+            $table->foreignId('unit_id')->constrained()->onDelete('cascade');
+            $table->foreignId('designation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('designation_type_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('reporting_designation_id')->nullable()->constrained('designations')->onDelete('cascade');
+            $table->foreignId('reporting_designation_type_id')->nullable()->constrained('designation_types')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

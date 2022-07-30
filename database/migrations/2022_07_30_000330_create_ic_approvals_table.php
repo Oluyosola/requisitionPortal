@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManagerApprovalsTable extends Migration
+class CreateIcApprovalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateManagerApprovalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('manager_approvals', function (Blueprint $table) {
+        Schema::create('ic_approvals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('manager_id');
-            $table->integer('requisition_id');
+            $table->foreignId('ic_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('requisition_id')->constrained()->onDelete('cascade');
             $table->boolean('is_approved');
             $table->text('approval_comment')->nullable();
             $table->text('rejection_comment')->nullable();
@@ -31,6 +31,6 @@ class CreateManagerApprovalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manager_approvals');
+        Schema::dropIfExists('ic_approvals');
     }
 }

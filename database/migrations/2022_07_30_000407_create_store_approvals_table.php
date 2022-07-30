@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShTlApprovalsTable extends Migration
+class CreateStoreApprovalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateShTlApprovalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sh_tl_approvals', function (Blueprint $table) {
+        Schema::create('store_approvals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('sh_tl_id');
-            $table->integer('requisition_id');
+            $table->foreignId('store_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('requisition_id')->constrained()->onDelete('cascade');
             $table->boolean('is_approved');
             $table->text('approval_comment')->nullable();
-            $table->text('rejection_comment')->nullable();
+            $table->integer('quantity_given');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateShTlApprovalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sh_tl_approvals');
+        Schema::dropIfExists('store_approvals');
     }
 }

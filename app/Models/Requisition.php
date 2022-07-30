@@ -49,7 +49,7 @@ class Requisition extends Model
         return $this->hasMany(Approval::class);
     }
     public function quantityUnit (){
-        return $this->belongsTo('App\Models\QuantityUnit', 'item_unit_id');
+        return $this->belongsTo('App\Models\QuantityUnit', 'unit_id');
     }
     public static function boot()
 {

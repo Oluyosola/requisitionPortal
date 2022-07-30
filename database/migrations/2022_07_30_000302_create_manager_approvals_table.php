@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoreApprovalsTable extends Migration
+class CreateManagerApprovalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateStoreApprovalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('store_approvals', function (Blueprint $table) {
+        Schema::create('manager_approvals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('store_id');
-            $table->integer('requisition_id');
+            $table->foreignId('manager_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('requisition_id')->constrained()->onDelete('cascade');
             $table->boolean('is_approved');
             $table->text('approval_comment')->nullable();
-            $table->integer('quantity_given');
+            $table->text('rejection_comment')->nullable();
         });
     }
 
@@ -31,6 +31,6 @@ class CreateStoreApprovalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_approvals');
+        Schema::dropIfExists('manager_approvals');
     }
 }

@@ -33,7 +33,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
                         </li>
-                        @elseif(Auth::user()->designation_id == 5)
+                    @elseif(Auth::user()->designation_id == 5)
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/ic')}}">IC Dashboard</a>
                         </li>

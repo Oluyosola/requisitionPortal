@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
-use App\Models\Status;
 use App\Models\User;
 use App\Models\QuantityUnit;
 use Illuminate\Http\Request;
@@ -32,11 +31,10 @@ class RequisitionController extends Controller
            
         $categories = Category::get()->pluck("name", "id");
         $item = Item::all();
-        $status = Status::all();
         $user = User::all();
         $item_unit = QuantityUnit::get()->pluck("name", "id");
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(4);
-        return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user', 'item_unit'));
+        $results = Requisition::where('user_id', auth()->user()->id)->with('category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(4);
+        return view('dashboards.general', compact('results', 'categories', 'item', 'user', 'item_unit'));
     }
     
 
@@ -89,7 +87,7 @@ class RequisitionController extends Controller
         $requisition->item_id = $request->all()['moreFields'][$i]['item_id'];
         $requisition->description = $request->all()['moreFields'][$i]['description'];
         $requisition->quantity = $request->all()['moreFields'][$i]['quantity'];
-        $requisition->item_unit_id = $request->all()['moreFields'][$i]['item_unit'];
+        $requisition->unit_id = $request->all()['moreFields'][$i]['item_unit'];
         $requisition->user_id = Auth::user()->id;
         $requisition->save();
     }

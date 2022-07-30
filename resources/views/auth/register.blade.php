@@ -141,7 +141,7 @@
             var reportingDesignationID = jQuery(this).val();
             if (reportingDesignationID) {
                 jQuery.ajax({
-                    url: 'create_user/getreportinglines/' + reportingDesignationID,
+                    url: 'register/getreportinglines/' + reportingDesignationID,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -167,7 +167,7 @@
             var DesignationID = jQuery(this).val();
             if (DesignationID) {
                 jQuery.ajax({
-                    url: 'create_user/getreportinglines/' + DesignationID,
+                    url: 'register/getreportinglines/' + DesignationID,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

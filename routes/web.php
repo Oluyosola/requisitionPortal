@@ -79,8 +79,9 @@ Route::controller(IcController::class)->group(function () {
     Route::get('/ic', 'index');
     Route::get('requisition/{requisition}/ic_approve_requisition', 'icApproval')->name('ic_approve_requisition');
     Route::get('requisition/{requisition}/ic_reject_requisition', 'icRejection')->name('ic_reject_requisition');
-    Route::get('/ic_approved', 'IcApproved')->name('ic_approved');
-    Route::get('/ic_rejected', 'IcRejected')->name('ic_rejected');
+    Route::get('/ic_approved', 'icApproved')->name('ic_approved');
+    Route::get('/ic_rejected', 'icRejected')->name('ic_rejected');
+    
 });
 
 // Store Dashboard

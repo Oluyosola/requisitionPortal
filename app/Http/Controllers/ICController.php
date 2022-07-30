@@ -12,7 +12,7 @@ class IcController extends Controller
 {
     public $ic_repo;
 
-    public function __construct(ICRepositoryInterface $ic_repo)
+    public function __construct(IcRepositoryInterface $ic_repo)
 
     {
         $this->middleware('auth');
@@ -70,10 +70,7 @@ class IcController extends Controller
 
     public function icRejected() {
         $ic = Auth::user()->designation_type_id;
-
-
         $results = $this->ic_repo->getRejected($ic);
-
         return view('reject_actions.ic', compact('results'));
 
     }
