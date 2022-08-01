@@ -13,7 +13,7 @@
                     <li class="nav-item ">
                         <a class="nav-link active" href="{{route('home')}}"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
                     </li>
-                    @if(Auth::user()->designation_id == 2 || Auth::user()->designation_id == 3)
+                    @if(Auth::user()->designation_id == Config::get('constant.sh') || Auth::user()->designation_id == Config::get('constant.tl'))
                         <li class="nav-item nav-link" style="color: white">
                             <a class="" href="{{url('/sh')}}" style="color: white">Approval Dashboard</a>
                         </li>
@@ -23,7 +23,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('sh_tl_rejected')}}" >Rejected</a>
                         </li>
-                    @elseif(Auth::user()->designation_id == 4)
+                    @elseif(Auth::user()->designation_id == Config::get('constant.manager'))
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/manager')}}">Manager's Dashboard</a>
                         </li>
@@ -33,7 +33,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('manager_rejected')}}" >Rejected</a>
                         </li>
-                    @elseif(Auth::user()->designation_id == 5)
+                    @elseif(Auth::user()->designation_id == Config::get('constant.ic'))
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/ic')}}">IC Dashboard</a>
                         </li>
@@ -43,7 +43,7 @@
                         <li class="nav-item nav-link">
                             <a class="" href="{{route('ic_rejected')}}" >Rejected</a>
                         </li>
-                    @elseif(Auth::user()->designation_id == 6)
+                    @elseif(Auth::user()->designation_id == Config::get('constant.store'))
                         <li class="nav-item nav-link">
                             <a class="" href="{{url('/store')}}" >Store's Dashboard</a>
                         </li>

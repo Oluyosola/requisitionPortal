@@ -18,6 +18,7 @@ class ShTlController extends Controller
 
     {
         $this->middleware('auth');
+        $this->middleware('designation');
         $this->sh_tl_repo = $sh_tl_repo;
     }
        /**

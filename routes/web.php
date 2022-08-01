@@ -36,6 +36,8 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('register/getreportinglines/{id}', 'getReportingLines');
 });
 
+;
+
 // User's Login
 Route::controller(LoginController::class)->group(function () {
     Route::get('login', 'showLoginForm')->name('login');
@@ -55,12 +57,14 @@ Route::controller(RequisitionController::class)->group(function () {
 
 //Site Head and team Lead Dashboard
 Route::controller(ShTlController::class)->group(function () {
-    Route::get('/sh', 'index');
+    Route::get('/sh', 'index')->middleware('designation');
     Route::get('requisition/{requisition}/sh_tl_approve_requisition', 'shTlApproval')->name('sh_tl_approve_requisition');
     Route::get('requisition/{requisition}/sh_tl_reject_requisition', 'shTlRejection')->name('sh_tl_reject_requisition');
     Route::get('/sh_tl_approved', 'shTlApproved')->name('sh_tl_approved');
     Route::get('/sh_tl_rejected', 'shTlRejected')->name('sh_tl_rejected');
 });
+
+;
 
 
 // Manager Dashboard

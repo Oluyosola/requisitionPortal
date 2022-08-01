@@ -14,6 +14,7 @@ class ManagerController extends Controller
 
     {
         $this->middleware('auth');
+        $this->middleware('designation');
         $this->manager_repo = $manager_repo;
     }
     /**
