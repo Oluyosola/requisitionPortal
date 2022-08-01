@@ -70,7 +70,7 @@ class StoreController extends Controller
     {
         $quantity_unit = QuantityUnit::all();
         $results = Item::paginate(10);
-        return view('store.item', compact('quantity_unit', 'results'));
+        return view('dashboards.store.item', compact('quantity_unit', 'results'));
     }
 
     /**
@@ -149,13 +149,13 @@ class StoreController extends Controller
     public function reorder(){
         $results = Item::where('quantity', '<=', 'reorder_quantity')->get();
         if($results){
-        return view('store.reorder', compact('results'));
+        return view('dashboards.store.reorder', compact('results'));
     }
 }
 
     public function stockOut(){
         $results = Item::where('quantity', '<=', 0)->get();
-        return view('store.stock_out', compact('results'));
+        return view('dashboards.store.stock_out', compact('results'));
     }
         
     /**

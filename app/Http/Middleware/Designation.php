@@ -36,7 +36,7 @@ class Designation
         // }
         return $next($request);
         }
-        return redirect('home');
+        return redirect('/home');
 
     }
 }
