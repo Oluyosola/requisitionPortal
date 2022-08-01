@@ -196,7 +196,6 @@
                                 </div>
                             </div>
                             <div class="center">
-                                {{ $results->links() }}
         
                         </div>
                     </div>

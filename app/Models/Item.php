@@ -21,13 +21,6 @@ class Item extends Model
     public function quantityUnit (){
         return $this->belongsTo(QuantityUnit::class);
     }
-    // public static function boot()
-    // {
-    // // parent::boot();
-    // // self::creating(function ($model) {
-    // //     $model->item_id = IdGenerator::generate(['table' => 'items', 'field'=> 'item_id', 'length' => 10, 'prefix' =>'ITE-']);
-    // // });
-    // }
     
 }
 

@@ -57,7 +57,7 @@ Route::controller(RequisitionController::class)->group(function () {
 
 //Site Head and team Lead Dashboard
 Route::controller(ShTlController::class)->group(function () {
-    Route::get('/sh', 'index')->middleware('designation');
+    Route::get('/sh', 'index');
     Route::get('requisition/{requisition}/sh_tl_approve_requisition', 'shTlApproval')->name('sh_tl_approve_requisition');
     Route::get('requisition/{requisition}/sh_tl_reject_requisition', 'shTlRejection')->name('sh_tl_reject_requisition');
     Route::get('/sh_tl_approved', 'shTlApproved')->name('sh_tl_approved');
