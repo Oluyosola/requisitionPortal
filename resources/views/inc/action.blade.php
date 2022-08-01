@@ -1,7 +1,3 @@
-@extends('layouts.new_app')
-@section('content')
-@include('inc.sidebar')
-
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -32,7 +28,7 @@
                             <thead class="bg-light">
                                 <tr class="border-0">
                                     <th>Requisition ID</th>
-                                    <th class="border-0">Requestor</th>
+                                    <th>Requestor</th>
                                     <th class="border-0">Category</th>
                                     <th class="border-0">Item</th>
                                     <th class="border-o">Created On</th>
@@ -44,13 +40,14 @@
                                     @foreach($results as $result)
                                         <tr>
                                             <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
-                                                <td>{{$result->user_name}}</td>
+                                            <td>{{$result->user_name}}</td>
                                             <td>{{$result->category_name }}</td>
                                             <td>{{$result->item_name}}</td>
                                            
                                             
                                            
                                         </tr>
+                                        
                                         <div class="modal fade" id="modal-view{{$result->id}}">
                                             <div class="modal-dialog">
                                                <div class="modal-content">
@@ -72,7 +69,6 @@
                                             </div>
                                       </div>
 
-                                        
                                             @endforeach
                                        @endif
 
@@ -82,11 +78,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>            
                 @include('inc.footer')
-            </div>
+    </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->
 </div>   
-@endsection

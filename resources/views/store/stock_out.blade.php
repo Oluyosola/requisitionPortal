@@ -43,14 +43,11 @@
                                 @if (count($results) >0)
                                     @foreach($results as $result)
                                         <tr>
-                                            {{-- <td>{{$result->id }}</td>  
-                                            td                                                      --}}
                                             <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
 
                                                         <td>{{$result->quantity.$result->quantityUnit->name}}</td>
                                                         <td>{{$result->reorder_quantity.$result->quantityUnit->name}}</td>
-                                            {{-- <td>{{date_format($result->created_at, 'jS M Y')}}</td> --}}
                                            
                                             
                                            

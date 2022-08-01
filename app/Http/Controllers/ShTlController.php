@@ -27,12 +27,10 @@ class ShTlController extends Controller
      */
     public function index()
     {
-
-$sh_tl = Auth::user()->designation_type_id;
-
-$results = $this->sh_tl_repo->getRequisition($sh_tl);
-return view('dashboards.sh_tl', compact('results'));
-}
+        $sh_tl = Auth::user()->designation_type_id;
+        $results = $this->sh_tl_repo->getRequisition($sh_tl);
+        return view('dashboards.sh-tl.action', compact('results'));
+    }
 
 
     public function shTlApproval(Request $request, ShTlApproval $sh_tl){
@@ -60,13 +58,13 @@ return view('dashboards.sh_tl', compact('results'));
         
         $sh_tl = Auth::user()->designation_type_id;
         $results = $this->sh_tl_repo->getApproval($sh_tl);
-        return view('approval_actions.sh_tl', compact('results'));
+        return view('dashboards.sh-tl.approved', compact('results'));
     }
 
     public function shTlRejected (Requisition $requisition)   {
         $sh_tl = Auth::user()->designation_type_id;
         $results = $this->sh_tl_repo->getRejected($sh_tl);
-        return view('reject_actions.sh_tl', compact('results'));
+        return view('dashboards.sh-tl.rejected', compact('results'));
     }
 
     /**

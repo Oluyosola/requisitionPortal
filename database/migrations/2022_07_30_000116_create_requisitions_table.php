@@ -23,7 +23,7 @@ class CreateRequisitionsTable extends Migration
             $table->integer('category_id');
             $table->string('req_id');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('status')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('unit_id')->constrained()->onDelete('cascade');

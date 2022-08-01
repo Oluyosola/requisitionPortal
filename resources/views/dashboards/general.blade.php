@@ -28,7 +28,6 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     @include('inc.message')
-                    {{-- <div class="container"> --}}
                         
                 <div class="ecommerce-widget">
                     <div class="row">
@@ -146,6 +145,7 @@
                                                 </div>
                                                 <div class="modal fade" id="modal-edit{{$result->id}}">
                                                     <form action="" method="POST">
+                                                        @csrf
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <input type="hidden" name="company" value="{{$result->id}}">

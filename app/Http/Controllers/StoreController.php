@@ -8,9 +8,8 @@ use App\Models\StoreApproval;
 use App\Models\Item;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Models\QuantityUnit;
+use App\Models\Requisition;
 use App\Repositories\Interfaces\StoreRepositoryInterface;
-
-
 
 
 
@@ -34,11 +33,9 @@ class StoreController extends Controller
     public function index()
     {
         
-        $store = Auth::user()->unit_id;
-        
-        $results = $this->store_repo->getStoreApproval($store);
+        $results = $this->store_repo->getStoreApproval();
         $item = Item::paginate();
-        return view('dashboards.store', compact('results', 'item'));
+        return view('dashboards.store.action', compact('results', 'item'));
     }
        
     /**
@@ -53,18 +50,26 @@ class StoreController extends Controller
         $store->is_approved = true;
         $store->requisition_id = $request->input('req_id');
         $store->store_id = Auth::user()->id;
-        $store->save();
-        
-        return redirect('/store')->with('success', 'Requisition Processed');;
 
-          }
+        $requisition =  Requisition::where('id', $request->input('req_id'))->pluck('item_id');
+        $item = Item::where('id', $requisition)->first();
+        if( $request->input('quantity_given') >= $item->quantity){
+            return back()->with('error', 'insufficient Item quantity');
+        }
+        $store->save();
+
+        $new_quantity = $item->quantity - $request->input('quantity_given');
+        $item->update(['quantity' => $new_quantity]);
+        return redirect('/store')->with('success', 'Requisition Processed');
+        
+
+    }
 
     
     public function allItem()
     {
         $quantity_unit = QuantityUnit::all();
-        // dd($item_unit);
-        $results = Item::all();
+        $results = Item::paginate(10);
         return view('store.item', compact('quantity_unit', 'results'));
     }
 
@@ -94,12 +99,8 @@ class StoreController extends Controller
 
     public function storeProcessed(){
         $store = Auth::user()->designation_type_id;
-
-
         $results = $this->store_repo->getProcessed($store);
-        // dd($results);
-
-        return view('approval_actions.store', compact('results'));
+        return view('dashboards.store.processed', compact('results'));
     }
 
     /**
@@ -146,8 +147,7 @@ class StoreController extends Controller
     
     }
     public function reorder(){
-        $results = Item::where(['quantity' => 'reorder_quantity'])->get();
-        // dd($results);
+        $results = Item::where('quantity', '<=', 'reorder_quantity')->get();
         if($results){
         return view('store.reorder', compact('results'));
     }

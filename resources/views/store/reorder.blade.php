@@ -43,7 +43,6 @@
                                 @if (count($results) >0)
                                     @foreach($results as $result)
                                         <tr>
-                                                                                                  --}}
                                             <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
 

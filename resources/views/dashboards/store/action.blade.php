@@ -150,6 +150,7 @@
                                                    
                                                    <div class="modal fade" id="modal-approval{{$result->id}}">
                                                      <form action="{{route('store_action', $result->id)}}" method="GET">
+                                                        @csrf
                                                         <div class="modal-dialog">
                                                            <div class="modal-content">
                                                               <input type="hidden" name="approve" value="{{$result->id}}">
@@ -168,7 +169,7 @@
                                                                  <div class="form-group row" style="padding-top: 20px">
                                                                     <label for="quantity_given" class="col-md-4 col-form-label text-md-right">{{ __('Quantity Given') }}</label>
                                                                     <div class="col-md-6">
-                                                                        <input type="number" name="quantity_given" id="quantity_given" class="form-control" required="required"><br>
+                                                                        <input type="number" name="quantity_given" id="quantity_given" class="form-control" required="required" value="{{$result->quantity}}"><br>
                                                                     </div>
                                                                 </div>
                                                                  <div>
@@ -194,7 +195,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="center">
+                                {{ $results->links() }}
+        
                         </div>
+                    </div>
+                </div>
                         
                        @include('inc.footer')
     </div>

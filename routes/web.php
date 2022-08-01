@@ -50,8 +50,6 @@ Route::controller(RequisitionController::class)->group(function () {
     Route::get('requisition', 'getCategories')->name('new_requisition');
     Route::get('requisition/getitems/{id}','getItems');
     Route::post('/create_new_requisition',  'store')->name('store_new_requisition');
-    Route::get('requisition/edit_categories', 'editCategories')->name('edit');
-    Route::get('requisition/edititems/{id}', 'editItems');
     Route::get('requisition/{requisition}/delete_requisition', 'destroy')->name('delete_requisition');
 });
 

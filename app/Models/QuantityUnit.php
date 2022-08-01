@@ -14,7 +14,7 @@ class QuantityUnit extends Model
     public function item (){
         return $this->hasMany(Item::class);
     }
-    public function requisitions (){
-        return $this->hasMany(Item::class);
+    public function requisitions(){
+        return $this->hasMany(Requisition::class);
     }
 }

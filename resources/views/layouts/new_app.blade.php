@@ -45,7 +45,6 @@
     </head>
 <body>
     <div id="app">
-        @include('inc.message')
         @include('inc.nav')
         @yield('content')    
     </div>
