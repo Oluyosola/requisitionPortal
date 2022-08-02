@@ -14,6 +14,7 @@ class ManagerController extends Controller
 
     {
         $this->middleware('auth');
+        $this->middleware('designation');
         $this->manager_repo = $manager_repo;
     }
     /**
@@ -25,7 +26,7 @@ class ManagerController extends Controller
     {
         $manager = Auth::user()->designation_type_id;
         $results = $this->manager_repo->getManagerApproval($manager);
-        return view('dashboards.manager', compact('results'));
+        return view('dashboards.manager.action', compact('results'));
    }
 
  
@@ -62,14 +63,14 @@ class ManagerController extends Controller
     public function managerApproved (){
         $manager = Auth::user()->designation_type_id;
         $results = $this->manager_repo->getApproved($manager);
-        return view('approval_actions.manager', compact('results'));
+        return view('dashboards.manager.approved', compact('results'));
     }
 
     public function managerRejected() {
         $manager = Auth::user()->designation_type_id;
         $results = $this->manager_repo->getRejected($manager);
 
-        return view('reject_actions.manager', compact('results'));
+        return view('dashboards.manager.rejected', compact('results'));
 
 
     }

@@ -16,8 +16,9 @@ class CreateShTlApprovalsTable extends Migration
         Schema::create('sh_tl_approvals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('sh_tl_id');
-            $table->integer('requisition_id');
+            $table->foreignId('sh_tl_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('requisition_id')->constrained()->onDelete('cascade');
+            $table->foreignId('reporting_id')->constrained('designation_types')->onDelete('cascade');
             $table->boolean('is_approved');
             $table->text('approval_comment')->nullable();
             $table->text('rejection_comment')->nullable();

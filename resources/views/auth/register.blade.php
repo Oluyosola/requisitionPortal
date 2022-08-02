@@ -44,7 +44,7 @@
                         <div class="form-group row">
                             <label for="unit" class="col-md-4 col-form-label text-md-right">Select unit</label>
                             <div class="col-md-6">
-                                <select name="unit" placeholder="please select " class="form-control" value="">
+                                <select name="unit" placeholder="please select " class="form-control" value="" required>
                                     @foreach($units as $unit)
                                     <option value="{{$unit->id}}">{{$unit->unit}}</option>
                                     @endforeach
@@ -55,7 +55,7 @@
                             <label for="designation"
                                 class="col-md-4 col-form-label text-md-right">{{__('Select Designation')}}</label>
                             <div class="col-md-6">
-                                <select name="designation" placeholder="please select " class="form-control" value="">
+                                <select name="designation" placeholder="please select " class="form-control" value="" required>
                                     @foreach ($reporting_designation as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
@@ -141,7 +141,7 @@
             var reportingDesignationID = jQuery(this).val();
             if (reportingDesignationID) {
                 jQuery.ajax({
-                    url: 'create_user/getreportinglines/' + reportingDesignationID,
+                    url: 'register/getreportinglines/' + reportingDesignationID,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -167,7 +167,7 @@
             var DesignationID = jQuery(this).val();
             if (DesignationID) {
                 jQuery.ajax({
-                    url: 'create_user/getreportinglines/' + DesignationID,
+                    url: 'register/getreportinglines/' + DesignationID,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

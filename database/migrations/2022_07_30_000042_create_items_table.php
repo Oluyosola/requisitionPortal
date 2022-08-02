@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportingLinesTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateReportingLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reporting_lines', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->integer('reporting_designation_id');
+            $table->string('item_id');
+            $table->decimal('quantity');
+            $table->decimal('reorder_quantity');
+            $table->foreignId('quantity_unit_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -28,6 +32,6 @@ class CreateReportingLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reporting_lines');
+        Schema::dropIfExists('items');
     }
 }

@@ -12,7 +12,7 @@ class IcController extends Controller
 {
     public $ic_repo;
 
-    public function __construct(ICRepositoryInterface $ic_repo)
+    public function __construct(IcRepositoryInterface $ic_repo)
 
     {
         $this->middleware('auth');
@@ -30,7 +30,7 @@ class IcController extends Controller
     {
         $ic = Auth::user()->unit_id;
         $results = $this->ic_repo->getIcApproval($ic);
-        return view('dashboards.ic', compact('results'));
+        return view('dashboards.ic.action', compact('results'));
     }
 
     /**
@@ -65,16 +65,13 @@ class IcController extends Controller
     public function icApproved (){
         $ic = Auth::user()->designation_type_id;
         $results = $this->ic_repo->getApproved($ic);
-        return view('approval_actions.ic', compact('results'));
+        return view('dashboards.ic.approved', compact('results'));
     }
 
     public function icRejected() {
         $ic = Auth::user()->designation_type_id;
-
-
         $results = $this->ic_repo->getRejected($ic);
-
-        return view('reject_actions.ic', compact('results'));
+        return view('dashboards.ic.rejected', compact('results'));
 
     }
     /**

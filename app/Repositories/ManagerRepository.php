@@ -8,23 +8,13 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
     public function getManagerApproval($manager)
     {
        
-        // $results = DB::table('requisitions')
-        // ->join('users', 'requisitions.user_id', '=', 'users.id')
-        // ->join('manager_approvals', 'requisitions.id', '=', 'manager_approvals.requisition_id')
-        // ->join('sh_tl_approvals', 'requisitions.id', '=', 'sh_tl_approvals.requisition_id')
-        // ->select('requisitions.*', 'requisitions.user_id')->where('requisitions.user_id', '=', 1)
-        // // ->where('manager_approvals.is_approved' == null)
-        // ->get();
-       
-       
-       
-       
+        
        $sql_query =  "SELECT DISTINCT requisitions.id as id, requisitions.quantity as quantity, 
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
         items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM requisitions
         LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id 
-        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
+        LEFT JOIN quantity_units ON requisitions.quantity_unit_id = quantity_units.id
         LEFT JOIN users ON requisitions.user_id = users.id
         LEFT JOIN sh_tl_approvals ON requisitions.id = sh_tl_approvals.requisition_id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id 
@@ -39,7 +29,7 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
         items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id
-        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
+        LEFT JOIN quantity_units ON requisitions.quantity_unit_id = quantity_units.id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
         LEFT JOIN users ON requisitions.user_id = users.id 
         WHERE manager_approvals.is_approved = 1
@@ -56,7 +46,7 @@ use App\Repositories\Interfaces\ManagerRepositoryInterface;
         requisitions.description as description, users.name as user_name, categories.name as category_name, requisitions.req_id as req_id,
         items.name as item_name, items.quantity as item_quantity, quantity_units.name as quantity_unit FROM `requisitions` LEFT JOIN categories ON requisitions.category_id = categories.id
         LEFT JOIN items ON requisitions.item_id = items.id
-        LEFT JOIN quantity_units ON requisitions.item_unit_id = quantity_units.id
+        LEFT JOIN quantity_units ON requisitions.quantity_unit_id = quantity_units.id
         LEFT JOIN manager_approvals ON requisitions.id = manager_approvals.requisition_id
         LEFT JOIN users ON requisitions.user_id = users.id 
         WHERE manager_approvals.is_approved = 0

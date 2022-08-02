@@ -43,13 +43,15 @@
                                 @if (count($results) >0)
                                     @foreach($results as $result)
                                         <tr>
-                                                                                                  --}}
                                             <td>{{$result->item_id}}</td>
                                                         <td>{{$result->name}}</td>
 
                                                         <td>{{$result->quantity.$result->quantityUnit->name}}</td>
                                                         <td>{{$result->reorder_quantity.$result->quantityUnit->name}}</td>
                                            
+                                            
+                                           
+                                        </tr>
                                             
                                            
                                         </tr>
@@ -66,7 +68,7 @@
                     </div>
                 </div>
                 
-                   @include('inc.footer')
+                  @include('inc.footer')
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->

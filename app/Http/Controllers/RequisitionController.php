@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Requisition;
 use App\Models\Item;
-use App\Models\Status;
 use App\Models\User;
 use App\Models\QuantityUnit;
 use Illuminate\Http\Request;
@@ -32,11 +31,10 @@ class RequisitionController extends Controller
            
         $categories = Category::get()->pluck("name", "id");
         $item = Item::all();
-        $status = Status::all();
         $user = User::all();
         $item_unit = QuantityUnit::get()->pluck("name", "id");
-        $results = Requisition::where('user_id', auth()->user()->id)->with('status','category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(4);
-        return view('dashboards.general', compact('results', 'status', 'categories', 'item', 'user', 'item_unit'));
+        $results = Requisition::where('user_id', auth()->user()->id)->with('category', 'item', 'user', 'quantityunit')->orderBy('created_at', 'desc')->paginate(10);
+        return view('dashboards.general', compact('results', 'categories', 'item', 'user', 'item_unit'));
     }
     
 
@@ -71,25 +69,31 @@ class RequisitionController extends Controller
     
     {
 
-    $validator = Validator::make($request->all(), [
+
+        $validatedData = $request->validate([
         'moreFields.*.category_id' => 'required',
         'moreFields.*.item_id' => 'required',
-        'moreFields.*.quantity' => 'required'
+        'moreFields.*.quantity' => 'required',
+        'moreFields.*.item_unit' => 'required',
         
     ]);
-    if($validator->fails()){
-        echo "oopps validation failed";
-
-    }
+    
 
     $count = count($request->all()['moreFields']);
     for($i = 0; $i < $count; $i++ ) {   
+        $item_id = $request->all()['moreFields'][$i]['item_id'];
+        $item = Item::where('id', $item_id )->find($count);
+        if( $item > $item->quantity || $item > $item->reorder_quantity);
+{
+    return back()->with('error', 'The requested Item does not have more quantity');  
+
+}
         $requisition = new Requisition;
         $requisition->category_id = $request->all()['moreFields'][$i]['category_id'];
-        $requisition->item_id = $request->all()['moreFields'][$i]['item_id'];
+        $requisition->item_id = $item;
         $requisition->description = $request->all()['moreFields'][$i]['description'];
         $requisition->quantity = $request->all()['moreFields'][$i]['quantity'];
-        $requisition->item_unit_id = $request->all()['moreFields'][$i]['item_unit'];
+        $requisition->quantity_unit_id = $request->all()['moreFields'][$i]['item_unit'];
         $requisition->user_id = Auth::user()->id;
         $requisition->save();
     }
@@ -97,17 +101,6 @@ class RequisitionController extends Controller
     return redirect('/home')->with('success', 'New Requisition Made');  
     }
 
-    public function editCategories(){
-        $categories = Category::get()
-        ->pluck("name", "id");
-        return redirect('/home')->with('categories', $categories);   
-    }
-    public function editItems($id){
-        $items = Item::get()->where('category_id', $id)->pluck("name", "id");
-        
-        return json_encode($items);
-        
-    }
 
 
     /**

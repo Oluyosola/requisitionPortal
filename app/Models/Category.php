@@ -10,10 +10,12 @@ class Category extends Model
     
     use HasFactory;
     protected $fillable = ['name'];
-    public function Items (){
-        return $this->hasMany('App\Item', 'category_id');
+
+
+    public function items (){
+        return $this->hasMany(Item::class);
     }
-    public function Requisitions (){
-        return $this->hasMany(Requisition::class);
+    public function requisition (){
+        return $this->hasOne(Requisition::class);
     }
 }

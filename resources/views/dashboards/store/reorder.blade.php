@@ -1,7 +1,6 @@
 @extends('layouts.new_app')
 @section('content')
 @include('inc.sidebar')
-
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -31,47 +30,29 @@
                         <table class="table">
                             <thead class="bg-light">
                                 <tr class="border-0">
-                                    <th>Requisition ID</th>
-                                    <th class="border-0">Requestor</th>
-                                    <th class="border-0">Category</th>
-                                    <th class="border-0">Item</th>
-                                    <th class="border-o">Created On</th>
+                                    <th class="border-0">Item ID</th>
+                                    <th class="border-0">Item Name</th>
                                    
+                                    <th class="border-0">Quantity</th>
+                                    <th class="border-0">Reorder Quantity</th>
+                                   
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 @if (count($results) >0)
                                     @foreach($results as $result)
                                         <tr>
-                                            <td><a data-toggle="modal" href='#modal-view{{$result->id}}'>{{$result->req_id}}</td></a>
-                                                <td>{{$result->user_name}}</td>
-                                            <td>{{$result->category_name }}</td>
-                                            <td>{{$result->item_name}}</td>
+                                            <td>{{$result->item_id}}</td>
+                                                        <td>{{$result->name}}</td>
+
+                                                        <td>{{$result->quantity.$result->quantityUnit->name}}</td>
+                                                        <td>{{$result->reorder_quantity.$result->quantityUnit->name}}</td>
                                            
                                             
                                            
                                         </tr>
-                                        <div class="modal fade" id="modal-view{{$result->id}}">
-                                            <div class="modal-dialog">
-                                               <div class="modal-content">
-                                                      <div class="modal-header">
-                                                     <h4 class="text-center">Requisition Details</h4>
-                                                    </div>
-                                                     <div class="modal-body">
-                                                         <h5>REQ Number: {{$result->req_id}}</h5>
-                                                         <h5>REQ category: {{$result->category_name}}</h5>
-                                                         <h5>REQ Item: {{$result->item_name}}</h5>
-                                                         <h5>REQ Quantity: {{$result->item_quantity.$result->quantity_unit}}</h5>
-                                                         <h5>REQ Description: {{$result->description}}</h5>
-                                                     </div>
-                                                  <div class="modal-footer">
-                                                    
-                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                  </div>
-                                               </div>
-                                            </div>
-                                      </div>
-
+                                        
                                         
                                             @endforeach
                                        @endif
@@ -83,8 +64,9 @@
                         </div>
                     </div>
                 </div>
-                @include('inc.footer')
-            </div>
+                
+                   @include('inc.footer')
+    </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->

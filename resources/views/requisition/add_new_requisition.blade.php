@@ -3,10 +3,19 @@
 @include('inc.sidebar')   
 <div style="margin-top: 100px">
     <div class="row justify-content-center">
-        @include('inc.message')
             <div class="card">
                 <div class="card-header text-center" style="background-color: #0077ad"><h4>{{ __('Requisition Form') }}</h4></div>
+                @include('inc.message')   
                 <div class="card-body">
+                    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
                     <form method="POST" action="{{route('store_new_requisition') }} ">
                         @csrf
                         <table class="table table-bordered" id="dynamicAddRemove">
@@ -41,7 +50,7 @@
                                 </td>
                                 <td>
                                     <select name="moreFields[0][item_unit]" class="form-control unit-select">
-                                        <option>--unit--</option>
+                                        <option value="">--unit--</option>
                                         @foreach($item_unit as $unit)
                                             <option value="{{$unit->id}}">{{$unit->name}}</option>
                                         @endforeach

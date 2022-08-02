@@ -111,6 +111,8 @@
                                                
                                                <div class="modal fade" id="modal-update{{$result->id}}">
                                                  <form action="{{route('update_item', $result->id)}}" method="GET">
+                                                    @csrf
+
                                                     <div class="modal-dialog">
                                                        <div class="modal-content">
                                                           <div class="modal-header">
@@ -154,6 +156,10 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <div class="center">
+                                        {{ $results->links() }}
+                
+                                </div>
                                 </div>
                             </div>
                                     

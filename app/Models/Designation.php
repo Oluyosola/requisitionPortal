@@ -11,8 +11,11 @@ class Designation extends Model
     protected $fillable = ['name'];
 
     
-    public function Users()
+    public function users()
     {
         return $this->hasMany(User::class);
+    }
+    public function designationType(){
+        return $this->hasMany(DesignationType::class);
     }
 }

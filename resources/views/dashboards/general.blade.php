@@ -28,7 +28,6 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     @include('inc.message')
-                    {{-- <div class="container"> --}}
                         
                 <div class="ecommerce-widget">
                     <div class="row">
@@ -105,7 +104,7 @@
                                                     <td>{{$result->category->name }}</td>
                                                     <td>{{$result->item->name}}</td>
                                                     <td>{{date_format($result->created_at, 'jS M Y')}}</td>
-                                                    <td>{{$result->status->name}}</td>
+                                                    <td>Pending</td>
                                                     <td>
                                                         <a data-toggle="modal" href='#modal-edit{{$result->id}}'><img src="{{ asset('/assets/img/edit.svg') }}" width="15px" > </a>
                                                     </td>
@@ -125,9 +124,8 @@
                                                                 <h5>REQ Number: {{$result->req_id}}</h5>
                                                                 <h5>REQ category: {{$result->category->name}}</h5>
                                                                 <h5>REQ Item: {{$result->item->name}}</h5>
-                                                                <h5>REQ Quantity: {{$result->quantity.$result->QuantityUnit->name}}</h5>
+                                                                <h5>REQ Quantity: {{$result->quantity.$result->quantityUnit->name}}</h5>
                                                                 <h5>REQ Description: {{$result->description}}</h5>
-                                                                <h5>REQ Status: {{$result->status->name}}</h5>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -147,6 +145,7 @@
                                                 </div>
                                                 <div class="modal fade" id="modal-edit{{$result->id}}">
                                                     <form action="" method="POST">
+                                                        @csrf
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <input type="hidden" name="company" value="{{$result->id}}">

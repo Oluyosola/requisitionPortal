@@ -11,27 +11,17 @@ class Requisition extends Model
 {
     use HasFactory, Notifiable;
     protected $fillable = ['item_id', 'category_id', 
-    'description', 'quantity', 'user_id', 'status_id',
-    'is_sh_tl_approved', 'is_clevel_approved',
-    'sh_tl_approval_comment', 'manager_approval_comment', 
-    'clevel_approval_comment', 'manager_id', 'sh_tl_id',
-    'clevel_id', 'is_manager_approved', 
-    'sh_tl_rejection_comment', 'manager_rejection_comment', 
-    'clevel_rejection_comment', 'req_id', 'item_unit_id'];
+    'description', 'quantity', 'user_id', 'req_id', 'unit_id'];
   
 
-    public function Category (){
-        return $this->belongsTo('App\Models\Category', 'category_id');
+    public function category (){
+        return $this->belongsTo(Category::class);
     }
-    public function Status (){
-        return $this->belongsTo('App\Models\Status', 'status_id');
+    public function item (){
+        return $this->belongsTo(Item::class);
     }
-    public function Item (){
-        return $this->belongsTo('App\Models\Item', 'item_id');
-    }
-    
-    public function User(){
-        return $this->belongsTo('App\Models\User', 'user_id');
+    public function user(){
+        return $this->belongsTo(User::class);
     }
     public function store (){
         return $this->hasOne(StoreApproval::class);
@@ -42,14 +32,11 @@ class Requisition extends Model
     public function manager (){
         return $this->hasOne(ManagerApproval::class);
     }
-    public function shTl (){
+    public function shTl(){
         return $this->hasOne(ShTlApproval::class);
     }
-    public function Approvals (){
-        return $this->hasMany(Approval::class);
-    }
     public function quantityUnit (){
-        return $this->belongsTo('App\Models\QuantityUnit', 'item_unit_id');
+        return $this->belongsTo(QuantityUnit::class);
     }
     public static function boot()
 {

@@ -11,13 +11,10 @@ class QuantityUnit extends Model
     protected $fillable = ['name'];
 
 
-    // public function Quantity(){
-    //     return $this->hasOne(Qauntity::class);
-    // }
-    public function Requisitions(){
-        return $this->hasOne(Requisition::class);
-    }
     public function item (){
-        return $this->hasOne(Item::class);
+        return $this->hasMany(Item::class);
+    }
+    public function requisitions(){
+        return $this->hasMany(Requisition::class);
     }
 }

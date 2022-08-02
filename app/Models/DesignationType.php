@@ -10,11 +10,11 @@ class DesignationType extends Model
     use HasFactory;
     protected $fillable = ['name','designation_id'];
 
-    public function Users()
+    public function users()
     {
         return $this->hasMany(User::class);
     }
-    public function Designations (){
-        return $this->hasMany('App\Designation', 'designation_id');
+    public function Designation(){
+        return $this->belongsTo(Designation::class);
     }
 }

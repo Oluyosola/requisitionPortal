@@ -24,7 +24,6 @@ class User extends Authenticatable
         'email',
         'password',
         'unit_id',
-        'location_id',
         'designation_id',
         'designation_type_id',
         'reporting_designation_id',
@@ -63,16 +62,16 @@ class User extends Authenticatable
         return $this->hasMany(ManagerApproval::class);
     }
     public function shTls(){
-        return $this->hasMany('App\Models\ShTlApproval', 'sh_tl_id');
+        return $this->hasMany(ShTlApproval::class);
     }
-    public function Unit(){
+    public function unit(){
         return $this->belongsTo(Unit::class);
     }
-    public function Designation()
+    public function designation()
     {
         return $this->belongsTo(Designation::class);
     }
-    public function Designationtype()
+    public function designationType()
     {
         return $this->belongsTo(DesignationType::class);
     }

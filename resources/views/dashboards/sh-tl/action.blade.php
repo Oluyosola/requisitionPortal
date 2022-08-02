@@ -63,7 +63,7 @@
                                                         <td>{{$result->user_name}}</td>
                                                         <td>{{$result->category_name }}</td>
                                                         <td>{{$result->item_name}}</td>
-                                                        <td>{{$result->quantity.$result->quantityUnit}}</td>                                                       
+                                                        <td>{{$result->quantity.$result->quantity_unit}}</td>                                                       
   
                                                         <td>
                                                                <a data-toggle="modal" href='#modal-approval{{$result->id}}' class="btn btn-primary" style="background-color: #0077ad">Approve</a>
@@ -96,6 +96,7 @@
 
                                                     <div class="modal fade" id="modal-reject{{$result->id}}">
                                                         <form action="{{route('sh_tl_reject_requisition', $result->id)}}" method="GET">
+                                                            @csrf
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
                                                                     
@@ -129,6 +130,7 @@
                                                   
                                                   <div class="modal fade" id="modal-approval{{$result->id}}">
                                                     <form action="{{route('sh_tl_approve_requisition', $result->id)}}" method="GET">
+                                                        @csrf
                                                        <div class="modal-dialog">
                                                           <div class="modal-content">
                                                              <div class="modal-header">
@@ -146,14 +148,7 @@
                                                                 <div>
                                                                     <input type="hidden" name="requisition" value="{{$result->id}}">
                                                                 </div>
-                                                                <div>
-                                                                    <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
-
-                                                                    <div class="col-md-6">
-
-                                                                    <input type="number" value="{{$result->quantity}}" step="0.01" name="quantity" style="width: 150px" placeholder = "" id="input" class="form-control" required="required" title=""><br>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                             </div>
                                                              <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -10,7 +10,7 @@ class Unit extends Model
     use HasFactory;
     protected $fillable = ['unit'];
 
-    public function Users(){
+    public function users(){
         return $this->hasMany(User::class);
     }
 }

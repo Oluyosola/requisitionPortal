@@ -1,7 +1,3 @@
-@extends('layouts.new_app')
-@section('content')
-@include('inc.sidebar')
-
 <div class="dashboard-wrapper">
     <div class="dashboard-ecommerce">
         <div class="container-fluid dashboard-content ">
@@ -51,6 +47,7 @@
                                             
                                            
                                         </tr>
+                                        
                                         <div class="modal fade" id="modal-view{{$result->id}}">
                                             <div class="modal-dialog">
                                                <div class="modal-content">
@@ -72,8 +69,6 @@
                                             </div>
                                       </div>
 
-                                        
-                                        
                                             @endforeach
                                        @endif
 
@@ -83,13 +78,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
+                </div>            
                 @include('inc.footer')
-
     </div>
     <!-- ============================================================== -->
     <!-- end wrapper  -->
     <!-- ============================================================== -->
 </div>   
-@endsection
