@@ -1,6 +1,17 @@
 # PLATFORM REQUIREMENTS
+- PHP 7^
+- LARAVEL 8^
+
 
 # INSTALLATION GUIDE
+- Clone project 
+- include a .env file in the project diectory, copy the content of .env.example into it and configure db details
+- Run npm install to install node_modules folder
+- Run composer install to have the vendor folder that includes dependencies
+- create a db with the appropriate db name in the .env
+- Kindly run php artisan migrate to set up the db
+- Seed the website table using "php artisan db:seed" to seed data to neccessary tables.
+
 
 
 # ABOUT
@@ -14,7 +25,7 @@
 - Reporting designation
 - Reporting Designation Type
 
-- Requisition Categories
+# Requisition Categories
 - Store Items
 - Assets 
 - Services and Maintenance
